@@ -11,7 +11,7 @@ import javax.swing.JTabbedPane;
 
 /**
  *
- * @author User
+ * @author AggrievedBubble
  */
 
 public class EsportsGUI extends javax.swing.JFrame {
