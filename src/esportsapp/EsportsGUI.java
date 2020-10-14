@@ -360,6 +360,7 @@ public class EsportsGUI extends javax.swing.JFrame {
 			if (!name_taken[0]) new Event(name);
 			
 		}
+		
     }//GEN-LAST:event_NewEventButtonActionPerformed
 
     private void AlwaysOnTopMenuCheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AlwaysOnTopMenuCheckActionPerformed
@@ -370,7 +371,7 @@ public class EsportsGUI extends javax.swing.JFrame {
     private void ColorMenuButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ColorMenuButtonActionPerformed
         // TODO add your handling code here:
         Color selected_color = JColorChooser.showDialog(this, "Choose Background Color", Color.decode("0xFF4500"));
-        MainPanel.setBackground(selected_color);
+		if (selected_color != null) MainPanel.setBackground(selected_color);
     }//GEN-LAST:event_ColorMenuButtonActionPerformed
 
     private void ExitMenuButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExitMenuButtonActionPerformed
