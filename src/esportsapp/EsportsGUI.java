@@ -5,11 +5,13 @@
  */
 package esportsapp;
 
+import java.awt.Color;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.JTabbedPane;
 import java.io.File;
 import java.io.IOException;
+import javax.swing.JColorChooser;
 
 /**
  *
@@ -60,10 +62,12 @@ public class EsportsGUI extends javax.swing.JFrame {
         TeamsLabel = new javax.swing.JLabel();
         TeamMembersLabel = new javax.swing.JLabel();
         Menu = new javax.swing.JMenuBar();
-        File = new javax.swing.JMenu();
+        FileMenu = new javax.swing.JMenu();
         NewTeamButton = new javax.swing.JMenuItem();
         NewEventButton = new javax.swing.JMenuItem();
-        jMenu3 = new javax.swing.JMenu();
+        OptionsMenu = new javax.swing.JMenu();
+        AlwaysOnTopMenuCheck = new javax.swing.JCheckBoxMenuItem();
+        ColorMenuButton = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Esports Manager");
@@ -258,7 +262,7 @@ public class EsportsGUI extends javax.swing.JFrame {
 
         getContentPane().add(MainPanel);
 
-        File.setText("File");
+        FileMenu.setText("File");
 
         NewTeamButton.setText("New Team");
         NewTeamButton.addActionListener(new java.awt.event.ActionListener() {
@@ -266,7 +270,7 @@ public class EsportsGUI extends javax.swing.JFrame {
                 NewTeamButtonActionPerformed(evt);
             }
         });
-        File.add(NewTeamButton);
+        FileMenu.add(NewTeamButton);
 
         NewEventButton.setText("New Event");
         NewEventButton.addActionListener(new java.awt.event.ActionListener() {
@@ -274,12 +278,29 @@ public class EsportsGUI extends javax.swing.JFrame {
                 NewEventButtonActionPerformed(evt);
             }
         });
-        File.add(NewEventButton);
+        FileMenu.add(NewEventButton);
 
-        Menu.add(File);
+        Menu.add(FileMenu);
 
-        jMenu3.setText("Options");
-        Menu.add(jMenu3);
+        OptionsMenu.setText("Options");
+
+        AlwaysOnTopMenuCheck.setText("Always On Top");
+        AlwaysOnTopMenuCheck.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AlwaysOnTopMenuCheckActionPerformed(evt);
+            }
+        });
+        OptionsMenu.add(AlwaysOnTopMenuCheck);
+
+        ColorMenuButton.setText("Change Background Color");
+        ColorMenuButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ColorMenuButtonActionPerformed(evt);
+            }
+        });
+        OptionsMenu.add(ColorMenuButton);
+
+        Menu.add(OptionsMenu);
 
         setJMenuBar(Menu);
 
@@ -327,6 +348,17 @@ public class EsportsGUI extends javax.swing.JFrame {
 			
 		}
     }//GEN-LAST:event_NewEventButtonActionPerformed
+
+    private void ColorMenuButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ColorMenuButtonActionPerformed
+        // TODO add your handling code here:
+		Color selected_color = JColorChooser.showDialog(this, "Choose Background Color", Color.decode("0xFF4500"));
+		MainPanel.setBackground(selected_color);
+    }//GEN-LAST:event_ColorMenuButtonActionPerformed
+
+    private void AlwaysOnTopMenuCheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AlwaysOnTopMenuCheckActionPerformed
+        // TODO add your handling code here:
+		this.setAlwaysOnTop(AlwaysOnTopMenuCheck.isSelected());
+    }//GEN-LAST:event_AlwaysOnTopMenuCheckActionPerformed
 
     /**
      * @param args the command line arguments
@@ -379,6 +411,8 @@ public class EsportsGUI extends javax.swing.JFrame {
 	}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JCheckBoxMenuItem AlwaysOnTopMenuCheck;
+    private javax.swing.JMenuItem ColorMenuButton;
     private javax.swing.JPanel Event1;
     private javax.swing.JButton EventAddTeam;
     public static javax.swing.JTabbedPane EventManagementPane;
@@ -387,13 +421,14 @@ public class EsportsGUI extends javax.swing.JFrame {
     private javax.swing.JList<String> EventTeamsList;
     private javax.swing.JScrollPane EventTeamsScrollPane;
     private javax.swing.JLabel EventsLabel;
-    private javax.swing.JMenu File;
+    private javax.swing.JMenu FileMenu;
     private javax.swing.JPanel MainPanel;
     private javax.swing.JLabel MembersLabel;
     private javax.swing.JMenuBar Menu;
     private javax.swing.JMenuItem NewEventButton;
     private javax.swing.JMenuItem NewTeamButton;
     private javax.swing.JButton ODWButton;
+    private javax.swing.JMenu OptionsMenu;
     private javax.swing.JPanel Team1;
     private javax.swing.JButton TeamAddMember;
     private javax.swing.JList<String> TeamEventsList;
@@ -406,7 +441,6 @@ public class EsportsGUI extends javax.swing.JFrame {
     private javax.swing.JButton TeamRenameButton;
     private javax.swing.JLabel TeamsLabel;
     private javax.swing.JList<String> jList1;
-    private javax.swing.JMenu jMenu3;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }
