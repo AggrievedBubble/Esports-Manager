@@ -65,9 +65,11 @@ public class EsportsGUI extends javax.swing.JFrame {
         FileMenu = new javax.swing.JMenu();
         NewTeamButton = new javax.swing.JMenuItem();
         NewEventButton = new javax.swing.JMenuItem();
+        jSeparator1 = new javax.swing.JPopupMenu.Separator();
+        ExitMenuButton = new javax.swing.JMenuItem();
         OptionsMenu = new javax.swing.JMenu();
-        AlwaysOnTopMenuCheck = new javax.swing.JCheckBoxMenuItem();
         ColorMenuButton = new javax.swing.JMenuItem();
+        AlwaysOnTopMenuCheck = new javax.swing.JCheckBoxMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Esports Manager");
@@ -264,6 +266,7 @@ public class EsportsGUI extends javax.swing.JFrame {
 
         FileMenu.setText("File");
 
+        NewTeamButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/esportsapp/newteam.png"))); // NOI18N
         NewTeamButton.setText("New Team");
         NewTeamButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -279,10 +282,28 @@ public class EsportsGUI extends javax.swing.JFrame {
             }
         });
         FileMenu.add(NewEventButton);
+        FileMenu.add(jSeparator1);
+
+        ExitMenuButton.setText("Exit");
+        ExitMenuButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ExitMenuButtonActionPerformed(evt);
+            }
+        });
+        FileMenu.add(ExitMenuButton);
 
         Menu.add(FileMenu);
 
         OptionsMenu.setText("Options");
+
+        ColorMenuButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/esportsapp/colorpicker.png"))); // NOI18N
+        ColorMenuButton.setText("Background Color");
+        ColorMenuButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ColorMenuButtonActionPerformed(evt);
+            }
+        });
+        OptionsMenu.add(ColorMenuButton);
 
         AlwaysOnTopMenuCheck.setText("Always On Top");
         AlwaysOnTopMenuCheck.addActionListener(new java.awt.event.ActionListener() {
@@ -291,14 +312,6 @@ public class EsportsGUI extends javax.swing.JFrame {
             }
         });
         OptionsMenu.add(AlwaysOnTopMenuCheck);
-
-        ColorMenuButton.setText("Change Background Color");
-        ColorMenuButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ColorMenuButtonActionPerformed(evt);
-            }
-        });
-        OptionsMenu.add(ColorMenuButton);
 
         Menu.add(OptionsMenu);
 
@@ -349,16 +362,21 @@ public class EsportsGUI extends javax.swing.JFrame {
 		}
     }//GEN-LAST:event_NewEventButtonActionPerformed
 
-    private void ColorMenuButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ColorMenuButtonActionPerformed
-        // TODO add your handling code here:
-		Color selected_color = JColorChooser.showDialog(this, "Choose Background Color", Color.decode("0xFF4500"));
-		MainPanel.setBackground(selected_color);
-    }//GEN-LAST:event_ColorMenuButtonActionPerformed
-
     private void AlwaysOnTopMenuCheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AlwaysOnTopMenuCheckActionPerformed
         // TODO add your handling code here:
 		this.setAlwaysOnTop(AlwaysOnTopMenuCheck.isSelected());
     }//GEN-LAST:event_AlwaysOnTopMenuCheckActionPerformed
+
+    private void ColorMenuButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ColorMenuButtonActionPerformed
+        // TODO add your handling code here:
+        Color selected_color = JColorChooser.showDialog(this, "Choose Background Color", Color.decode("0xFF4500"));
+        MainPanel.setBackground(selected_color);
+    }//GEN-LAST:event_ColorMenuButtonActionPerformed
+
+    private void ExitMenuButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExitMenuButtonActionPerformed
+        // TODO add your handling code here:
+		this.dispose();
+    }//GEN-LAST:event_ExitMenuButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -421,6 +439,7 @@ public class EsportsGUI extends javax.swing.JFrame {
     private javax.swing.JList<String> EventTeamsList;
     private javax.swing.JScrollPane EventTeamsScrollPane;
     private javax.swing.JLabel EventsLabel;
+    private javax.swing.JMenuItem ExitMenuButton;
     private javax.swing.JMenu FileMenu;
     private javax.swing.JPanel MainPanel;
     private javax.swing.JLabel MembersLabel;
@@ -442,5 +461,6 @@ public class EsportsGUI extends javax.swing.JFrame {
     private javax.swing.JLabel TeamsLabel;
     private javax.swing.JList<String> jList1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JPopupMenu.Separator jSeparator1;
     // End of variables declaration//GEN-END:variables
 }
