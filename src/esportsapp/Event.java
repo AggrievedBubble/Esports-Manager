@@ -5,17 +5,28 @@
  */
 package esportsapp;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author User
  */
 public class Event extends javax.swing.JPanel {
 
+	public static ArrayList<Event> EventList = new ArrayList<Event>();
+	
+	String EventName;
+	ArrayList<Team> EventTeams = new ArrayList<Team>();
+	
 	/**
 	 * Creates new form Event
 	 */
-	public Event() {
+	public Event(String name) {
+		this.EventName = name;
+		
 		initComponents();
+		EsportsGUI.getEventTabbedPane().add(this.EventName, this);
+		Event.EventList.add(this);
 	}
 
 	/**
@@ -28,20 +39,45 @@ public class Event extends javax.swing.JPanel {
     private void initComponents() {
         java.awt.GridBagConstraints gridBagConstraints;
 
+        TeamsLabel = new javax.swing.JLabel();
+        EventAddTeam = new javax.swing.JButton();
+        EventRemoveTeam = new javax.swing.JButton();
         EventTeamsScrollPane = new javax.swing.JScrollPane();
         EventTeamsList = new javax.swing.JList<>();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
-        EventAddTeam = new javax.swing.JButton();
-        EventRenameButton = new javax.swing.JButton();
-        EventRemoveTeam = new javax.swing.JButton();
-        TeamsLabel = new javax.swing.JLabel();
+        jSeparator2 = new javax.swing.JSeparator();
         TeamMembersLabel = new javax.swing.JLabel();
+        EventTeamMembersScrollPane = new javax.swing.JScrollPane();
+        jList1 = new javax.swing.JList<>();
+        jSeparator1 = new javax.swing.JSeparator();
+        EventNameTextField = new javax.swing.JTextField();
 
         java.awt.GridBagLayout layout = new java.awt.GridBagLayout();
-        layout.columnWidths = new int[] {0, 5, 0, 5, 0, 5, 0, 5, 0};
-        layout.rowHeights = new int[] {0, 5, 0, 5, 0, 5, 0, 5, 0, 5, 0};
+        layout.columnWidths = new int[] {0, 5, 0, 5, 0, 5, 0, 5, 0, 5, 0};
+        layout.rowHeights = new int[] {0, 5, 0, 5, 0, 5, 0, 5, 0, 5, 0, 5, 0, 5, 0};
+        layout.columnWeights = new double[] {0.0};
+        layout.rowWeights = new double[] {0.0};
         setLayout(layout);
+
+        TeamsLabel.setText("Teams:");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.SOUTHWEST;
+        add(TeamsLabel, gridBagConstraints);
+
+        EventAddTeam.setText("+");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.SOUTHEAST;
+        add(EventAddTeam, gridBagConstraints);
+
+        EventRemoveTeam.setText("-");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.SOUTHWEST;
+        add(EventRemoveTeam, gridBagConstraints);
 
         EventTeamsList.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Team1", "Team2", "Team3", "Team4", "Team5", "Team6" };
@@ -53,11 +89,26 @@ public class Event extends javax.swing.JPanel {
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 4;
-        gridBagConstraints.gridwidth = 5;
+        gridBagConstraints.gridy = 6;
+        gridBagConstraints.gridwidth = 3;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.weightx = 0.5;
         gridBagConstraints.weighty = 1.0;
         add(EventTeamsScrollPane, gridBagConstraints);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 8;
+        gridBagConstraints.gridwidth = 3;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        add(jSeparator2, gridBagConstraints);
+
+        TeamMembersLabel.setText("Team Members:");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 10;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.SOUTHWEST;
+        add(TeamMembersLabel, gridBagConstraints);
 
         jList1.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Member1", "Member2", "Member3", "Member4", "Member5" };
@@ -65,64 +116,47 @@ public class Event extends javax.swing.JPanel {
             public String getElementAt(int i) { return strings[i]; }
         });
         jList1.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        jScrollPane1.setViewportView(jList1);
+        EventTeamMembersScrollPane.setViewportView(jList1);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 10;
-        gridBagConstraints.gridwidth = 5;
+        gridBagConstraints.gridy = 12;
+        gridBagConstraints.gridwidth = 3;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.weightx = 0.5;
         gridBagConstraints.weighty = 1.0;
-        add(jScrollPane1, gridBagConstraints);
+        add(EventTeamMembersScrollPane, gridBagConstraints);
 
-        EventAddTeam.setText("+");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 4;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
-        gridBagConstraints.weightx = 1.0;
-        add(EventAddTeam, gridBagConstraints);
-
-        EventRenameButton.setText("Rename");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 8;
-        gridBagConstraints.gridy = 4;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHEAST;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
-        add(EventRenameButton, gridBagConstraints);
-
-        EventRemoveTeam.setText("-");
+        jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 6;
         gridBagConstraints.gridy = 2;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.weightx = 1.0;
-        add(EventRemoveTeam, gridBagConstraints);
+        gridBagConstraints.gridheight = 11;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
+        add(jSeparator1, gridBagConstraints);
 
-        TeamsLabel.setText("Teams:");
+        EventNameTextField.setText("jTextField1");
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridx = 8;
         gridBagConstraints.gridy = 2;
-        add(TeamsLabel, gridBagConstraints);
-
-        TeamMembersLabel.setText("Team Members:");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 8;
-        add(TeamMembersLabel, gridBagConstraints);
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 1.0;
+        add(EventNameTextField, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton EventAddTeam;
+    private javax.swing.JTextField EventNameTextField;
     private javax.swing.JButton EventRemoveTeam;
-    private javax.swing.JButton EventRenameButton;
+    private javax.swing.JScrollPane EventTeamMembersScrollPane;
     private javax.swing.JList<String> EventTeamsList;
     private javax.swing.JScrollPane EventTeamsScrollPane;
     private javax.swing.JLabel TeamMembersLabel;
     private javax.swing.JLabel TeamsLabel;
     private javax.swing.JList<String> jList1;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSeparator jSeparator2;
     // End of variables declaration//GEN-END:variables
 }
