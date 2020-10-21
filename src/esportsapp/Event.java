@@ -136,7 +136,7 @@ public class Event extends javax.swing.JPanel {
         gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
         add(jSeparator1, gridBagConstraints);
 
-        EventNameTextField.setText("jTextField1");
+        EventNameTextField.setText(this.EventName);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 8;
         gridBagConstraints.gridy = 2;

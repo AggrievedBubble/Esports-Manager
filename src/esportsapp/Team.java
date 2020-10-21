@@ -136,7 +136,7 @@ public class Team extends javax.swing.JPanel {
         gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
         add(jSeparator1, gridBagConstraints);
 
-        TeamNameTextField.setText("jTextField1");
+        TeamNameTextField.setText(this.TeamName);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 8;
         gridBagConstraints.gridy = 2;
