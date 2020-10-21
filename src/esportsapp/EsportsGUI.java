@@ -247,12 +247,12 @@ public class EsportsGUI extends javax.swing.JFrame {
 		
     }
 	
-	//returns the teams tabbed pane to the Team constructor
+	//used to return the teams tabbed pane to the Team constructor
 	public static JTabbedPane getTeamTabbedPane() {
 		return TeamTabbedPane;
 	}
 	
-	//returns the events tabbed pane to the Event constructor
+	//used to return the events tabbed pane to the Event constructor
 	public static JTabbedPane getEventTabbedPane() {
 		return EventTabbedPane;
 	}
