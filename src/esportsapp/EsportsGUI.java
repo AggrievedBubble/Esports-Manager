@@ -39,7 +39,7 @@ public class EsportsGUI extends javax.swing.JFrame {
 
         MainPanel = new javax.swing.JPanel();
         ODWButton = new javax.swing.JButton();
-        TeamManegementPane = new javax.swing.JTabbedPane();
+        TeamTabbedPane = new javax.swing.JTabbedPane();
         Team1 = new javax.swing.JPanel();
         TeamMembersScrollPane = new javax.swing.JScrollPane();
         TeamMembersList = new javax.swing.JList<>();
@@ -50,7 +50,7 @@ public class EsportsGUI extends javax.swing.JFrame {
         TeamRemoveMember = new javax.swing.JButton();
         MembersLabel = new javax.swing.JLabel();
         EventsLabel = new javax.swing.JLabel();
-        EventManagementPane = new javax.swing.JTabbedPane();
+        EventTabbedPane = new javax.swing.JTabbedPane();
         Event1 = new javax.swing.JPanel();
         EventTeamsScrollPane = new javax.swing.JScrollPane();
         EventTeamsList = new javax.swing.JList<>();
@@ -75,7 +75,6 @@ public class EsportsGUI extends javax.swing.JFrame {
         setTitle("Esports Manager");
         setAutoRequestFocus(false);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        setPreferredSize(new java.awt.Dimension(1280, 720));
         getContentPane().setLayout(new java.awt.GridLayout(1, 0));
 
         MainPanel.setBackground(new java.awt.Color(255, 69, 0));
@@ -92,7 +91,7 @@ public class EsportsGUI extends javax.swing.JFrame {
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         MainPanel.add(ODWButton, gridBagConstraints);
 
-        TeamManegementPane.setTabPlacement(javax.swing.JTabbedPane.LEFT);
+        TeamTabbedPane.setTabPlacement(javax.swing.JTabbedPane.LEFT);
 
         Team1.setLayout(new java.awt.GridBagLayout());
 
@@ -167,7 +166,7 @@ public class EsportsGUI extends javax.swing.JFrame {
         gridBagConstraints.gridy = 3;
         Team1.add(EventsLabel, gridBagConstraints);
 
-        TeamManegementPane.addTab("Team Template", Team1);
+        TeamTabbedPane.addTab("Team Template", Team1);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
@@ -175,9 +174,9 @@ public class EsportsGUI extends javax.swing.JFrame {
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        MainPanel.add(TeamManegementPane, gridBagConstraints);
+        MainPanel.add(TeamTabbedPane, gridBagConstraints);
 
-        EventManagementPane.setTabPlacement(javax.swing.JTabbedPane.LEFT);
+        EventTabbedPane.setTabPlacement(javax.swing.JTabbedPane.LEFT);
 
         Event1.setLayout(new java.awt.GridBagLayout());
 
@@ -252,7 +251,7 @@ public class EsportsGUI extends javax.swing.JFrame {
         gridBagConstraints.gridy = 3;
         Event1.add(TeamMembersLabel, gridBagConstraints);
 
-        EventManagementPane.addTab("Event Template", Event1);
+        EventTabbedPane.addTab("Event Template", Event1);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 6;
@@ -260,7 +259,7 @@ public class EsportsGUI extends javax.swing.JFrame {
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        MainPanel.add(EventManagementPane, gridBagConstraints);
+        MainPanel.add(EventTabbedPane, gridBagConstraints);
 
         getContentPane().add(MainPanel);
 
@@ -420,13 +419,13 @@ public class EsportsGUI extends javax.swing.JFrame {
     }
 	
 	//returns the teams tabbed pane to the Team constructor
-	public static JTabbedPane getTeamManagementPane() {
-		return TeamManegementPane;
+	public static JTabbedPane getTeamTabbedPane() {
+		return TeamTabbedPane;
 	}
 	
 	//returns the events tabbed pane to the Event constructor
-	public static JTabbedPane getEventManagementPane() {
-		return EventManagementPane;
+	public static JTabbedPane getEventTabbedPane() {
+		return EventTabbedPane;
 	}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -434,9 +433,9 @@ public class EsportsGUI extends javax.swing.JFrame {
     private javax.swing.JMenuItem ColorMenuButton;
     private javax.swing.JPanel Event1;
     private javax.swing.JButton EventAddTeam;
-    public static javax.swing.JTabbedPane EventManagementPane;
     private javax.swing.JButton EventRemoveTeam;
     private javax.swing.JButton EventRenameButton;
+    public static javax.swing.JTabbedPane EventTabbedPane;
     private javax.swing.JList<String> EventTeamsList;
     private javax.swing.JScrollPane EventTeamsScrollPane;
     private javax.swing.JLabel EventsLabel;
@@ -453,12 +452,12 @@ public class EsportsGUI extends javax.swing.JFrame {
     private javax.swing.JButton TeamAddMember;
     private javax.swing.JList<String> TeamEventsList;
     private javax.swing.JScrollPane TeamEventsScrollPane;
-    public static javax.swing.JTabbedPane TeamManegementPane;
     private javax.swing.JLabel TeamMembersLabel;
     private javax.swing.JList<String> TeamMembersList;
     private javax.swing.JScrollPane TeamMembersScrollPane;
     private javax.swing.JButton TeamRemoveMember;
     private javax.swing.JButton TeamRenameButton;
+    public static javax.swing.JTabbedPane TeamTabbedPane;
     private javax.swing.JLabel TeamsLabel;
     private javax.swing.JList<String> jList1;
     private javax.swing.JScrollPane jScrollPane1;
