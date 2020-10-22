@@ -73,7 +73,7 @@ public class Team extends javax.swing.JPanel {
         MembersPanel.add(MembersLabel, gridBagConstraints);
 
         TeamMembersList.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Member1", "Member2", "Member3", "Member4", "Member5" };
+            String[] strings = { "abc", "cde", "efg", "ghi" };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
@@ -90,12 +90,22 @@ public class Team extends javax.swing.JPanel {
         gridBagConstraints.weighty = 1.0;
         MembersPanel.add(TeamMembersScrollPane, gridBagConstraints);
 
-        MembersButtonPanel.setLayout(new java.awt.GridLayout());
+        MembersButtonPanel.setLayout(new java.awt.GridLayout(1, 0));
 
         TeamAddMember.setText("+");
+        TeamAddMember.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TeamAddMemberActionPerformed(evt);
+            }
+        });
         MembersButtonPanel.add(TeamAddMember);
 
         TeamRemoveMember.setText("-");
+        TeamRemoveMember.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TeamRemoveMemberActionPerformed(evt);
+            }
+        });
         MembersButtonPanel.add(TeamRemoveMember);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -200,6 +210,22 @@ public class Team extends javax.swing.JPanel {
 			}
 		}
     }//GEN-LAST:event_TeamNameTextFieldActionPerformed
+
+    private void TeamAddMemberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TeamAddMemberActionPerformed
+        // TODO add your handling code here:
+		String proposed_name = JOptionPane.showInputDialog("Please enter a name for the player:");
+		
+    }//GEN-LAST:event_TeamAddMemberActionPerformed
+
+    private void TeamRemoveMemberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TeamRemoveMemberActionPerformed
+        // TODO add your handling code here:
+		String selected_member = this.TeamMembersList.getSelectedValue();
+		int confirm = JOptionPane.showConfirmDialog(this, "Are you sure you want to remove the player \"%\" from the team?".replace("%", selected_member));
+		if (confirm == 0) {
+			this.TeamMembersList.remove(this.TeamMembersList.getSelectedIndex());
+			this.TeamMembers.removeIf(p -> (p.PlayerName.equals(selected_member)));
+		}
+    }//GEN-LAST:event_TeamRemoveMemberActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

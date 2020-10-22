@@ -48,12 +48,11 @@
             <Component class="javax.swing.JList" name="TeamMembersList">
               <Properties>
                 <Property name="model" type="javax.swing.ListModel" editor="org.netbeans.modules.form.editors2.ListModelEditor">
-                  <StringArray count="5">
-                    <StringItem index="0" value="Member1"/>
-                    <StringItem index="1" value="Member2"/>
-                    <StringItem index="2" value="Member3"/>
-                    <StringItem index="3" value="Member4"/>
-                    <StringItem index="4" value="Member5"/>
+                  <StringArray count="4">
+                    <StringItem index="0" value="abc"/>
+                    <StringItem index="1" value="cde"/>
+                    <StringItem index="2" value="efg"/>
+                    <StringItem index="3" value="ghi"/>
                   </StringArray>
                 </Property>
                 <Property name="selectionMode" type="int" value="0"/>
@@ -80,11 +79,17 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="+"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="TeamAddMemberActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="TeamRemoveMember">
               <Properties>
                 <Property name="text" type="java.lang.String" value="-"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="TeamRemoveMemberActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>
