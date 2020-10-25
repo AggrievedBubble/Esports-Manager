@@ -72,11 +72,6 @@ public class Team extends javax.swing.JPanel {
         gridBagConstraints.gridy = 0;
         MembersPanel.add(MembersLabel, gridBagConstraints);
 
-        TeamMembersList.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "abc", "cde", "efg", "ghi" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
         TeamMembersList.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         TeamMembersScrollPane.setViewportView(TeamMembersList);
 
@@ -214,7 +209,27 @@ public class Team extends javax.swing.JPanel {
     private void TeamAddMemberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TeamAddMemberActionPerformed
         // TODO add your handling code here:
 		String proposed_name = JOptionPane.showInputDialog("Please enter a name for the player:");
-		
+		if (proposed_name == null || proposed_name.equals("")) {
+			return;
+		} else {
+			Boolean[] name_taken = {false};
+			this.TeamMembers.forEach((m) -> {
+				if (m.PlayerName.equals(proposed_name)) {
+					JOptionPane.showMessageDialog(this, "Member Name \"%\" is already in this team".replace("%", proposed_name));
+					name_taken[0] = true;
+					return;
+				}
+			});
+			if (!name_taken[0]) {
+				Player player = new Player(proposed_name, this);
+				this.TeamMembers.add(player);
+				DefaultListModel listmodel = new DefaultListModel();
+				this.TeamMembers.forEach((m) -> {
+				listmodel.addElement(m.PlayerName);
+				});
+				TeamMembersList.setModel(listmodel);
+			}
+		}
     }//GEN-LAST:event_TeamAddMemberActionPerformed
 
     private void TeamRemoveMemberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TeamRemoveMemberActionPerformed
@@ -222,8 +237,12 @@ public class Team extends javax.swing.JPanel {
 		String selected_member = this.TeamMembersList.getSelectedValue();
 		int confirm = JOptionPane.showConfirmDialog(this, "Are you sure you want to remove the player \"%\" from the team?".replace("%", selected_member));
 		if (confirm == 0) {
-			this.TeamMembersList.remove(this.TeamMembersList.getSelectedIndex());
 			this.TeamMembers.removeIf(p -> (p.PlayerName.equals(selected_member)));
+			DefaultListModel listmodel = new DefaultListModel();
+			this.TeamMembers.forEach((m) -> {
+			listmodel.addElement(m.PlayerName);
+			});
+			TeamMembersList.setModel(listmodel);
 		}
     }//GEN-LAST:event_TeamRemoveMemberActionPerformed
 
