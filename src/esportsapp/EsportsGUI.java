@@ -5,6 +5,9 @@
  */
 package esportsapp;
 
+import java.awt.*;
+import javax.swing.*;
+
 import java.awt.Color;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
@@ -37,175 +40,145 @@ public class EsportsGUI extends javax.swing.JFrame {
     private void initComponents() {
         java.awt.GridBagConstraints gridBagConstraints;
 
-        MainPanel = new javax.swing.JPanel();
-        ODWButton = new javax.swing.JButton();
-        TeamTabbedPane = new javax.swing.JTabbedPane();
-        EventTabbedPane = new javax.swing.JTabbedPane();
-        Menu = new javax.swing.JMenuBar();
-        FileMenu = new javax.swing.JMenu();
-        NewTeamButton = new javax.swing.JMenuItem();
-        NewEventButton = new javax.swing.JMenuItem();
-        jSeparator1 = new javax.swing.JPopupMenu.Separator();
-        ExitMenuButton = new javax.swing.JMenuItem();
-        OptionsMenu = new javax.swing.JMenu();
-        ColorMenuButton = new javax.swing.JMenuItem();
-        AlwaysOnTopMenuCheck = new javax.swing.JCheckBoxMenuItem();
+        menuButtonGroup = new javax.swing.ButtonGroup();
+        mainPanel = new javax.swing.JPanel();
+        eventsScrollPane = new javax.swing.JScrollPane();
+        eventsPanel = new javax.swing.JPanel();
+        teamsScrollPane = new javax.swing.JScrollPane();
+        teamsPanel = new javax.swing.JPanel();
+        leaderboardPanel = new javax.swing.JPanel();
+        settingsPanel = new javax.swing.JPanel();
+        menuPanel = new javax.swing.JPanel();
+        eventsToggleButton = new javax.swing.JToggleButton();
+        teamsToggleButton = new javax.swing.JToggleButton();
+        leaderboardToggleButton = new javax.swing.JToggleButton();
+        settingsToggleButton = new javax.swing.JToggleButton();
+        saveButton = new javax.swing.JButton();
+        loadButton = new javax.swing.JButton();
+        exitButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Esports Manager");
         setAutoRequestFocus(false);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setPreferredSize(new java.awt.Dimension(1280, 720));
-        getContentPane().setLayout(new java.awt.GridLayout(1, 0));
+        getContentPane().setLayout(new java.awt.GridBagLayout());
 
-        MainPanel.setBackground(new java.awt.Color(255, 69, 0));
-        java.awt.GridBagLayout MainPanelLayout = new java.awt.GridBagLayout();
-        MainPanelLayout.columnWidths = new int[] {0, 5, 0, 5, 0, 5, 0, 5, 0};
-        MainPanelLayout.rowHeights = new int[] {0, 5, 0, 5, 0, 5, 0};
-        MainPanel.setLayout(MainPanelLayout);
+        mainPanel.setLayout(new java.awt.CardLayout());
 
-        ODWButton.setText("Open Display Window");
+        eventsScrollPane.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        eventsScrollPane.setViewportView(eventsPanel);
+
+        mainPanel.add(eventsScrollPane, "eventsCard");
+
+        teamsScrollPane.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        teamsScrollPane.setViewportView(teamsPanel);
+
+        mainPanel.add(teamsScrollPane, "teamsCard");
+
+        leaderboardPanel.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        mainPanel.add(leaderboardPanel, "leaderboardCard");
+
+        settingsPanel.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        mainPanel.add(settingsPanel, "settingsCard");
+
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 4;
-        gridBagConstraints.gridwidth = 5;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        MainPanel.add(ODWButton, gridBagConstraints);
-
-        TeamTabbedPane.setTabPlacement(javax.swing.JTabbedPane.LEFT);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
-        MainPanel.add(TeamTabbedPane, gridBagConstraints);
-
-        EventTabbedPane.setTabPlacement(javax.swing.JTabbedPane.LEFT);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 6;
-        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 0;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        MainPanel.add(EventTabbedPane, gridBagConstraints);
+        getContentPane().add(mainPanel, gridBagConstraints);
 
-        getContentPane().add(MainPanel);
+        menuPanel.setLayout(new java.awt.GridLayout(0, 1));
 
-        FileMenu.setText("File");
-
-        NewTeamButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/esportsapp/newteam.png"))); // NOI18N
-        NewTeamButton.setText("New Team");
-        NewTeamButton.addActionListener(new java.awt.event.ActionListener() {
+        menuButtonGroup.add(eventsToggleButton);
+        eventsToggleButton.setFont(eventsToggleButton.getFont().deriveFont(eventsToggleButton.getFont().getSize()+7f));
+        eventsToggleButton.setText("Events");
+        eventsToggleButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                NewTeamButtonActionPerformed(evt);
+                eventsToggleButtonActionPerformed(evt);
             }
         });
-        FileMenu.add(NewTeamButton);
+        menuPanel.add(eventsToggleButton);
 
-        NewEventButton.setText("New Event");
-        NewEventButton.addActionListener(new java.awt.event.ActionListener() {
+        menuButtonGroup.add(teamsToggleButton);
+        teamsToggleButton.setFont(teamsToggleButton.getFont().deriveFont(teamsToggleButton.getFont().getSize()+7f));
+        teamsToggleButton.setText("Teams");
+        teamsToggleButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                NewEventButtonActionPerformed(evt);
+                teamsToggleButtonActionPerformed(evt);
             }
         });
-        FileMenu.add(NewEventButton);
-        FileMenu.add(jSeparator1);
+        menuPanel.add(teamsToggleButton);
 
-        ExitMenuButton.setText("Exit");
-        ExitMenuButton.addActionListener(new java.awt.event.ActionListener() {
+        menuButtonGroup.add(leaderboardToggleButton);
+        leaderboardToggleButton.setFont(leaderboardToggleButton.getFont().deriveFont(leaderboardToggleButton.getFont().getSize()+7f));
+        leaderboardToggleButton.setText("Leaderboard");
+        leaderboardToggleButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ExitMenuButtonActionPerformed(evt);
+                leaderboardToggleButtonActionPerformed(evt);
             }
         });
-        FileMenu.add(ExitMenuButton);
+        menuPanel.add(leaderboardToggleButton);
 
-        Menu.add(FileMenu);
-
-        OptionsMenu.setText("Options");
-
-        ColorMenuButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/esportsapp/colorpicker.png"))); // NOI18N
-        ColorMenuButton.setText("Background Color");
-        ColorMenuButton.addActionListener(new java.awt.event.ActionListener() {
+        menuButtonGroup.add(settingsToggleButton);
+        settingsToggleButton.setFont(settingsToggleButton.getFont().deriveFont(settingsToggleButton.getFont().getSize()+7f));
+        settingsToggleButton.setText("Settings");
+        settingsToggleButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ColorMenuButtonActionPerformed(evt);
+                settingsToggleButtonActionPerformed(evt);
             }
         });
-        OptionsMenu.add(ColorMenuButton);
+        menuPanel.add(settingsToggleButton);
 
-        AlwaysOnTopMenuCheck.setText("Always On Top");
-        AlwaysOnTopMenuCheck.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                AlwaysOnTopMenuCheckActionPerformed(evt);
-            }
-        });
-        OptionsMenu.add(AlwaysOnTopMenuCheck);
+        saveButton.setFont(saveButton.getFont().deriveFont(saveButton.getFont().getSize()+7f));
+        saveButton.setText("Save");
+        menuPanel.add(saveButton);
 
-        Menu.add(OptionsMenu);
+        loadButton.setFont(loadButton.getFont().deriveFont(loadButton.getFont().getSize()+7f));
+        loadButton.setText("Load");
+        menuPanel.add(loadButton);
 
-        setJMenuBar(Menu);
+        exitButton.setFont(exitButton.getFont().deriveFont(exitButton.getFont().getSize()+7f));
+        exitButton.setText("Exit");
+        menuPanel.add(exitButton);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 0.2;
+        gridBagConstraints.weighty = 1.0;
+        getContentPane().add(menuPanel, gridBagConstraints);
 
         setSize(new java.awt.Dimension(736, 519));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void NewTeamButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NewTeamButtonActionPerformed
+    private void eventsToggleButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eventsToggleButtonActionPerformed
         // TODO add your handling code here:
-		String name = JOptionPane.showInputDialog(this, "Team Name:");
-		
-		if (name == null || name.equals("")) {
-			return;
-		} else {
-			Boolean[] name_taken = {false};
-			Team.TeamList.forEach((t) -> {
-				if (t.TeamName.equals(name)) {
-					JOptionPane.showMessageDialog(this, "Team Name \"%\" is already in use".replace("%", name));
-					name_taken[0] = true;
-					return;
-				}
-			});
-			if (!name_taken[0]) new Team(name);
-			
-		}
-		
-    }//GEN-LAST:event_NewTeamButtonActionPerformed
+		CardLayout card = (CardLayout)mainPanel.getLayout();
+		card.show(mainPanel, "eventsCard");
+    }//GEN-LAST:event_eventsToggleButtonActionPerformed
 
-    private void NewEventButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NewEventButtonActionPerformed
+    private void teamsToggleButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_teamsToggleButtonActionPerformed
         // TODO add your handling code here:
-		String name = JOptionPane.showInputDialog(this, "Event Name:");
-		
-		if (name == null || name.equals("")) {
-			return;
-		} else {
-			Boolean[] name_taken = {false};
-			Event.EventList.forEach((e) -> {
-				if (e.EventName.equals(name)) {
-					JOptionPane.showMessageDialog(this, "Event Name \"%\" is already in use".replace("%", name));
-					name_taken[0] = true;
-					return;
-				}
-			});
-			if (!name_taken[0]) new Event(name);
-			
-		}
-		
-    }//GEN-LAST:event_NewEventButtonActionPerformed
+		CardLayout card = (CardLayout)mainPanel.getLayout();
+		card.show(mainPanel, "teamsCard");
+    }//GEN-LAST:event_teamsToggleButtonActionPerformed
 
-    private void AlwaysOnTopMenuCheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AlwaysOnTopMenuCheckActionPerformed
+    private void leaderboardToggleButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_leaderboardToggleButtonActionPerformed
         // TODO add your handling code here:
-		this.setAlwaysOnTop(AlwaysOnTopMenuCheck.isSelected());
-    }//GEN-LAST:event_AlwaysOnTopMenuCheckActionPerformed
+		CardLayout card = (CardLayout)mainPanel.getLayout();
+		card.show(mainPanel, "leaderboardCard");
+    }//GEN-LAST:event_leaderboardToggleButtonActionPerformed
 
-    private void ColorMenuButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ColorMenuButtonActionPerformed
+    private void settingsToggleButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_settingsToggleButtonActionPerformed
         // TODO add your handling code here:
-        Color selected_color = JColorChooser.showDialog(this, "Choose Background Color", Color.decode("0xFF4500"));
-		if (selected_color != null) MainPanel.setBackground(selected_color);
-    }//GEN-LAST:event_ColorMenuButtonActionPerformed
-
-    private void ExitMenuButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExitMenuButtonActionPerformed
-        // TODO add your handling code here:
-		this.dispose();
-    }//GEN-LAST:event_ExitMenuButtonActionPerformed
+		CardLayout card = (CardLayout)mainPanel.getLayout();
+		card.show(mainPanel, "settingsCard");
+    }//GEN-LAST:event_settingsToggleButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -218,7 +191,7 @@ public class EsportsGUI extends javax.swing.JFrame {
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Windows".equals(info.getName())) {
+                if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
@@ -241,35 +214,24 @@ public class EsportsGUI extends javax.swing.JFrame {
             }
         });
 		
-		//create default team and event
-		new Team("Team1");
-		new Event("Event1");
-		
     }
 	
-	//used to return the teams tabbed pane to the Team constructor
-	public static JTabbedPane getTeamTabbedPane() {
-		return TeamTabbedPane;
-	}
-	
-	//used to return the events tabbed pane to the Event constructor
-	public static JTabbedPane getEventTabbedPane() {
-		return EventTabbedPane;
-	}
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JCheckBoxMenuItem AlwaysOnTopMenuCheck;
-    private javax.swing.JMenuItem ColorMenuButton;
-    public static javax.swing.JTabbedPane EventTabbedPane;
-    private javax.swing.JMenuItem ExitMenuButton;
-    private javax.swing.JMenu FileMenu;
-    private javax.swing.JPanel MainPanel;
-    private javax.swing.JMenuBar Menu;
-    private javax.swing.JMenuItem NewEventButton;
-    private javax.swing.JMenuItem NewTeamButton;
-    private javax.swing.JButton ODWButton;
-    private javax.swing.JMenu OptionsMenu;
-    public static javax.swing.JTabbedPane TeamTabbedPane;
-    private javax.swing.JPopupMenu.Separator jSeparator1;
+    private javax.swing.JPanel eventsPanel;
+    private javax.swing.JScrollPane eventsScrollPane;
+    private javax.swing.JToggleButton eventsToggleButton;
+    private javax.swing.JButton exitButton;
+    private javax.swing.JPanel leaderboardPanel;
+    private javax.swing.JToggleButton leaderboardToggleButton;
+    private javax.swing.JButton loadButton;
+    private javax.swing.JPanel mainPanel;
+    private javax.swing.ButtonGroup menuButtonGroup;
+    private javax.swing.JPanel menuPanel;
+    private javax.swing.JButton saveButton;
+    private javax.swing.JPanel settingsPanel;
+    private javax.swing.JToggleButton settingsToggleButton;
+    private javax.swing.JPanel teamsPanel;
+    private javax.swing.JScrollPane teamsScrollPane;
+    private javax.swing.JToggleButton teamsToggleButton;
     // End of variables declaration//GEN-END:variables
 }
