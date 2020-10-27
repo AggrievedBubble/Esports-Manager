@@ -41,6 +41,8 @@ public class EsportsGUI extends javax.swing.JFrame {
 
         menuButtonGroup = new javax.swing.ButtonGroup();
         menuBarPanel = new javax.swing.JPanel();
+        minimiseButton = new javax.swing.JButton();
+        maximiseButton = new javax.swing.JButton();
         closeButton = new javax.swing.JButton();
         mainPanel = new javax.swing.JPanel();
         eventsScrollPane = new javax.swing.JScrollPane();
@@ -83,8 +85,36 @@ public class EsportsGUI extends javax.swing.JFrame {
         });
         menuBarPanel.setLayout(new java.awt.GridBagLayout());
 
+        minimiseButton.setBackground(menuBarPanel.getBackground());
+        minimiseButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/esportsapp/images/minimise.png"))); // NOI18N
+        minimiseButton.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        minimiseButton.setBorderPainted(false);
+        minimiseButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        minimiseButton.setFocusable(false);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        menuBarPanel.add(minimiseButton, gridBagConstraints);
+
+        maximiseButton.setBackground(menuBarPanel.getBackground());
+        maximiseButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/esportsapp/images/maximise.png"))); // NOI18N
+        maximiseButton.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        maximiseButton.setBorderPainted(false);
+        maximiseButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        maximiseButton.setFocusable(false);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        gridBagConstraints.weighty = 1.0;
+        menuBarPanel.add(maximiseButton, gridBagConstraints);
+
         closeButton.setBackground(menuBarPanel.getBackground());
-        closeButton.setForeground(new java.awt.Color(240, 240, 240));
         closeButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/esportsapp/images/close.png"))); // NOI18N
         closeButton.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         closeButton.setBorderPainted(false);
@@ -104,13 +134,11 @@ public class EsportsGUI extends javax.swing.JFrame {
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
-        gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
         menuBarPanel.add(closeButton, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -370,9 +398,11 @@ public class EsportsGUI extends javax.swing.JFrame {
     private javax.swing.JToggleButton leaderboardToggleButton;
     private javax.swing.JButton loadButton;
     private javax.swing.JPanel mainPanel;
+    private javax.swing.JButton maximiseButton;
     private javax.swing.JPanel menuBarPanel;
     private javax.swing.ButtonGroup menuButtonGroup;
     private javax.swing.JPanel menuPanel;
+    private javax.swing.JButton minimiseButton;
     private javax.swing.JButton saveButton;
     private javax.swing.JPanel settingsPanel;
     private javax.swing.JToggleButton settingsToggleButton;
