@@ -26,7 +26,7 @@ public class Event extends javax.swing.JPanel {
 		this.EventName = name;
 		
 		initComponents();
-		EsportsGUI.getEventTabbedPane().add(this.EventName, this);
+		//EsportsGUI.getEventTabbedPane().add(this.EventName, this);
 		Event.EventList.add(this);
 	}
 
@@ -196,8 +196,8 @@ public class Event extends javax.swing.JPanel {
 				}
 			});
 			if (!name_taken[0]) {
-				JTabbedPane tabbed_pane = EsportsGUI.getEventTabbedPane();
-				tabbed_pane.setTitleAt(tabbed_pane.indexOfTab(this.EventName), proposed_name);
+				//JTabbedPane tabbed_pane = EsportsGUI.getEventTabbedPane();
+				//tabbed_pane.setTitleAt(tabbed_pane.indexOfTab(this.EventName), proposed_name);
 				this.EventName = proposed_name;
 			}
 		}

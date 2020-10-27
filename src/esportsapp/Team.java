@@ -28,7 +28,7 @@ public class Team extends javax.swing.JPanel {
 		this.TeamScore = 0;
 		
 		initComponents();
-		EsportsGUI.getTeamTabbedPane().add(this.TeamName, this);
+		//EsportsGUI.getTeamTabbedPane().add(this.TeamName, this);
 		Team.TeamList.add(this);
 	}
 
@@ -199,8 +199,8 @@ public class Team extends javax.swing.JPanel {
 				}
 			});
 			if (!name_taken[0]) {
-				JTabbedPane tabbed_pane = EsportsGUI.getTeamTabbedPane();
-				tabbed_pane.setTitleAt(tabbed_pane.indexOfTab(this.TeamName), proposed_name);
+				//JTabbedPane tabbed_pane = EsportsGUI.getTeamTabbedPane();
+				//tabbed_pane.setTitleAt(tabbed_pane.indexOfTab(this.TeamName), proposed_name);
 				this.TeamName = proposed_name;
 			}
 		}
