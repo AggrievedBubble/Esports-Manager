@@ -158,7 +158,7 @@ public class EsportsGUI extends javax.swing.JFrame {
         eventsToggleButton.setBackground(menuPanel.getBackground());
         menuButtonGroup.add(eventsToggleButton);
         eventsToggleButton.setFont(eventsToggleButton.getFont().deriveFont(eventsToggleButton.getFont().getSize()+7f));
-        eventsToggleButton.setForeground(new java.awt.Color(255, 255, 255));
+        eventsToggleButton.setForeground(new java.awt.Color(187, 187, 187));
         eventsToggleButton.setText("Events");
         eventsToggleButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         eventsToggleButton.setBorderPainted(false);
@@ -195,7 +195,7 @@ public class EsportsGUI extends javax.swing.JFrame {
         teamsToggleButton.setBackground(menuPanel.getBackground());
         menuButtonGroup.add(teamsToggleButton);
         teamsToggleButton.setFont(teamsToggleButton.getFont().deriveFont(teamsToggleButton.getFont().getSize()+7f));
-        teamsToggleButton.setForeground(new java.awt.Color(255, 255, 255));
+        teamsToggleButton.setForeground(new java.awt.Color(187, 187, 187));
         teamsToggleButton.setText("Teams");
         teamsToggleButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         teamsToggleButton.setBorderPainted(false);
@@ -232,7 +232,7 @@ public class EsportsGUI extends javax.swing.JFrame {
         leaderboardToggleButton.setBackground(menuPanel.getBackground());
         menuButtonGroup.add(leaderboardToggleButton);
         leaderboardToggleButton.setFont(leaderboardToggleButton.getFont().deriveFont(leaderboardToggleButton.getFont().getSize()+7f));
-        leaderboardToggleButton.setForeground(new java.awt.Color(255, 255, 255));
+        leaderboardToggleButton.setForeground(new java.awt.Color(187, 187, 187));
         leaderboardToggleButton.setText("Leaderboard");
         leaderboardToggleButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         leaderboardToggleButton.setBorderPainted(false);
@@ -269,7 +269,7 @@ public class EsportsGUI extends javax.swing.JFrame {
         settingsToggleButton.setBackground(menuPanel.getBackground());
         menuButtonGroup.add(settingsToggleButton);
         settingsToggleButton.setFont(settingsToggleButton.getFont().deriveFont(settingsToggleButton.getFont().getSize()+7f));
-        settingsToggleButton.setForeground(new java.awt.Color(255, 255, 255));
+        settingsToggleButton.setForeground(new java.awt.Color(187, 187, 187));
         settingsToggleButton.setText("Settings");
         settingsToggleButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         settingsToggleButton.setBorderPainted(false);
@@ -305,13 +305,12 @@ public class EsportsGUI extends javax.swing.JFrame {
 
         saveButton.setBackground(menuPanel.getBackground());
         saveButton.setFont(saveButton.getFont().deriveFont(saveButton.getFont().getSize()+7f));
-        saveButton.setForeground(new java.awt.Color(255, 255, 255));
+        saveButton.setForeground(new java.awt.Color(187, 187, 187));
         saveButton.setText("Save");
         saveButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         saveButton.setBorderPainted(false);
         saveButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         saveButton.setFocusable(false);
-        saveButton.setOpaque(true);
         saveButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 saveButtonMouseEntered(evt);
@@ -331,13 +330,12 @@ public class EsportsGUI extends javax.swing.JFrame {
 
         loadButton.setBackground(menuPanel.getBackground());
         loadButton.setFont(loadButton.getFont().deriveFont(loadButton.getFont().getSize()+7f));
-        loadButton.setForeground(new java.awt.Color(255, 255, 255));
+        loadButton.setForeground(new java.awt.Color(187, 187, 187));
         loadButton.setText("Load");
         loadButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         loadButton.setBorderPainted(false);
         loadButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         loadButton.setFocusable(false);
-        loadButton.setOpaque(true);
         loadButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 loadButtonMouseEntered(evt);
@@ -357,13 +355,12 @@ public class EsportsGUI extends javax.swing.JFrame {
 
         exitButton.setBackground(menuPanel.getBackground());
         exitButton.setFont(exitButton.getFont().deriveFont(exitButton.getFont().getSize()+7f));
-        exitButton.setForeground(new java.awt.Color(255, 255, 255));
+        exitButton.setForeground(new java.awt.Color(187, 187, 187));
         exitButton.setText("Exit");
         exitButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         exitButton.setBorderPainted(false);
         exitButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         exitButton.setFocusable(false);
-        exitButton.setOpaque(true);
         exitButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 exitButtonMouseEntered(evt);
@@ -534,8 +531,10 @@ public class EsportsGUI extends javax.swing.JFrame {
         // TODO add your handling code here:
 		if (eventsToggleButton.isSelected()) {
 			eventsToggleButton.setBackground(new java.awt.Color(57, 60, 66));
+			eventsToggleButton.setForeground(new java.awt.Color(255, 255, 255));
 		} else {
 			eventsToggleButton.setBackground(menuPanel.getBackground());
+			eventsToggleButton.setForeground(new java.awt.Color(187, 187, 187));
 		}
     }//GEN-LAST:event_eventsToggleButtonItemStateChanged
 
@@ -543,8 +542,10 @@ public class EsportsGUI extends javax.swing.JFrame {
         // TODO add your handling code here:
 		if (teamsToggleButton.isSelected()) {
 			teamsToggleButton.setBackground(new java.awt.Color(57, 60, 66));
+			teamsToggleButton.setForeground(new java.awt.Color(255, 255, 255));
 		} else {
 			teamsToggleButton.setBackground(menuPanel.getBackground());
+			teamsToggleButton.setForeground(new java.awt.Color(187, 187, 187));
 		}
     }//GEN-LAST:event_teamsToggleButtonItemStateChanged
 
@@ -552,8 +553,10 @@ public class EsportsGUI extends javax.swing.JFrame {
         // TODO add your handling code here:
 		if (leaderboardToggleButton.isSelected()) {
 			leaderboardToggleButton.setBackground(new java.awt.Color(57, 60, 66));
+			leaderboardToggleButton.setForeground(new java.awt.Color(255, 255, 255));
 		} else {
 			leaderboardToggleButton.setBackground(menuPanel.getBackground());
+			leaderboardToggleButton.setForeground(new java.awt.Color(187, 187, 187));
 		}
     }//GEN-LAST:event_leaderboardToggleButtonItemStateChanged
 
@@ -561,8 +564,10 @@ public class EsportsGUI extends javax.swing.JFrame {
         // TODO add your handling code here:
 		if (settingsToggleButton.isSelected()) {
 			settingsToggleButton.setBackground(new java.awt.Color(57, 60, 66));
+			settingsToggleButton.setForeground(new java.awt.Color(255, 255, 255));
 		} else {
 			settingsToggleButton.setBackground(menuPanel.getBackground());
+			settingsToggleButton.setForeground(new java.awt.Color(187, 187, 187));
 		}
     }//GEN-LAST:event_settingsToggleButtonItemStateChanged
 
@@ -570,6 +575,7 @@ public class EsportsGUI extends javax.swing.JFrame {
         // TODO add your handling code here:
 		if (!eventsToggleButton.isSelected()) {
 			eventsToggleButton.setBackground(new java.awt.Color(51, 54, 60));
+			eventsToggleButton.setForeground(new java.awt.Color(221, 221, 221));
 		}
     }//GEN-LAST:event_eventsToggleButtonMouseEntered
 
@@ -577,6 +583,7 @@ public class EsportsGUI extends javax.swing.JFrame {
         // TODO add your handling code here:
 		if (!teamsToggleButton.isSelected()) {
 			teamsToggleButton.setBackground(new java.awt.Color(51, 54, 60));
+			teamsToggleButton.setForeground(new java.awt.Color(221, 221, 221));
 		}
     }//GEN-LAST:event_teamsToggleButtonMouseEntered
 
@@ -584,6 +591,7 @@ public class EsportsGUI extends javax.swing.JFrame {
         // TODO add your handling code here:
 		if (!leaderboardToggleButton.isSelected()) {
 			leaderboardToggleButton.setBackground(new java.awt.Color(51, 54, 60));
+			leaderboardToggleButton.setForeground(new java.awt.Color(221, 221, 221));
 		}
     }//GEN-LAST:event_leaderboardToggleButtonMouseEntered
 
@@ -591,28 +599,33 @@ public class EsportsGUI extends javax.swing.JFrame {
         // TODO add your handling code here:
 		if (!settingsToggleButton.isSelected()) {
 			settingsToggleButton.setBackground(new java.awt.Color(51, 54, 60));
+			settingsToggleButton.setForeground(new java.awt.Color(221, 221, 221));
 		}
     }//GEN-LAST:event_settingsToggleButtonMouseEntered
 
     private void saveButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_saveButtonMouseEntered
         // TODO add your handling code here:
 		saveButton.setBackground(new java.awt.Color(51, 54, 60));
+		saveButton.setForeground(new java.awt.Color(221, 221, 221));
     }//GEN-LAST:event_saveButtonMouseEntered
 
     private void loadButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loadButtonMouseEntered
         // TODO add your handling code here:
 		loadButton.setBackground(new java.awt.Color(51, 54, 60));
+		loadButton.setForeground(new java.awt.Color(221, 221, 221));
     }//GEN-LAST:event_loadButtonMouseEntered
 
     private void exitButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitButtonMouseEntered
         // TODO add your handling code here:
 		exitButton.setBackground(new java.awt.Color(51, 54, 60));
+		exitButton.setForeground(new java.awt.Color(221, 221, 221));
     }//GEN-LAST:event_exitButtonMouseEntered
 
     private void eventsToggleButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_eventsToggleButtonMouseExited
         // TODO add your handling code here:
 		if (!eventsToggleButton.isSelected()) {
 			eventsToggleButton.setBackground(menuPanel.getBackground());
+			eventsToggleButton.setForeground(new java.awt.Color(187, 187, 187));
 		}
     }//GEN-LAST:event_eventsToggleButtonMouseExited
 
@@ -620,6 +633,7 @@ public class EsportsGUI extends javax.swing.JFrame {
         // TODO add your handling code here:
 		if (!teamsToggleButton.isSelected()) {
 			teamsToggleButton.setBackground(menuPanel.getBackground());
+			teamsToggleButton.setForeground(new java.awt.Color(187, 187, 187));
 		}
     }//GEN-LAST:event_teamsToggleButtonMouseExited
 
@@ -627,6 +641,7 @@ public class EsportsGUI extends javax.swing.JFrame {
         // TODO add your handling code here:
 		if (!leaderboardToggleButton.isSelected()) {
 			leaderboardToggleButton.setBackground(menuPanel.getBackground());
+			leaderboardToggleButton.setForeground(new java.awt.Color(187, 187, 187));
 		}
     }//GEN-LAST:event_leaderboardToggleButtonMouseExited
 
@@ -634,22 +649,26 @@ public class EsportsGUI extends javax.swing.JFrame {
         // TODO add your handling code here:
 		if (!settingsToggleButton.isSelected()) {
 			settingsToggleButton.setBackground(menuPanel.getBackground());
+			settingsToggleButton.setForeground(new java.awt.Color(187, 187, 187));
 		}
     }//GEN-LAST:event_settingsToggleButtonMouseExited
 
     private void saveButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_saveButtonMouseExited
         // TODO add your handling code here:
 		saveButton.setBackground(menuPanel.getBackground());
+		saveButton.setForeground(new java.awt.Color(187, 187, 187));
     }//GEN-LAST:event_saveButtonMouseExited
 
     private void loadButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loadButtonMouseExited
         // TODO add your handling code here:
 		loadButton.setBackground(menuPanel.getBackground());
+		loadButton.setForeground(new java.awt.Color(187, 187, 187));
     }//GEN-LAST:event_loadButtonMouseExited
 
     private void exitButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitButtonMouseExited
         // TODO add your handling code here:
 		exitButton.setBackground(menuPanel.getBackground());
+		exitButton.setForeground(new java.awt.Color(187, 187, 187));
     }//GEN-LAST:event_exitButtonMouseExited
 
     /**
