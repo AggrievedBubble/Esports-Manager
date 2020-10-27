@@ -312,7 +312,7 @@ public class EsportsGUI extends javax.swing.JFrame {
 
     private void closeButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_closeButtonMouseEntered
         // TODO add your handling code here:
-		closeButton.setBackground(Color.red);
+		closeButton.setBackground(new java.awt.Color(240, 71, 71));
     }//GEN-LAST:event_closeButtonMouseEntered
 
     private void closeButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_closeButtonMouseExited
