@@ -19,6 +19,9 @@ import java.io.IOException;
 
 public class EsportsGUI extends javax.swing.JFrame {
 
+	private int posX;
+	private int posY;
+
     /**
      * Creates new form EsportsGUI
      */
@@ -38,7 +41,6 @@ public class EsportsGUI extends javax.swing.JFrame {
 
         menuButtonGroup = new javax.swing.ButtonGroup();
         menuBarPanel = new javax.swing.JPanel();
-        jPanel1 = new javax.swing.JPanel();
         closeButton = new javax.swing.JButton();
         mainPanel = new javax.swing.JPanel();
         eventsScrollPane = new javax.swing.JScrollPane();
@@ -47,6 +49,7 @@ public class EsportsGUI extends javax.swing.JFrame {
         teamsPanel = new javax.swing.JPanel();
         leaderboardPanel = new javax.swing.JPanel();
         settingsPanel = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
         alwaysOnTopCheck = new javax.swing.JCheckBox();
         versionLabel = new javax.swing.JLabel();
         menuPanel = new javax.swing.JPanel();
@@ -66,20 +69,35 @@ public class EsportsGUI extends javax.swing.JFrame {
         setPreferredSize(new java.awt.Dimension(1280, 720));
         getContentPane().setLayout(new java.awt.GridBagLayout());
 
-        menuBarPanel.setLayout(new javax.swing.BoxLayout(menuBarPanel, javax.swing.BoxLayout.LINE_AXIS));
+        menuBarPanel.setBackground(new java.awt.Color(25, 25, 25));
+        menuBarPanel.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        menuBarPanel.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                menuBarPanelMouseDragged(evt);
+            }
+        });
+        menuBarPanel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                menuBarPanelMousePressed(evt);
+            }
+        });
+        menuBarPanel.setLayout(new java.awt.GridBagLayout());
 
-        jPanel1.setBackground(new java.awt.Color(50, 50, 50));
-        jPanel1.setCursor(new java.awt.Cursor(java.awt.Cursor.MOVE_CURSOR));
-        jPanel1.setLayout(new java.awt.GridBagLayout());
-
-        closeButton.setBackground(new java.awt.Color(80, 80, 80));
+        closeButton.setBackground(menuBarPanel.getBackground());
         closeButton.setForeground(new java.awt.Color(240, 240, 240));
-        closeButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/esportsapp/close.png"))); // NOI18N
-        closeButton.setBorder(null);
+        closeButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/esportsapp/images/close.png"))); // NOI18N
+        closeButton.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         closeButton.setBorderPainted(false);
-        closeButton.setContentAreaFilled(false);
         closeButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         closeButton.setFocusable(false);
+        closeButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                closeButtonMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                closeButtonMouseExited(evt);
+            }
+        });
         closeButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 closeButtonActionPerformed(evt);
@@ -88,13 +106,12 @@ public class EsportsGUI extends javax.swing.JFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.ipadx = 6;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHEAST;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
         gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(2, 2, 2, 2);
-        jPanel1.add(closeButton, gridBagConstraints);
-
-        menuBarPanel.add(jPanel1);
+        menuBarPanel.add(closeButton, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -102,7 +119,6 @@ public class EsportsGUI extends javax.swing.JFrame {
         gridBagConstraints.gridwidth = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHEAST;
-        gridBagConstraints.weighty = 0.02;
         getContentPane().add(menuBarPanel, gridBagConstraints);
 
         mainPanel.setLayout(new java.awt.CardLayout());
@@ -124,9 +140,17 @@ public class EsportsGUI extends javax.swing.JFrame {
 
         settingsPanel.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         java.awt.GridBagLayout settingsPanelLayout = new java.awt.GridBagLayout();
-        settingsPanelLayout.columnWidths = new int[] {0, 5, 0, 5, 0};
+        settingsPanelLayout.columnWidths = new int[] {0, 5, 0, 5, 0, 5, 0, 5, 0};
         settingsPanelLayout.rowHeights = new int[] {0, 5, 0, 5, 0, 5, 0, 5, 0};
         settingsPanel.setLayout(settingsPanelLayout);
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel1.setText("Appearance:");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        settingsPanel.add(jLabel1, gridBagConstraints);
 
         alwaysOnTopCheck.setText("Always On Top");
         alwaysOnTopCheck.addActionListener(new java.awt.event.ActionListener() {
@@ -166,6 +190,7 @@ public class EsportsGUI extends javax.swing.JFrame {
         eventsToggleButton.setFont(eventsToggleButton.getFont().deriveFont(eventsToggleButton.getFont().getSize()+7f));
         eventsToggleButton.setText("Events");
         eventsToggleButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        eventsToggleButton.setFocusable(false);
         eventsToggleButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 eventsToggleButtonActionPerformed(evt);
@@ -177,6 +202,7 @@ public class EsportsGUI extends javax.swing.JFrame {
         teamsToggleButton.setFont(teamsToggleButton.getFont().deriveFont(teamsToggleButton.getFont().getSize()+7f));
         teamsToggleButton.setText("Teams");
         teamsToggleButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        teamsToggleButton.setFocusable(false);
         teamsToggleButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 teamsToggleButtonActionPerformed(evt);
@@ -188,6 +214,7 @@ public class EsportsGUI extends javax.swing.JFrame {
         leaderboardToggleButton.setFont(leaderboardToggleButton.getFont().deriveFont(leaderboardToggleButton.getFont().getSize()+7f));
         leaderboardToggleButton.setText("Leaderboard");
         leaderboardToggleButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        leaderboardToggleButton.setFocusable(false);
         leaderboardToggleButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 leaderboardToggleButtonActionPerformed(evt);
@@ -199,6 +226,7 @@ public class EsportsGUI extends javax.swing.JFrame {
         settingsToggleButton.setFont(settingsToggleButton.getFont().deriveFont(settingsToggleButton.getFont().getSize()+7f));
         settingsToggleButton.setText("Settings");
         settingsToggleButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        settingsToggleButton.setFocusable(false);
         settingsToggleButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 settingsToggleButtonActionPerformed(evt);
@@ -209,16 +237,19 @@ public class EsportsGUI extends javax.swing.JFrame {
         saveButton.setFont(saveButton.getFont().deriveFont(saveButton.getFont().getSize()+7f));
         saveButton.setText("Save");
         saveButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        saveButton.setFocusable(false);
         menuPanel.add(saveButton);
 
         loadButton.setFont(loadButton.getFont().deriveFont(loadButton.getFont().getSize()+7f));
         loadButton.setText("Load");
         loadButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        loadButton.setFocusable(false);
         menuPanel.add(loadButton);
 
         exitButton.setFont(exitButton.getFont().deriveFont(exitButton.getFont().getSize()+7f));
         exitButton.setText("Exit");
         exitButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        exitButton.setFocusable(false);
         menuPanel.add(exitButton);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -267,6 +298,28 @@ public class EsportsGUI extends javax.swing.JFrame {
 		this.dispose();
     }//GEN-LAST:event_closeButtonActionPerformed
 
+    private void menuBarPanelMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuBarPanelMousePressed
+        // TODO add your handling code here:
+		posX = evt.getX();
+		posY = evt.getY();
+    }//GEN-LAST:event_menuBarPanelMousePressed
+
+    private void menuBarPanelMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuBarPanelMouseDragged
+        // TODO add your handling code here:
+		Rectangle rectangle = getBounds();
+		this.setBounds(evt.getXOnScreen() - posX, evt.getYOnScreen() - posY, rectangle.width, rectangle.height);
+    }//GEN-LAST:event_menuBarPanelMouseDragged
+
+    private void closeButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_closeButtonMouseEntered
+        // TODO add your handling code here:
+		closeButton.setBackground(Color.red);
+    }//GEN-LAST:event_closeButtonMouseEntered
+
+    private void closeButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_closeButtonMouseExited
+        // TODO add your handling code here:
+		closeButton.setBackground(menuBarPanel.getBackground());
+    }//GEN-LAST:event_closeButtonMouseExited
+
     /**
      * @param args the command line arguments
      */
@@ -278,7 +331,7 @@ public class EsportsGUI extends javax.swing.JFrame {
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+                if ("Windows".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
@@ -301,6 +354,8 @@ public class EsportsGUI extends javax.swing.JFrame {
             }
         });
 		
+		
+		
     }
 	
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -310,7 +365,7 @@ public class EsportsGUI extends javax.swing.JFrame {
     private javax.swing.JScrollPane eventsScrollPane;
     private javax.swing.JToggleButton eventsToggleButton;
     private javax.swing.JButton exitButton;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel leaderboardPanel;
     private javax.swing.JToggleButton leaderboardToggleButton;
     private javax.swing.JButton loadButton;
