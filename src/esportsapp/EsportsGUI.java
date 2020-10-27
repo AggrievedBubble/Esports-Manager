@@ -59,7 +59,7 @@ public class EsportsGUI extends javax.swing.JFrame {
         teamsPanel = new javax.swing.JPanel();
         leaderboardPanel = new javax.swing.JPanel();
         settingsPanel = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        appearanceLabel = new javax.swing.JLabel();
         alwaysOnTopCheck = new javax.swing.JCheckBox();
         versionLabel = new javax.swing.JLabel();
 
@@ -155,7 +155,6 @@ public class EsportsGUI extends javax.swing.JFrame {
         mainPanel.add(closeButton, gridBagConstraints);
 
         menuPanel.setBackground(new java.awt.Color(47, 49, 54));
-        menuPanel.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         menuPanel.setLayout(new java.awt.GridBagLayout());
 
         eventsToggleButton.setBackground(menuPanel.getBackground());
@@ -163,7 +162,7 @@ public class EsportsGUI extends javax.swing.JFrame {
         eventsToggleButton.setFont(eventsToggleButton.getFont().deriveFont(eventsToggleButton.getFont().getSize()+7f));
         eventsToggleButton.setForeground(new java.awt.Color(255, 255, 255));
         eventsToggleButton.setText("Events");
-        eventsToggleButton.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        eventsToggleButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         eventsToggleButton.setBorderPainted(false);
         eventsToggleButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         eventsToggleButton.setFocusable(false);
@@ -200,7 +199,7 @@ public class EsportsGUI extends javax.swing.JFrame {
         teamsToggleButton.setFont(teamsToggleButton.getFont().deriveFont(teamsToggleButton.getFont().getSize()+7f));
         teamsToggleButton.setForeground(new java.awt.Color(255, 255, 255));
         teamsToggleButton.setText("Teams");
-        teamsToggleButton.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        teamsToggleButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         teamsToggleButton.setBorderPainted(false);
         teamsToggleButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         teamsToggleButton.setFocusable(false);
@@ -237,7 +236,7 @@ public class EsportsGUI extends javax.swing.JFrame {
         leaderboardToggleButton.setFont(leaderboardToggleButton.getFont().deriveFont(leaderboardToggleButton.getFont().getSize()+7f));
         leaderboardToggleButton.setForeground(new java.awt.Color(255, 255, 255));
         leaderboardToggleButton.setText("Leaderboard");
-        leaderboardToggleButton.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        leaderboardToggleButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         leaderboardToggleButton.setBorderPainted(false);
         leaderboardToggleButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         leaderboardToggleButton.setFocusable(false);
@@ -274,7 +273,7 @@ public class EsportsGUI extends javax.swing.JFrame {
         settingsToggleButton.setFont(settingsToggleButton.getFont().deriveFont(settingsToggleButton.getFont().getSize()+7f));
         settingsToggleButton.setForeground(new java.awt.Color(255, 255, 255));
         settingsToggleButton.setText("Settings");
-        settingsToggleButton.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        settingsToggleButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         settingsToggleButton.setBorderPainted(false);
         settingsToggleButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         settingsToggleButton.setFocusable(false);
@@ -310,7 +309,7 @@ public class EsportsGUI extends javax.swing.JFrame {
         saveButton.setFont(saveButton.getFont().deriveFont(saveButton.getFont().getSize()+7f));
         saveButton.setForeground(new java.awt.Color(255, 255, 255));
         saveButton.setText("Save");
-        saveButton.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        saveButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         saveButton.setBorderPainted(false);
         saveButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         saveButton.setFocusable(false);
@@ -336,7 +335,7 @@ public class EsportsGUI extends javax.swing.JFrame {
         loadButton.setFont(loadButton.getFont().deriveFont(loadButton.getFont().getSize()+7f));
         loadButton.setForeground(new java.awt.Color(255, 255, 255));
         loadButton.setText("Load");
-        loadButton.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        loadButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         loadButton.setBorderPainted(false);
         loadButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         loadButton.setFocusable(false);
@@ -362,7 +361,7 @@ public class EsportsGUI extends javax.swing.JFrame {
         exitButton.setFont(exitButton.getFont().deriveFont(exitButton.getFont().getSize()+7f));
         exitButton.setForeground(new java.awt.Color(255, 255, 255));
         exitButton.setText("Exit");
-        exitButton.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        exitButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         exitButton.setBorderPainted(false);
         exitButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         exitButton.setFocusable(false);
@@ -392,7 +391,6 @@ public class EsportsGUI extends javax.swing.JFrame {
         gridBagConstraints.weighty = 1.0;
         mainPanel.add(menuPanel, gridBagConstraints);
 
-        activePanel.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         activePanel.setLayout(new java.awt.CardLayout());
 
         eventsScrollPane.setBorder(null);
@@ -413,13 +411,13 @@ public class EsportsGUI extends javax.swing.JFrame {
         settingsPanelLayout.rowHeights = new int[] {0, 5, 0, 5, 0, 5, 0, 5, 0};
         settingsPanel.setLayout(settingsPanelLayout);
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel1.setText("Appearance:");
+        appearanceLabel.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        appearanceLabel.setText("Appearance:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        settingsPanel.add(jLabel1, gridBagConstraints);
+        settingsPanel.add(appearanceLabel, gridBagConstraints);
 
         alwaysOnTopCheck.setText("Always On Top");
         alwaysOnTopCheck.addActionListener(new java.awt.event.ActionListener() {
@@ -705,12 +703,12 @@ public class EsportsGUI extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel activePanel;
     private javax.swing.JCheckBox alwaysOnTopCheck;
+    private javax.swing.JLabel appearanceLabel;
     private javax.swing.JButton closeButton;
     private javax.swing.JPanel eventsPanel;
     private javax.swing.JScrollPane eventsScrollPane;
     private javax.swing.JToggleButton eventsToggleButton;
     private javax.swing.JButton exitButton;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel leaderboardPanel;
     private javax.swing.JToggleButton leaderboardToggleButton;
     private javax.swing.JButton loadButton;
