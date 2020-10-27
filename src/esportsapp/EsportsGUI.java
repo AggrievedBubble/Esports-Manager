@@ -227,74 +227,235 @@ public class EsportsGUI extends javax.swing.JFrame {
         gridBagConstraints.weighty = 1.0;
         getContentPane().add(mainPanel, gridBagConstraints);
 
-        menuPanel.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        menuPanel.setLayout(new java.awt.GridLayout(0, 1));
+        menuPanel.setBackground(new java.awt.Color(47, 49, 54));
+        menuPanel.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        menuPanel.setLayout(new java.awt.GridBagLayout());
 
+        eventsToggleButton.setBackground(menuPanel.getBackground());
         menuButtonGroup.add(eventsToggleButton);
         eventsToggleButton.setFont(eventsToggleButton.getFont().deriveFont(eventsToggleButton.getFont().getSize()+7f));
+        eventsToggleButton.setForeground(new java.awt.Color(255, 255, 255));
         eventsToggleButton.setText("Events");
+        eventsToggleButton.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        eventsToggleButton.setBorderPainted(false);
         eventsToggleButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         eventsToggleButton.setFocusable(false);
+        eventsToggleButton.setOpaque(true);
+        eventsToggleButton.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                eventsToggleButtonItemStateChanged(evt);
+            }
+        });
+        eventsToggleButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                eventsToggleButtonMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                eventsToggleButtonMouseExited(evt);
+            }
+        });
         eventsToggleButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 eventsToggleButtonActionPerformed(evt);
             }
         });
-        menuPanel.add(eventsToggleButton);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(4, 4, 4, 4);
+        menuPanel.add(eventsToggleButton, gridBagConstraints);
 
+        teamsToggleButton.setBackground(menuPanel.getBackground());
         menuButtonGroup.add(teamsToggleButton);
         teamsToggleButton.setFont(teamsToggleButton.getFont().deriveFont(teamsToggleButton.getFont().getSize()+7f));
+        teamsToggleButton.setForeground(new java.awt.Color(255, 255, 255));
         teamsToggleButton.setText("Teams");
+        teamsToggleButton.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        teamsToggleButton.setBorderPainted(false);
         teamsToggleButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         teamsToggleButton.setFocusable(false);
+        teamsToggleButton.setOpaque(true);
+        teamsToggleButton.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                teamsToggleButtonItemStateChanged(evt);
+            }
+        });
+        teamsToggleButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                teamsToggleButtonMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                teamsToggleButtonMouseExited(evt);
+            }
+        });
         teamsToggleButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 teamsToggleButtonActionPerformed(evt);
             }
         });
-        menuPanel.add(teamsToggleButton);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(4, 4, 4, 4);
+        menuPanel.add(teamsToggleButton, gridBagConstraints);
 
+        leaderboardToggleButton.setBackground(menuPanel.getBackground());
         menuButtonGroup.add(leaderboardToggleButton);
         leaderboardToggleButton.setFont(leaderboardToggleButton.getFont().deriveFont(leaderboardToggleButton.getFont().getSize()+7f));
+        leaderboardToggleButton.setForeground(new java.awt.Color(255, 255, 255));
         leaderboardToggleButton.setText("Leaderboard");
+        leaderboardToggleButton.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        leaderboardToggleButton.setBorderPainted(false);
         leaderboardToggleButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         leaderboardToggleButton.setFocusable(false);
+        leaderboardToggleButton.setOpaque(true);
+        leaderboardToggleButton.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                leaderboardToggleButtonItemStateChanged(evt);
+            }
+        });
+        leaderboardToggleButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                leaderboardToggleButtonMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                leaderboardToggleButtonMouseExited(evt);
+            }
+        });
         leaderboardToggleButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 leaderboardToggleButtonActionPerformed(evt);
             }
         });
-        menuPanel.add(leaderboardToggleButton);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(4, 4, 4, 4);
+        menuPanel.add(leaderboardToggleButton, gridBagConstraints);
 
+        settingsToggleButton.setBackground(menuPanel.getBackground());
         menuButtonGroup.add(settingsToggleButton);
         settingsToggleButton.setFont(settingsToggleButton.getFont().deriveFont(settingsToggleButton.getFont().getSize()+7f));
+        settingsToggleButton.setForeground(new java.awt.Color(255, 255, 255));
         settingsToggleButton.setText("Settings");
+        settingsToggleButton.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        settingsToggleButton.setBorderPainted(false);
         settingsToggleButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         settingsToggleButton.setFocusable(false);
+        settingsToggleButton.setOpaque(true);
+        settingsToggleButton.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                settingsToggleButtonItemStateChanged(evt);
+            }
+        });
+        settingsToggleButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                settingsToggleButtonMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                settingsToggleButtonMouseExited(evt);
+            }
+        });
         settingsToggleButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 settingsToggleButtonActionPerformed(evt);
             }
         });
-        menuPanel.add(settingsToggleButton);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(4, 4, 4, 4);
+        menuPanel.add(settingsToggleButton, gridBagConstraints);
 
+        saveButton.setBackground(menuPanel.getBackground());
         saveButton.setFont(saveButton.getFont().deriveFont(saveButton.getFont().getSize()+7f));
+        saveButton.setForeground(new java.awt.Color(255, 255, 255));
         saveButton.setText("Save");
+        saveButton.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        saveButton.setBorderPainted(false);
         saveButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         saveButton.setFocusable(false);
-        menuPanel.add(saveButton);
+        saveButton.setOpaque(true);
+        saveButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                saveButtonMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                saveButtonMouseExited(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(4, 4, 4, 4);
+        menuPanel.add(saveButton, gridBagConstraints);
 
+        loadButton.setBackground(menuPanel.getBackground());
         loadButton.setFont(loadButton.getFont().deriveFont(loadButton.getFont().getSize()+7f));
+        loadButton.setForeground(new java.awt.Color(255, 255, 255));
         loadButton.setText("Load");
+        loadButton.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        loadButton.setBorderPainted(false);
         loadButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         loadButton.setFocusable(false);
-        menuPanel.add(loadButton);
+        loadButton.setOpaque(true);
+        loadButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                loadButtonMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                loadButtonMouseExited(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 5;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(4, 4, 4, 4);
+        menuPanel.add(loadButton, gridBagConstraints);
 
+        exitButton.setBackground(menuPanel.getBackground());
         exitButton.setFont(exitButton.getFont().deriveFont(exitButton.getFont().getSize()+7f));
+        exitButton.setForeground(new java.awt.Color(255, 255, 255));
         exitButton.setText("Exit");
+        exitButton.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        exitButton.setBorderPainted(false);
         exitButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         exitButton.setFocusable(false);
-        menuPanel.add(exitButton);
+        exitButton.setOpaque(true);
+        exitButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                exitButtonMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                exitButtonMouseExited(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 6;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(4, 4, 4, 4);
+        menuPanel.add(exitButton, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -383,6 +544,128 @@ public class EsportsGUI extends javax.swing.JFrame {
         // TODO add your handling code here:
 		minimiseButton.setBackground(menuBarPanel.getBackground());
     }//GEN-LAST:event_minimiseButtonMouseExited
+
+    private void eventsToggleButtonItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_eventsToggleButtonItemStateChanged
+        // TODO add your handling code here:
+		if (eventsToggleButton.isSelected()) {
+			eventsToggleButton.setBackground(new java.awt.Color(57, 60, 66));
+		} else {
+			eventsToggleButton.setBackground(menuPanel.getBackground());
+		}
+    }//GEN-LAST:event_eventsToggleButtonItemStateChanged
+
+    private void teamsToggleButtonItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_teamsToggleButtonItemStateChanged
+        // TODO add your handling code here:
+		if (teamsToggleButton.isSelected()) {
+			teamsToggleButton.setBackground(new java.awt.Color(57, 60, 66));
+		} else {
+			teamsToggleButton.setBackground(menuPanel.getBackground());
+		}
+    }//GEN-LAST:event_teamsToggleButtonItemStateChanged
+
+    private void leaderboardToggleButtonItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_leaderboardToggleButtonItemStateChanged
+        // TODO add your handling code here:
+		if (leaderboardToggleButton.isSelected()) {
+			leaderboardToggleButton.setBackground(new java.awt.Color(57, 60, 66));
+		} else {
+			leaderboardToggleButton.setBackground(menuPanel.getBackground());
+		}
+    }//GEN-LAST:event_leaderboardToggleButtonItemStateChanged
+
+    private void settingsToggleButtonItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_settingsToggleButtonItemStateChanged
+        // TODO add your handling code here:
+		if (settingsToggleButton.isSelected()) {
+			settingsToggleButton.setBackground(new java.awt.Color(57, 60, 66));
+		} else {
+			settingsToggleButton.setBackground(menuPanel.getBackground());
+		}
+    }//GEN-LAST:event_settingsToggleButtonItemStateChanged
+
+    private void eventsToggleButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_eventsToggleButtonMouseEntered
+        // TODO add your handling code here:
+		if (!eventsToggleButton.isSelected()) {
+			eventsToggleButton.setBackground(new java.awt.Color(51, 54, 60));
+		}
+    }//GEN-LAST:event_eventsToggleButtonMouseEntered
+
+    private void teamsToggleButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_teamsToggleButtonMouseEntered
+        // TODO add your handling code here:
+		if (!teamsToggleButton.isSelected()) {
+			teamsToggleButton.setBackground(new java.awt.Color(51, 54, 60));
+		}
+    }//GEN-LAST:event_teamsToggleButtonMouseEntered
+
+    private void leaderboardToggleButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_leaderboardToggleButtonMouseEntered
+        // TODO add your handling code here:
+		if (!leaderboardToggleButton.isSelected()) {
+			leaderboardToggleButton.setBackground(new java.awt.Color(51, 54, 60));
+		}
+    }//GEN-LAST:event_leaderboardToggleButtonMouseEntered
+
+    private void settingsToggleButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_settingsToggleButtonMouseEntered
+        // TODO add your handling code here:
+		if (!settingsToggleButton.isSelected()) {
+			settingsToggleButton.setBackground(new java.awt.Color(51, 54, 60));
+		}
+    }//GEN-LAST:event_settingsToggleButtonMouseEntered
+
+    private void saveButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_saveButtonMouseEntered
+        // TODO add your handling code here:
+		saveButton.setBackground(new java.awt.Color(51, 54, 60));
+    }//GEN-LAST:event_saveButtonMouseEntered
+
+    private void loadButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loadButtonMouseEntered
+        // TODO add your handling code here:
+		loadButton.setBackground(new java.awt.Color(51, 54, 60));
+    }//GEN-LAST:event_loadButtonMouseEntered
+
+    private void exitButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitButtonMouseEntered
+        // TODO add your handling code here:
+		exitButton.setBackground(new java.awt.Color(51, 54, 60));
+    }//GEN-LAST:event_exitButtonMouseEntered
+
+    private void eventsToggleButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_eventsToggleButtonMouseExited
+        // TODO add your handling code here:
+		if (!eventsToggleButton.isSelected()) {
+			eventsToggleButton.setBackground(menuPanel.getBackground());
+		}
+    }//GEN-LAST:event_eventsToggleButtonMouseExited
+
+    private void teamsToggleButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_teamsToggleButtonMouseExited
+        // TODO add your handling code here:
+		if (!teamsToggleButton.isSelected()) {
+			teamsToggleButton.setBackground(menuPanel.getBackground());
+		}
+    }//GEN-LAST:event_teamsToggleButtonMouseExited
+
+    private void leaderboardToggleButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_leaderboardToggleButtonMouseExited
+        // TODO add your handling code here:
+		if (!leaderboardToggleButton.isSelected()) {
+			leaderboardToggleButton.setBackground(menuPanel.getBackground());
+		}
+    }//GEN-LAST:event_leaderboardToggleButtonMouseExited
+
+    private void settingsToggleButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_settingsToggleButtonMouseExited
+        // TODO add your handling code here:
+		if (!settingsToggleButton.isSelected()) {
+			settingsToggleButton.setBackground(menuPanel.getBackground());
+		}
+    }//GEN-LAST:event_settingsToggleButtonMouseExited
+
+    private void saveButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_saveButtonMouseExited
+        // TODO add your handling code here:
+		saveButton.setBackground(menuPanel.getBackground());
+    }//GEN-LAST:event_saveButtonMouseExited
+
+    private void loadButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loadButtonMouseExited
+        // TODO add your handling code here:
+		loadButton.setBackground(menuPanel.getBackground());
+    }//GEN-LAST:event_loadButtonMouseExited
+
+    private void exitButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitButtonMouseExited
+        // TODO add your handling code here:
+		exitButton.setBackground(menuPanel.getBackground());
+    }//GEN-LAST:event_exitButtonMouseExited
 
     /**
      * @param args the command line arguments
