@@ -71,7 +71,7 @@ public class EsportsGUI extends javax.swing.JFrame {
         setPreferredSize(new java.awt.Dimension(1280, 720));
         getContentPane().setLayout(new java.awt.GridBagLayout());
 
-        menuBarPanel.setBackground(new java.awt.Color(25, 25, 25));
+        menuBarPanel.setBackground(new java.awt.Color(32, 34, 37));
         menuBarPanel.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         menuBarPanel.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseDragged(java.awt.event.MouseEvent evt) {
@@ -91,6 +91,14 @@ public class EsportsGUI extends javax.swing.JFrame {
         minimiseButton.setBorderPainted(false);
         minimiseButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         minimiseButton.setFocusable(false);
+        minimiseButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                minimiseButtonMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                minimiseButtonMouseExited(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
@@ -106,6 +114,14 @@ public class EsportsGUI extends javax.swing.JFrame {
         maximiseButton.setBorderPainted(false);
         maximiseButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         maximiseButton.setFocusable(false);
+        maximiseButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                maximiseButtonMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                maximiseButtonMouseExited(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 0;
@@ -347,6 +363,26 @@ public class EsportsGUI extends javax.swing.JFrame {
         // TODO add your handling code here:
 		closeButton.setBackground(menuBarPanel.getBackground());
     }//GEN-LAST:event_closeButtonMouseExited
+
+    private void maximiseButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_maximiseButtonMouseEntered
+        // TODO add your handling code here:
+		maximiseButton.setBackground(new java.awt.Color(38, 41, 46));
+    }//GEN-LAST:event_maximiseButtonMouseEntered
+
+    private void maximiseButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_maximiseButtonMouseExited
+        // TODO add your handling code here:
+		maximiseButton.setBackground(menuBarPanel.getBackground());
+    }//GEN-LAST:event_maximiseButtonMouseExited
+
+    private void minimiseButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_minimiseButtonMouseEntered
+        // TODO add your handling code here:
+		minimiseButton.setBackground(new java.awt.Color(38, 41, 46));
+    }//GEN-LAST:event_minimiseButtonMouseEntered
+
+    private void minimiseButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_minimiseButtonMouseExited
+        // TODO add your handling code here:
+		minimiseButton.setBackground(menuBarPanel.getBackground());
+    }//GEN-LAST:event_minimiseButtonMouseExited
 
     /**
      * @param args the command line arguments
