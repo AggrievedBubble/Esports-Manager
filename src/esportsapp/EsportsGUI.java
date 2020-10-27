@@ -53,9 +53,7 @@ public class EsportsGUI extends javax.swing.JFrame {
         loadButton = new javax.swing.JButton();
         exitButton = new javax.swing.JButton();
         activePanel = new javax.swing.JPanel();
-        eventsScrollPane = new javax.swing.JScrollPane();
         eventsPanel = new javax.swing.JPanel();
-        teamsScrollPane = new javax.swing.JScrollPane();
         teamsPanel = new javax.swing.JPanel();
         leaderboardPanel = new javax.swing.JPanel();
         settingsPanel = new javax.swing.JPanel();
@@ -393,17 +391,9 @@ public class EsportsGUI extends javax.swing.JFrame {
 
         activePanel.setLayout(new java.awt.CardLayout());
 
-        eventsScrollPane.setBorder(null);
-
         eventsPanel.setLayout(new java.awt.GridLayout(0, 1));
-        eventsScrollPane.setViewportView(eventsPanel);
-
-        activePanel.add(eventsScrollPane, "eventsCard");
-
-        teamsScrollPane.setBorder(null);
-        teamsScrollPane.setViewportView(teamsPanel);
-
-        activePanel.add(teamsScrollPane, "teamsCard");
+        activePanel.add(eventsPanel, "eventsCard");
+        activePanel.add(teamsPanel, "teamsCard");
         activePanel.add(leaderboardPanel, "leaderboardCard");
 
         java.awt.GridBagLayout settingsPanelLayout = new java.awt.GridBagLayout();
@@ -706,7 +696,6 @@ public class EsportsGUI extends javax.swing.JFrame {
     private javax.swing.JLabel appearanceLabel;
     private javax.swing.JButton closeButton;
     private javax.swing.JPanel eventsPanel;
-    private javax.swing.JScrollPane eventsScrollPane;
     private javax.swing.JToggleButton eventsToggleButton;
     private javax.swing.JButton exitButton;
     private javax.swing.JPanel leaderboardPanel;
@@ -721,7 +710,6 @@ public class EsportsGUI extends javax.swing.JFrame {
     private javax.swing.JPanel settingsPanel;
     private javax.swing.JToggleButton settingsToggleButton;
     private javax.swing.JPanel teamsPanel;
-    private javax.swing.JScrollPane teamsScrollPane;
     private javax.swing.JToggleButton teamsToggleButton;
     private javax.swing.JLabel versionLabel;
     // End of variables declaration//GEN-END:variables
