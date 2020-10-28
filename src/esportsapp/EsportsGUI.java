@@ -66,10 +66,10 @@ public class EsportsGUI extends javax.swing.JFrame {
         setAutoRequestFocus(false);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setUndecorated(true);
-        setPreferredSize(new java.awt.Dimension(1280, 720));
         getContentPane().setLayout(new java.awt.GridBagLayout());
 
         mainPanel.setBackground(new java.awt.Color(32, 34, 37));
+        mainPanel.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
         mainPanel.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         mainPanel.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseDragged(java.awt.event.MouseEvent evt) {
@@ -386,27 +386,30 @@ public class EsportsGUI extends javax.swing.JFrame {
         gridBagConstraints.weighty = 1.0;
         mainPanel.add(menuPanel, gridBagConstraints);
 
+        activePanel.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         activePanel.setLayout(new java.awt.CardLayout());
 
+        eventsPanel.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
         eventsPanel.setLayout(new java.awt.GridLayout(0, 1));
         activePanel.add(eventsPanel, "eventsCard");
         activePanel.add(teamsPanel, "teamsCard");
         activePanel.add(leaderboardPanel, "leaderboardCard");
 
         java.awt.GridBagLayout settingsPanelLayout = new java.awt.GridBagLayout();
-        settingsPanelLayout.columnWidths = new int[] {0, 5, 0, 5, 0, 5, 0, 5, 0};
-        settingsPanelLayout.rowHeights = new int[] {0, 5, 0, 5, 0, 5, 0, 5, 0};
+        settingsPanelLayout.columnWidths = new int[] {0, 5, 0, 5, 0};
+        settingsPanelLayout.rowHeights = new int[] {0, 5, 0, 5, 0, 5, 0, 5, 0, 5, 0};
         settingsPanel.setLayout(settingsPanelLayout);
 
         appearanceLabel.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         appearanceLabel.setText("Appearance:");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridy = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         settingsPanel.add(appearanceLabel, gridBagConstraints);
 
         alwaysOnTopCheck.setText("Always On Top");
+        alwaysOnTopCheck.setToolTipText("Makes windows bellonging to Esports-Manager remain on top of other windows even if you are interacting with them");
         alwaysOnTopCheck.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 alwaysOnTopCheckActionPerformed(evt);
@@ -414,7 +417,7 @@ public class EsportsGUI extends javax.swing.JFrame {
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridy = 4;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
@@ -423,7 +426,7 @@ public class EsportsGUI extends javax.swing.JFrame {
         versionLabel.setText("Version: 0.5.0");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 6;
+        gridBagConstraints.gridy = 8;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.SOUTHWEST;
         settingsPanel.add(versionLabel, gridBagConstraints);
 
@@ -441,7 +444,6 @@ public class EsportsGUI extends javax.swing.JFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridwidth = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
@@ -500,31 +502,37 @@ public class EsportsGUI extends javax.swing.JFrame {
     private void closeButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_closeButtonMouseEntered
         // TODO add your handling code here:
 		closeButton.setBackground(new java.awt.Color(240, 71, 71));
+		closeButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/esportsapp/images/closemouseover.png")));
     }//GEN-LAST:event_closeButtonMouseEntered
 
     private void closeButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_closeButtonMouseExited
         // TODO add your handling code here:
 		closeButton.setBackground(mainPanel.getBackground());
+		closeButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/esportsapp/images/close.png")));
     }//GEN-LAST:event_closeButtonMouseExited
 
     private void maximiseButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_maximiseButtonMouseEntered
         // TODO add your handling code here:
 		maximiseButton.setBackground(new java.awt.Color(38, 41, 46));
+		maximiseButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/esportsapp/images/maximisemouseover.png")));
     }//GEN-LAST:event_maximiseButtonMouseEntered
 
     private void maximiseButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_maximiseButtonMouseExited
         // TODO add your handling code here:
 		maximiseButton.setBackground(mainPanel.getBackground());
+		maximiseButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/esportsapp/images/maximise.png")));
     }//GEN-LAST:event_maximiseButtonMouseExited
 
     private void minimiseButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_minimiseButtonMouseEntered
         // TODO add your handling code here:
 		minimiseButton.setBackground(new java.awt.Color(38, 41, 46));
+		minimiseButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/esportsapp/images/minimisemouseover.png")));
     }//GEN-LAST:event_minimiseButtonMouseEntered
 
     private void minimiseButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_minimiseButtonMouseExited
         // TODO add your handling code here:
 		minimiseButton.setBackground(mainPanel.getBackground());
+		minimiseButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/esportsapp/images/minimise.png")));
     }//GEN-LAST:event_minimiseButtonMouseExited
 
     private void eventsToggleButtonItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_eventsToggleButtonItemStateChanged
