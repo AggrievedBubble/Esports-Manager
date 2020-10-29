@@ -53,13 +53,13 @@ public class EsportsGUI extends javax.swing.JFrame {
         saveButton = new javax.swing.JButton();
         loadButton = new javax.swing.JButton();
         activePanel = new javax.swing.JPanel();
-        eventsPanel = new javax.swing.JPanel();
         teamsPanel = new javax.swing.JPanel();
         leaderboardPanel = new javax.swing.JPanel();
         settingsPanel = new javax.swing.JPanel();
         appearanceLabel = new javax.swing.JLabel();
         alwaysOnTopCheck = new javax.swing.JCheckBox();
         versionLabel = new javax.swing.JLabel();
+        eventsPanel = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Esports Manager");
@@ -389,10 +389,6 @@ public class EsportsGUI extends javax.swing.JFrame {
 
         activePanel.setBorder(javax.swing.BorderFactory.createEmptyBorder(5, 5, 5, 5));
         activePanel.setLayout(new java.awt.CardLayout());
-
-        eventsPanel.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
-        eventsPanel.setLayout(new java.awt.GridLayout(0, 1));
-        activePanel.add(eventsPanel, "eventsCard");
         activePanel.add(teamsPanel, "teamsCard");
         activePanel.add(leaderboardPanel, "leaderboardCard");
 
@@ -432,6 +428,10 @@ public class EsportsGUI extends javax.swing.JFrame {
         settingsPanel.add(versionLabel, gridBagConstraints);
 
         activePanel.add(settingsPanel, "settingsCard");
+
+        eventsPanel.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
+        eventsPanel.setLayout(new java.awt.GridLayout(0, 1));
+        activePanel.add(eventsPanel, "eventsCard");
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
