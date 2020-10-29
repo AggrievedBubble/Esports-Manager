@@ -41,6 +41,7 @@ public class EsportsGUI extends javax.swing.JFrame {
 
         menuButtonGroup = new javax.swing.ButtonGroup();
         mainPanel = new javax.swing.JPanel();
+        dragBarPanel = new javax.swing.JPanel();
         minimiseButton = new javax.swing.JButton();
         maximiseButton = new javax.swing.JButton();
         closeButton = new javax.swing.JButton();
@@ -71,17 +72,38 @@ public class EsportsGUI extends javax.swing.JFrame {
         mainPanel.setBackground(new java.awt.Color(32, 34, 37));
         mainPanel.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
         mainPanel.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        mainPanel.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
-            public void mouseDragged(java.awt.event.MouseEvent evt) {
-                mainPanelMouseDragged(evt);
-            }
-        });
-        mainPanel.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                mainPanelMousePressed(evt);
-            }
-        });
         mainPanel.setLayout(new java.awt.GridBagLayout());
+
+        dragBarPanel.setOpaque(false);
+        dragBarPanel.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                dragBarPanelMouseDragged(evt);
+            }
+        });
+        dragBarPanel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                dragBarPanelMousePressed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout dragBarPanelLayout = new javax.swing.GroupLayout(dragBarPanel);
+        dragBarPanel.setLayout(dragBarPanelLayout);
+        dragBarPanelLayout.setHorizontalGroup(
+            dragBarPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 627, Short.MAX_VALUE)
+        );
+        dragBarPanelLayout.setVerticalGroup(
+            dragBarPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 25, Short.MAX_VALUE)
+        );
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        mainPanel.add(dragBarPanel, gridBagConstraints);
 
         minimiseButton.setBackground(mainPanel.getBackground());
         minimiseButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/esportsapp/images/minimise.png"))); // NOI18N
@@ -98,11 +120,10 @@ public class EsportsGUI extends javax.swing.JFrame {
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
-        gridBagConstraints.weightx = 1.0;
         mainPanel.add(minimiseButton, gridBagConstraints);
 
         maximiseButton.setBackground(mainPanel.getBackground());
@@ -120,7 +141,7 @@ public class EsportsGUI extends javax.swing.JFrame {
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
@@ -146,7 +167,7 @@ public class EsportsGUI extends javax.swing.JFrame {
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridx = 4;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
@@ -363,7 +384,6 @@ public class EsportsGUI extends javax.swing.JFrame {
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.weightx = 0.2;
         gridBagConstraints.weighty = 1.0;
         mainPanel.add(menuPanel, gridBagConstraints);
 
@@ -416,10 +436,8 @@ public class EsportsGUI extends javax.swing.JFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;
-        gridBagConstraints.gridwidth = 3;
+        gridBagConstraints.gridwidth = 4;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
         mainPanel.add(activePanel, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -428,7 +446,6 @@ public class EsportsGUI extends javax.swing.JFrame {
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, -1);
         getContentPane().add(mainPanel, gridBagConstraints);
 
         setSize(new java.awt.Dimension(720, 480));
@@ -468,18 +485,6 @@ public class EsportsGUI extends javax.swing.JFrame {
         // TODO add your handling code here:
 		this.dispose();
     }//GEN-LAST:event_closeButtonActionPerformed
-
-    private void mainPanelMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mainPanelMousePressed
-        // TODO add your handling code here:
-		posX = evt.getX();
-		posY = evt.getY();
-    }//GEN-LAST:event_mainPanelMousePressed
-
-    private void mainPanelMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mainPanelMouseDragged
-        // TODO add your handling code here:
-		Rectangle rectangle = getBounds();
-		this.setBounds(evt.getXOnScreen() - posX, evt.getYOnScreen() - posY, rectangle.width, rectangle.height);
-    }//GEN-LAST:event_mainPanelMouseDragged
 
     private void closeButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_closeButtonMouseEntered
         // TODO add your handling code here:
@@ -649,6 +654,18 @@ public class EsportsGUI extends javax.swing.JFrame {
 		loadButton.setForeground(new java.awt.Color(187, 187, 187));
     }//GEN-LAST:event_loadButtonMouseExited
 
+    private void dragBarPanelMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dragBarPanelMousePressed
+        // TODO add your handling code here:
+		posX = evt.getX();
+		posY = evt.getY();
+    }//GEN-LAST:event_dragBarPanelMousePressed
+
+    private void dragBarPanelMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dragBarPanelMouseDragged
+        // TODO add your handling code here:
+		Rectangle rectangle = getBounds();
+		this.setBounds(evt.getXOnScreen() - posX, evt.getYOnScreen() - posY, rectangle.width, rectangle.height);
+    }//GEN-LAST:event_dragBarPanelMouseDragged
+
     /**
      * @param args the command line arguments
      */
@@ -692,6 +709,7 @@ public class EsportsGUI extends javax.swing.JFrame {
     private javax.swing.JCheckBox alwaysOnTopCheck;
     private javax.swing.JLabel appearanceLabel;
     private javax.swing.JButton closeButton;
+    private javax.swing.JPanel dragBarPanel;
     private javax.swing.JPanel eventsPanel;
     private javax.swing.JToggleButton eventsToggleButton;
     private javax.swing.JPanel leaderboardPanel;
