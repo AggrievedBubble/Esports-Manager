@@ -41,6 +41,7 @@ public class EsportsGUI extends javax.swing.JFrame {
 
         menuButtonGroup = new javax.swing.ButtonGroup();
         themeButtonGroup = new javax.swing.ButtonGroup();
+        displayButtonGroup = new javax.swing.ButtonGroup();
         mainPanel = new javax.swing.JPanel();
         dragBarPanel = new javax.swing.JPanel();
         minimiseButton = new javax.swing.JButton();
@@ -58,15 +59,24 @@ public class EsportsGUI extends javax.swing.JFrame {
         teamsPanel = new javax.swing.JPanel();
         leaderboardPanel = new javax.swing.JPanel();
         settingsPanel = new javax.swing.JPanel();
+        appearanceLabel = new javax.swing.JLabel();
         themeLabel = new javax.swing.JLabel();
-        accessibilityLabel = new javax.swing.JLabel();
-        versionLabel = new javax.swing.JLabel();
-        alwaysOnTopToggleButton = new javax.swing.JToggleButton();
         darkThemeCheck = new javax.swing.JCheckBox();
         lightThemeCheck = new javax.swing.JCheckBox();
-        alwaysOnTopToggleButton1 = new javax.swing.JToggleButton();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        displayLabel = new javax.swing.JLabel();
+        cozyDesignCheck = new javax.swing.JCheckBox();
+        compactDesignCheck = new javax.swing.JCheckBox();
+        accessibilityLabel = new javax.swing.JLabel();
+        alwaysOnTopLabel = new javax.swing.JLabel();
+        alwaysOnTopTipLabel = new javax.swing.JLabel();
+        alwaysOnTopCheck = new javax.swing.JCheckBox();
+        alwaysOnTopSeparator = new javax.swing.JSeparator();
+        naratorLabel = new javax.swing.JLabel();
+        naratorTipLabel = new javax.swing.JLabel();
+        naratorCheck = new javax.swing.JCheckBox();
+        naratorSeparator = new javax.swing.JSeparator();
+        versionLabel = new javax.swing.JLabel();
+        disclaimerLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Esports Manager");
@@ -410,108 +420,245 @@ public class EsportsGUI extends javax.swing.JFrame {
         settingsPanel.setOpaque(false);
         java.awt.GridBagLayout settingsPanelLayout = new java.awt.GridBagLayout();
         settingsPanelLayout.columnWidths = new int[] {0, 5, 0, 5, 0, 5, 0, 5, 0};
-        settingsPanelLayout.rowHeights = new int[] {0, 5, 0, 5, 0, 5, 0, 5, 0, 5, 0, 5, 0, 5, 0, 5, 0, 5, 0, 5, 0};
+        settingsPanelLayout.rowHeights = new int[] {0, 5, 0, 5, 0, 5, 0, 5, 0, 5, 0, 5, 0, 5, 0, 5, 0, 5, 0, 5, 0, 5, 0, 5, 0, 5, 0, 5, 0, 5, 0, 5, 0, 5, 0};
         settingsPanel.setLayout(settingsPanelLayout);
 
-        themeLabel.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        themeLabel.setForeground(new java.awt.Color(255, 255, 255));
-        themeLabel.setText("Theme:");
-        themeLabel.setFocusable(false);
+        appearanceLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        appearanceLabel.setForeground(new java.awt.Color(255, 255, 255));
+        appearanceLabel.setText("Appearance:");
+        appearanceLabel.setFocusable(false);
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        settingsPanel.add(appearanceLabel, gridBagConstraints);
+
+        themeLabel.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        themeLabel.setForeground(new java.awt.Color(142, 146, 151));
+        themeLabel.setText("THEME");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 4;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         settingsPanel.add(themeLabel, gridBagConstraints);
 
-        accessibilityLabel.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        darkThemeCheck.setBackground(new java.awt.Color(47, 50, 55));
+        themeButtonGroup.add(darkThemeCheck);
+        darkThemeCheck.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        darkThemeCheck.setForeground(new java.awt.Color(255, 255, 255));
+        darkThemeCheck.setSelected(true);
+        darkThemeCheck.setText("Dark");
+        darkThemeCheck.setBorder(javax.swing.BorderFactory.createCompoundBorder(new javax.swing.border.LineBorder(new java.awt.Color(32, 34, 37), 1, true), javax.swing.BorderFactory.createEmptyBorder(5, 5, 5, 5)));
+        darkThemeCheck.setBorderPainted(true);
+        darkThemeCheck.setFocusable(false);
+        darkThemeCheck.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        darkThemeCheck.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        darkThemeCheck.setMargin(new java.awt.Insets(5, 5, 5, 5));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 6;
+        gridBagConstraints.gridwidth = 5;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.ipady = 10;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        settingsPanel.add(darkThemeCheck, gridBagConstraints);
+
+        lightThemeCheck.setBackground(new java.awt.Color(47, 50, 55));
+        themeButtonGroup.add(lightThemeCheck);
+        lightThemeCheck.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        lightThemeCheck.setForeground(new java.awt.Color(255, 255, 255));
+        lightThemeCheck.setText("Light");
+        lightThemeCheck.setBorder(javax.swing.BorderFactory.createCompoundBorder(new javax.swing.border.LineBorder(new java.awt.Color(32, 34, 37), 1, true), javax.swing.BorderFactory.createEmptyBorder(5, 5, 5, 5)));
+        lightThemeCheck.setBorderPainted(true);
+        lightThemeCheck.setEnabled(false);
+        lightThemeCheck.setFocusable(false);
+        lightThemeCheck.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        lightThemeCheck.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        lightThemeCheck.setMargin(new java.awt.Insets(5, 5, 5, 5));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 8;
+        gridBagConstraints.gridwidth = 5;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.ipady = 10;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        settingsPanel.add(lightThemeCheck, gridBagConstraints);
+
+        displayLabel.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        displayLabel.setForeground(new java.awt.Color(142, 146, 151));
+        displayLabel.setText("DISPLAY");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 10;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        settingsPanel.add(displayLabel, gridBagConstraints);
+
+        cozyDesignCheck.setBackground(new java.awt.Color(47, 50, 55));
+        displayButtonGroup.add(cozyDesignCheck);
+        cozyDesignCheck.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        cozyDesignCheck.setForeground(new java.awt.Color(255, 255, 255));
+        cozyDesignCheck.setSelected(true);
+        cozyDesignCheck.setText("Cozy: Modern, beautifull and easy on your eyes.");
+        cozyDesignCheck.setBorder(javax.swing.BorderFactory.createCompoundBorder(new javax.swing.border.LineBorder(new java.awt.Color(32, 34, 37), 1, true), javax.swing.BorderFactory.createEmptyBorder(5, 5, 5, 5)));
+        cozyDesignCheck.setBorderPainted(true);
+        cozyDesignCheck.setFocusable(false);
+        cozyDesignCheck.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        cozyDesignCheck.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        cozyDesignCheck.setMargin(new java.awt.Insets(5, 5, 5, 5));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 12;
+        gridBagConstraints.gridwidth = 5;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.ipady = 10;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        settingsPanel.add(cozyDesignCheck, gridBagConstraints);
+
+        compactDesignCheck.setBackground(new java.awt.Color(47, 50, 55));
+        displayButtonGroup.add(compactDesignCheck);
+        compactDesignCheck.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        compactDesignCheck.setForeground(new java.awt.Color(255, 255, 255));
+        compactDesignCheck.setText("Compact: Fit more things on the screen at one time.");
+        compactDesignCheck.setBorder(javax.swing.BorderFactory.createCompoundBorder(new javax.swing.border.LineBorder(new java.awt.Color(32, 34, 37), 1, true), javax.swing.BorderFactory.createEmptyBorder(5, 5, 5, 5)));
+        compactDesignCheck.setBorderPainted(true);
+        compactDesignCheck.setEnabled(false);
+        compactDesignCheck.setFocusable(false);
+        compactDesignCheck.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        compactDesignCheck.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        compactDesignCheck.setMargin(new java.awt.Insets(5, 5, 5, 5));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 14;
+        gridBagConstraints.gridwidth = 5;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.ipady = 10;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        settingsPanel.add(compactDesignCheck, gridBagConstraints);
+
+        accessibilityLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         accessibilityLabel.setForeground(new java.awt.Color(255, 255, 255));
         accessibilityLabel.setText("Accessibility:");
         accessibilityLabel.setFocusable(false);
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 4;
-        gridBagConstraints.gridy = 10;
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 16;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         settingsPanel.add(accessibilityLabel, gridBagConstraints);
+
+        alwaysOnTopLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        alwaysOnTopLabel.setForeground(new java.awt.Color(255, 255, 255));
+        alwaysOnTopLabel.setText("Always On Top");
+        alwaysOnTopLabel.setToolTipText("");
+        alwaysOnTopLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        alwaysOnTopLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                alwaysOnTopLabelMousePressed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 18;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        settingsPanel.add(alwaysOnTopLabel, gridBagConstraints);
+
+        alwaysOnTopTipLabel.setForeground(new java.awt.Color(176, 178, 182));
+        alwaysOnTopTipLabel.setText("Makes this window appear on top of other windows.");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 20;
+        gridBagConstraints.gridwidth = 3;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.weightx = 1.0;
+        settingsPanel.add(alwaysOnTopTipLabel, gridBagConstraints);
+
+        alwaysOnTopCheck.setContentAreaFilled(false);
+        alwaysOnTopCheck.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        alwaysOnTopCheck.setFocusable(false);
+        alwaysOnTopCheck.setIcon(new javax.swing.ImageIcon(getClass().getResource("/esportsapp/images/deselectedtoggleswitch.png"))); // NOI18N
+        alwaysOnTopCheck.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/esportsapp/images/selectedtoggleswitch.png"))); // NOI18N
+        alwaysOnTopCheck.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                alwaysOnTopCheckActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 6;
+        gridBagConstraints.gridy = 18;
+        gridBagConstraints.gridheight = 3;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        settingsPanel.add(alwaysOnTopCheck, gridBagConstraints);
+
+        alwaysOnTopSeparator.setBackground(new java.awt.Color(66, 69, 74));
+        alwaysOnTopSeparator.setForeground(new java.awt.Color(66, 69, 74));
+        alwaysOnTopSeparator.setOpaque(true);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 22;
+        gridBagConstraints.gridwidth = 5;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        settingsPanel.add(alwaysOnTopSeparator, gridBagConstraints);
+
+        naratorLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        naratorLabel.setForeground(new java.awt.Color(255, 255, 255));
+        naratorLabel.setText("Narator");
+        naratorLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 24;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        settingsPanel.add(naratorLabel, gridBagConstraints);
+
+        naratorTipLabel.setForeground(new java.awt.Color(176, 178, 182));
+        naratorTipLabel.setText("Narates the text that you place your cursor on.");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 26;
+        gridBagConstraints.gridwidth = 3;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.weightx = 1.0;
+        settingsPanel.add(naratorTipLabel, gridBagConstraints);
+
+        naratorCheck.setContentAreaFilled(false);
+        naratorCheck.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        naratorCheck.setEnabled(false);
+        naratorCheck.setFocusable(false);
+        naratorCheck.setIcon(new javax.swing.ImageIcon(getClass().getResource("/esportsapp/images/deselectedtoggleswitch.png"))); // NOI18N
+        naratorCheck.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/esportsapp/images/selectedtoggleswitch.png"))); // NOI18N
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 6;
+        gridBagConstraints.gridy = 24;
+        gridBagConstraints.gridheight = 3;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        settingsPanel.add(naratorCheck, gridBagConstraints);
+
+        naratorSeparator.setBackground(new java.awt.Color(66, 69, 74));
+        naratorSeparator.setForeground(new java.awt.Color(66, 69, 74));
+        naratorSeparator.setOpaque(true);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 28;
+        gridBagConstraints.gridwidth = 5;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        settingsPanel.add(naratorSeparator, gridBagConstraints);
 
         versionLabel.setForeground(new java.awt.Color(255, 255, 255));
         versionLabel.setText("Version: 0.5.0");
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 4;
-        gridBagConstraints.gridy = 18;
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 32;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.SOUTHWEST;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         settingsPanel.add(versionLabel, gridBagConstraints);
 
-        alwaysOnTopToggleButton.setForeground(new java.awt.Color(255, 255, 255));
-        alwaysOnTopToggleButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/esportsapp/images/deselectedtoggleswitch.png"))); // NOI18N
-        alwaysOnTopToggleButton.setToolTipText("");
-        alwaysOnTopToggleButton.setBorderPainted(false);
-        alwaysOnTopToggleButton.setContentAreaFilled(false);
-        alwaysOnTopToggleButton.setFocusPainted(false);
-        alwaysOnTopToggleButton.setFocusable(false);
-        alwaysOnTopToggleButton.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/esportsapp/images/selectedtoggleswitch.png"))); // NOI18N
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 6;
-        gridBagConstraints.gridy = 12;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.weightx = 10.0;
-        settingsPanel.add(alwaysOnTopToggleButton, gridBagConstraints);
-
-        themeButtonGroup.add(darkThemeCheck);
-        darkThemeCheck.setForeground(new java.awt.Color(255, 255, 255));
-        darkThemeCheck.setSelected(true);
-        darkThemeCheck.setText("Dark");
-        darkThemeCheck.setContentAreaFilled(false);
-        darkThemeCheck.setFocusable(false);
+        disclaimerLabel.setForeground(new java.awt.Color(255, 255, 255));
+        disclaimerLabel.setText("Please note that some settings may not function in this version");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 4;
-        gridBagConstraints.gridy = 4;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        settingsPanel.add(darkThemeCheck, gridBagConstraints);
-
-        themeButtonGroup.add(lightThemeCheck);
-        lightThemeCheck.setForeground(new java.awt.Color(255, 255, 255));
-        lightThemeCheck.setText("Light");
-        lightThemeCheck.setContentAreaFilled(false);
-        lightThemeCheck.setEnabled(false);
-        lightThemeCheck.setFocusable(false);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 4;
-        gridBagConstraints.gridy = 6;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        settingsPanel.add(lightThemeCheck, gridBagConstraints);
-
-        alwaysOnTopToggleButton1.setForeground(new java.awt.Color(255, 255, 255));
-        alwaysOnTopToggleButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/esportsapp/images/deselectedtoggleswitch.png"))); // NOI18N
-        alwaysOnTopToggleButton1.setBorderPainted(false);
-        alwaysOnTopToggleButton1.setContentAreaFilled(false);
-        alwaysOnTopToggleButton1.setFocusPainted(false);
-        alwaysOnTopToggleButton1.setFocusable(false);
-        alwaysOnTopToggleButton1.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/esportsapp/images/selectedtoggleswitch.png"))); // NOI18N
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 6;
-        gridBagConstraints.gridy = 14;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.weightx = 10.0;
-        settingsPanel.add(alwaysOnTopToggleButton1, gridBagConstraints);
-
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Always On Top");
-        jLabel1.setToolTipText("makes this window always appear in front of others");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 4;
-        gridBagConstraints.gridy = 12;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        settingsPanel.add(jLabel1, gridBagConstraints);
-
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("jLabel2");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 4;
-        gridBagConstraints.gridy = 14;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        settingsPanel.add(jLabel2, gridBagConstraints);
+        gridBagConstraints.gridy = 32;
+        gridBagConstraints.gridwidth = 3;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.SOUTHEAST;
+        settingsPanel.add(disclaimerLabel, gridBagConstraints);
 
         activePanel.add(settingsPanel, "settingsCard");
 
@@ -743,6 +890,16 @@ public class EsportsGUI extends javax.swing.JFrame {
 		this.setBounds(evt.getXOnScreen() - posX, evt.getYOnScreen() - posY, rectangle.width, rectangle.height);
     }//GEN-LAST:event_dragBarPanelMouseDragged
 
+    private void alwaysOnTopLabelMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_alwaysOnTopLabelMousePressed
+        // TODO add your handling code here:
+		alwaysOnTopCheck.setSelected(!alwaysOnTopCheck.isSelected());
+    }//GEN-LAST:event_alwaysOnTopLabelMousePressed
+
+    private void alwaysOnTopCheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_alwaysOnTopCheckActionPerformed
+        // TODO add your handling code here:
+		this.setAlwaysOnTop(alwaysOnTopCheck.isSelected());
+    }//GEN-LAST:event_alwaysOnTopCheckActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -784,15 +941,21 @@ public class EsportsGUI extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel accessibilityLabel;
     private javax.swing.JPanel activePanel;
-    private javax.swing.JToggleButton alwaysOnTopToggleButton;
-    private javax.swing.JToggleButton alwaysOnTopToggleButton1;
+    private javax.swing.JCheckBox alwaysOnTopCheck;
+    private javax.swing.JLabel alwaysOnTopLabel;
+    private javax.swing.JSeparator alwaysOnTopSeparator;
+    private javax.swing.JLabel alwaysOnTopTipLabel;
+    private javax.swing.JLabel appearanceLabel;
     private javax.swing.JButton closeButton;
+    private javax.swing.JCheckBox compactDesignCheck;
+    private javax.swing.JCheckBox cozyDesignCheck;
     private javax.swing.JCheckBox darkThemeCheck;
+    private javax.swing.JLabel disclaimerLabel;
+    private javax.swing.ButtonGroup displayButtonGroup;
+    private javax.swing.JLabel displayLabel;
     private javax.swing.JPanel dragBarPanel;
     private javax.swing.JPanel eventsPanel;
     private javax.swing.JToggleButton eventsToggleButton;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel leaderboardPanel;
     private javax.swing.JToggleButton leaderboardToggleButton;
     private javax.swing.JCheckBox lightThemeCheck;
@@ -802,6 +965,10 @@ public class EsportsGUI extends javax.swing.JFrame {
     private javax.swing.ButtonGroup menuButtonGroup;
     private javax.swing.JPanel menuPanel;
     private javax.swing.JButton minimiseButton;
+    private javax.swing.JCheckBox naratorCheck;
+    private javax.swing.JLabel naratorLabel;
+    private javax.swing.JSeparator naratorSeparator;
+    private javax.swing.JLabel naratorTipLabel;
     private javax.swing.JButton saveButton;
     private javax.swing.JPanel settingsPanel;
     private javax.swing.JToggleButton settingsToggleButton;
