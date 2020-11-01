@@ -817,11 +817,11 @@
                 </Component>
                 <Component class="javax.swing.JSeparator" name="alwaysOnTopSeparator">
                   <Properties>
-                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="4a" green="45" red="42" type="rgb"/>
+                    <Property name="background" type="java.awt.Color" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                      <Connection code="Palette.getCurrentScheme().COLOR_SEPARATOR.getColor()" type="code"/>
                     </Property>
-                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="4a" green="45" red="42" type="rgb"/>
+                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                      <Connection code="Palette.getCurrentScheme().COLOR_SEPARATOR.getColor()" type="code"/>
                     </Property>
                     <Property name="opaque" type="boolean" value="true"/>
                   </Properties>
@@ -886,11 +886,11 @@
                 </Component>
                 <Component class="javax.swing.JSeparator" name="naratorSeparator">
                   <Properties>
-                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="4a" green="45" red="42" type="rgb"/>
+                    <Property name="background" type="java.awt.Color" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                      <Connection code="Palette.getCurrentScheme().COLOR_SEPARATOR.getColor()" type="code"/>
                     </Property>
-                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="4a" green="45" red="42" type="rgb"/>
+                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                      <Connection code="Palette.getCurrentScheme().COLOR_SEPARATOR.getColor()" type="code"/>
                     </Property>
                     <Property name="opaque" type="boolean" value="true"/>
                   </Properties>

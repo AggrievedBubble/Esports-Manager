@@ -620,8 +620,8 @@ public class EsportsGUI extends javax.swing.JFrame {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
         settingsPanel.add(alwaysOnTopCheck, gridBagConstraints);
 
-        alwaysOnTopSeparator.setBackground(new java.awt.Color(66, 69, 74));
-        alwaysOnTopSeparator.setForeground(new java.awt.Color(66, 69, 74));
+        alwaysOnTopSeparator.setBackground(Palette.getCurrentScheme().COLOR_SEPARATOR.getColor());
+        alwaysOnTopSeparator.setForeground(Palette.getCurrentScheme().COLOR_SEPARATOR.getColor());
         alwaysOnTopSeparator.setOpaque(true);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
@@ -663,8 +663,8 @@ public class EsportsGUI extends javax.swing.JFrame {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
         settingsPanel.add(naratorCheck, gridBagConstraints);
 
-        naratorSeparator.setBackground(new java.awt.Color(66, 69, 74));
-        naratorSeparator.setForeground(new java.awt.Color(66, 69, 74));
+        naratorSeparator.setBackground(Palette.getCurrentScheme().COLOR_SEPARATOR.getColor());
+        naratorSeparator.setForeground(Palette.getCurrentScheme().COLOR_SEPARATOR.getColor());
         naratorSeparator.setOpaque(true);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
@@ -1085,10 +1085,14 @@ public class EsportsGUI extends javax.swing.JFrame {
 		alwaysOnTopTipLabel.setForeground(Palette.getCurrentScheme().COLOR_SECONDARY_TEXT.getColor());
 		alwaysOnTopCheck.setIcon(Palette.getCurrentScheme().ICON_TOGGLE_SWITCH.getIcon());
 		alwaysOnTopCheck.setSelectedIcon(Palette.getCurrentScheme().ICON_SELECTED_TOGGLE_SWITCH.getIcon());
+		alwaysOnTopSeparator.setBackground(Palette.getCurrentScheme().COLOR_SEPARATOR.getColor());
+		alwaysOnTopSeparator.setForeground(Palette.getCurrentScheme().COLOR_SEPARATOR.getColor());
 		naratorLabel.setForeground(Palette.getCurrentScheme().COLOR_PRIMARY_TEXT.getColor());
 		naratorTipLabel.setForeground(Palette.getCurrentScheme().COLOR_SECONDARY_TEXT.getColor());
 		naratorCheck.setIcon(Palette.getCurrentScheme().ICON_TOGGLE_SWITCH.getIcon());
 		naratorCheck.setSelectedIcon(Palette.getCurrentScheme().ICON_SELECTED_TOGGLE_SWITCH.getIcon());
+		naratorSeparator.setBackground(Palette.getCurrentScheme().COLOR_SEPARATOR.getColor());
+		naratorSeparator.setForeground(Palette.getCurrentScheme().COLOR_SEPARATOR.getColor());
 		versionLabel.setForeground(Palette.getCurrentScheme().COLOR_SECONDARY_TEXT.getColor());
 		disclaimerLabel.setForeground(Palette.getCurrentScheme().COLOR_SECONDARY_TEXT.getColor());
 	}
