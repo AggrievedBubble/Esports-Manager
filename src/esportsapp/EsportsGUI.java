@@ -432,7 +432,7 @@ public class EsportsGUI extends javax.swing.JFrame {
         settingsPanel.setLayout(settingsPanelLayout);
 
         appearanceLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        appearanceLabel.setForeground(new java.awt.Color(255, 255, 255));
+        appearanceLabel.setForeground(Palette.getCurrentScheme().COLOR_PRIMARY_TEXT.getColor());
         appearanceLabel.setText("Appearance:");
         appearanceLabel.setFocusable(false);
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -442,7 +442,7 @@ public class EsportsGUI extends javax.swing.JFrame {
         settingsPanel.add(appearanceLabel, gridBagConstraints);
 
         themeLabel.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        themeLabel.setForeground(new java.awt.Color(142, 146, 151));
+        themeLabel.setForeground(Palette.getCurrentScheme().COLOR_TERTIARY_TEXT.getColor());
         themeLabel.setText("THEME");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
@@ -502,7 +502,7 @@ public class EsportsGUI extends javax.swing.JFrame {
         settingsPanel.add(lightThemeCheck, gridBagConstraints);
 
         displayLabel.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        displayLabel.setForeground(new java.awt.Color(142, 146, 151));
+        displayLabel.setForeground(Palette.getCurrentScheme().COLOR_TERTIARY_TEXT.getColor());
         displayLabel.setText("DISPLAY");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
@@ -563,7 +563,7 @@ public class EsportsGUI extends javax.swing.JFrame {
         settingsPanel.add(compactDesignCheck, gridBagConstraints);
 
         accessibilityLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        accessibilityLabel.setForeground(new java.awt.Color(255, 255, 255));
+        accessibilityLabel.setForeground(Palette.getCurrentScheme().COLOR_PRIMARY_TEXT.getColor());
         accessibilityLabel.setText("Accessibility:");
         accessibilityLabel.setFocusable(false);
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -573,7 +573,7 @@ public class EsportsGUI extends javax.swing.JFrame {
         settingsPanel.add(accessibilityLabel, gridBagConstraints);
 
         alwaysOnTopLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        alwaysOnTopLabel.setForeground(new java.awt.Color(255, 255, 255));
+        alwaysOnTopLabel.setForeground(Palette.getCurrentScheme().COLOR_PRIMARY_TEXT.getColor());
         alwaysOnTopLabel.setText("Always On Top");
         alwaysOnTopLabel.setToolTipText("");
         alwaysOnTopLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -588,7 +588,7 @@ public class EsportsGUI extends javax.swing.JFrame {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         settingsPanel.add(alwaysOnTopLabel, gridBagConstraints);
 
-        alwaysOnTopTipLabel.setForeground(new java.awt.Color(176, 178, 182));
+        alwaysOnTopTipLabel.setForeground(Palette.getCurrentScheme().COLOR_SECONDARY_TEXT.getColor());
         alwaysOnTopTipLabel.setText("Makes this window appear on top of other windows.");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
@@ -626,7 +626,7 @@ public class EsportsGUI extends javax.swing.JFrame {
         settingsPanel.add(alwaysOnTopSeparator, gridBagConstraints);
 
         naratorLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        naratorLabel.setForeground(new java.awt.Color(255, 255, 255));
+        naratorLabel.setForeground(Palette.getCurrentScheme().COLOR_PRIMARY_TEXT.getColor());
         naratorLabel.setText("Narator");
         naratorLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -635,7 +635,7 @@ public class EsportsGUI extends javax.swing.JFrame {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         settingsPanel.add(naratorLabel, gridBagConstraints);
 
-        naratorTipLabel.setForeground(new java.awt.Color(176, 178, 182));
+        naratorTipLabel.setForeground(Palette.getCurrentScheme().COLOR_SECONDARY_TEXT.getColor());
         naratorTipLabel.setText("Narates the text that you place your cursor on.");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
@@ -668,7 +668,7 @@ public class EsportsGUI extends javax.swing.JFrame {
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         settingsPanel.add(naratorSeparator, gridBagConstraints);
 
-        versionLabel.setForeground(new java.awt.Color(255, 255, 255));
+        versionLabel.setForeground(Palette.getCurrentScheme().COLOR_SECONDARY_TEXT.getColor());
         versionLabel.setText("Version: 0.5.0");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
@@ -678,7 +678,7 @@ public class EsportsGUI extends javax.swing.JFrame {
         gridBagConstraints.weighty = 1.0;
         settingsPanel.add(versionLabel, gridBagConstraints);
 
-        disclaimerLabel.setForeground(new java.awt.Color(255, 255, 255));
+        disclaimerLabel.setForeground(Palette.getCurrentScheme().COLOR_SECONDARY_TEXT.getColor());
         disclaimerLabel.setText("Please note that some settings may not function in this version");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 4;
@@ -932,7 +932,7 @@ public class EsportsGUI extends javax.swing.JFrame {
 		if (darkThemeCheck.isSelected()) {
 			darkThemeCheck.setBackground(new java.awt.Color(114, 137, 218));
 			Palette.setCurrentScheme(Palette.SchemeEnum.DARK);
-			this.refreshColors();
+			this.refreshComponents();
 		} else {
 			darkThemeCheck.setBackground(Palette.getCurrentScheme().COLOR_CHECK_BACK.getColor());
 		}
@@ -943,7 +943,7 @@ public class EsportsGUI extends javax.swing.JFrame {
 		if (lightThemeCheck.isSelected()) {
 			lightThemeCheck.setBackground(new java.awt.Color(114, 137, 218));
 			Palette.setCurrentScheme(Palette.SchemeEnum.LIGHT);
-			this.refreshColors();
+			this.refreshComponents();
 		} else {
 			lightThemeCheck.setBackground(Palette.getCurrentScheme().COLOR_CHECK_BACK.getColor());
 		}
@@ -953,8 +953,10 @@ public class EsportsGUI extends javax.swing.JFrame {
         // TODO add your handling code here:
 		if (cozyDesignCheck.isSelected()) {
 			cozyDesignCheck.setBackground(new java.awt.Color(114, 137, 218));
+			cozyDesignCheck.setForeground(new java.awt.Color(255, 255, 255));
 		} else {
 			cozyDesignCheck.setBackground(Palette.getCurrentScheme().COLOR_CHECK_BACK.getColor());
+			cozyDesignCheck.setForeground(Palette.getCurrentScheme().COLOR_PRIMARY_TEXT.getColor());
 		}
     }//GEN-LAST:event_cozyDesignCheckItemStateChanged
 
@@ -962,8 +964,10 @@ public class EsportsGUI extends javax.swing.JFrame {
         // TODO add your handling code here:
 		if (compactDesignCheck.isSelected()) {
 			compactDesignCheck.setBackground(new java.awt.Color(114, 137, 218));
+			compactDesignCheck.setForeground(new java.awt.Color(255, 255, 255));
 		} else {
 			compactDesignCheck.setBackground(Palette.getCurrentScheme().COLOR_CHECK_BACK.getColor());
+			compactDesignCheck.setForeground(Palette.getCurrentScheme().COLOR_PRIMARY_TEXT.getColor());
 		}
     }//GEN-LAST:event_compactDesignCheckItemStateChanged
 
@@ -1011,7 +1015,7 @@ public class EsportsGUI extends javax.swing.JFrame {
 		
     }
 	
-	private void refreshColors() {
+	private void refreshComponents() {
 		
 		//Everything inside of Frame
 		mainPanel.setBackground(Palette.getCurrentScheme().COLOR_MAIN.getColor());
@@ -1038,11 +1042,37 @@ public class EsportsGUI extends javax.swing.JFrame {
 		loadButton.setBackground(Palette.getCurrentScheme().COLOR_MENU_BACK.getColor());
 		loadButton.setForeground(Palette.getCurrentScheme().COLOR_MENU_FRONT.getColor());
 		
-		
-		
-		
-		
-		
+		//Everything inside of settingsPanel
+		appearanceLabel.setForeground(Palette.getCurrentScheme().COLOR_PRIMARY_TEXT.getColor());
+		themeLabel.setForeground(Palette.getCurrentScheme().COLOR_TERTIARY_TEXT.getColor());
+		if (!darkThemeCheck.isSelected()) {
+			darkThemeCheck.setBackground(Palette.getCurrentScheme().COLOR_CHECK_BACK.getColor());
+			darkThemeCheck.setForeground(Palette.getCurrentScheme().COLOR_PRIMARY_TEXT.getColor());
+		}
+		if (!lightThemeCheck.isSelected()) {
+			lightThemeCheck.setBackground(Palette.getCurrentScheme().COLOR_CHECK_BACK.getColor());
+			darkThemeCheck.setForeground(Palette.getCurrentScheme().COLOR_PRIMARY_TEXT.getColor());
+		}
+		displayLabel.setForeground(Palette.getCurrentScheme().COLOR_TERTIARY_TEXT.getColor());
+		if (!cozyDesignCheck.isSelected()) {
+			cozyDesignCheck.setBackground(Palette.getCurrentScheme().COLOR_CHECK_BACK.getColor());
+			cozyDesignCheck.setForeground(Palette.getCurrentScheme().COLOR_PRIMARY_TEXT.getColor());
+		}
+		if (!compactDesignCheck.isSelected()) {
+			compactDesignCheck.setBackground(Palette.getCurrentScheme().COLOR_CHECK_BACK.getColor());
+			compactDesignCheck.setForeground(Palette.getCurrentScheme().COLOR_PRIMARY_TEXT.getColor());	
+		}
+		accessibilityLabel.setForeground(Palette.getCurrentScheme().COLOR_PRIMARY_TEXT.getColor());
+		alwaysOnTopLabel.setForeground(Palette.getCurrentScheme().COLOR_PRIMARY_TEXT.getColor());
+		alwaysOnTopTipLabel.setForeground(Palette.getCurrentScheme().COLOR_SECONDARY_TEXT.getColor());
+		alwaysOnTopCheck.setIcon(Palette.getCurrentScheme().ICON_TOGGLE_SWITCH.getIcon());
+		alwaysOnTopCheck.setSelectedIcon(Palette.getCurrentScheme().ICON_SELECTED_TOGGLE_SWITCH.getIcon());
+		naratorLabel.setForeground(Palette.getCurrentScheme().COLOR_PRIMARY_TEXT.getColor());
+		naratorTipLabel.setForeground(Palette.getCurrentScheme().COLOR_SECONDARY_TEXT.getColor());
+		naratorCheck.setIcon(Palette.getCurrentScheme().ICON_TOGGLE_SWITCH.getIcon());
+		naratorCheck.setSelectedIcon(Palette.getCurrentScheme().ICON_SELECTED_TOGGLE_SWITCH.getIcon());
+		versionLabel.setForeground(Palette.getCurrentScheme().COLOR_SECONDARY_TEXT.getColor());
+		disclaimerLabel.setForeground(Palette.getCurrentScheme().COLOR_SECONDARY_TEXT.getColor());
 	}
 	
     // Variables declaration - do not modify//GEN-BEGIN:variables
