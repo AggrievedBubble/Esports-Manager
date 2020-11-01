@@ -82,6 +82,7 @@ public class EsportsGUI extends javax.swing.JFrame {
         setTitle("Esports Manager");
         setAutoRequestFocus(false);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        setName("frame"); // NOI18N
         setUndecorated(true);
         getContentPane().setLayout(new java.awt.GridBagLayout());
 
@@ -443,6 +444,7 @@ public class EsportsGUI extends javax.swing.JFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridwidth = 5;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         settingsPanel.add(appearanceLabel, gridBagConstraints);
 
@@ -452,6 +454,7 @@ public class EsportsGUI extends javax.swing.JFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 4;
+        gridBagConstraints.gridwidth = 5;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         settingsPanel.add(themeLabel, gridBagConstraints);
 
@@ -512,6 +515,7 @@ public class EsportsGUI extends javax.swing.JFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 10;
+        gridBagConstraints.gridwidth = 5;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         settingsPanel.add(displayLabel, gridBagConstraints);
 
@@ -574,6 +578,7 @@ public class EsportsGUI extends javax.swing.JFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 16;
+        gridBagConstraints.gridwidth = 5;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         settingsPanel.add(accessibilityLabel, gridBagConstraints);
 
@@ -590,6 +595,7 @@ public class EsportsGUI extends javax.swing.JFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 18;
+        gridBagConstraints.gridwidth = 5;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         settingsPanel.add(alwaysOnTopLabel, gridBagConstraints);
 
@@ -598,7 +604,7 @@ public class EsportsGUI extends javax.swing.JFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 20;
-        gridBagConstraints.gridwidth = 3;
+        gridBagConstraints.gridwidth = 5;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.weightx = 1.0;
         settingsPanel.add(alwaysOnTopTipLabel, gridBagConstraints);
@@ -637,6 +643,7 @@ public class EsportsGUI extends javax.swing.JFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 24;
+        gridBagConstraints.gridwidth = 5;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         settingsPanel.add(naratorLabel, gridBagConstraints);
 
@@ -645,7 +652,7 @@ public class EsportsGUI extends javax.swing.JFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 26;
-        gridBagConstraints.gridwidth = 3;
+        gridBagConstraints.gridwidth = 5;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.weightx = 1.0;
         settingsPanel.add(naratorTipLabel, gridBagConstraints);
@@ -1022,7 +1029,7 @@ public class EsportsGUI extends javax.swing.JFrame {
 
 		Palette.setCurrentScheme(Palette.SchemeEnum.DARK);
 		ComponentResizer cr = new ComponentResizer();
-		cr.setSnapSize(new Dimension(10, 10));
+		cr.setSnapSize(new Dimension(1, 1));
 		cr.setMaximumSize(new Dimension(1920, 1080));
 		cr.setMinimumSize(new Dimension(50, 50));
 		System.out.println(cr.getDragInsets());
