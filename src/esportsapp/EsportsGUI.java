@@ -136,6 +136,11 @@ public class EsportsGUI extends javax.swing.JFrame {
                 minimiseButtonMouseExited(evt);
             }
         });
+        minimiseButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                minimiseButtonActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 0;
@@ -973,7 +978,20 @@ public class EsportsGUI extends javax.swing.JFrame {
 
     private void maximiseButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_maximiseButtonActionPerformed
         // TODO add your handling code here:
+		if (EsportsGUI.getFrames()[0].getExtendedState() == Frame.NORMAL) {
+			EsportsGUI.getFrames()[0].setExtendedState(EsportsGUI.getFrames()[0].getExtendedState() | JFrame.MAXIMIZED_BOTH);;
+		} else if (EsportsGUI.getFrames()[0].getExtendedState() == Frame.MAXIMIZED_BOTH) {
+			EsportsGUI.getFrames()[0].setState(Frame.NORMAL);
+			EsportsGUI.getFrames()[0].setSize(720, 480);
+			EsportsGUI.getFrames()[0].setLocationRelativeTo(null);
+		}
+		
     }//GEN-LAST:event_maximiseButtonActionPerformed
+
+    private void minimiseButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_minimiseButtonActionPerformed
+        // TODO add your handling code here:
+		EsportsGUI.getFrames()[0].setState(Frame.ICONIFIED);
+    }//GEN-LAST:event_minimiseButtonActionPerformed
 
     /**
      * @param args the command line arguments
