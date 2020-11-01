@@ -106,11 +106,11 @@ public class EsportsGUI extends javax.swing.JFrame {
         dragBarPanel.setLayout(dragBarPanelLayout);
         dragBarPanelLayout.setHorizontalGroup(
             dragBarPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 717, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
         dragBarPanelLayout.setVerticalGroup(
             dragBarPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 25, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
 
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -1021,11 +1021,16 @@ public class EsportsGUI extends javax.swing.JFrame {
         //</editor-fold>
 
 		Palette.setCurrentScheme(Palette.SchemeEnum.DARK);
-		
+		ComponentResizer cr = new ComponentResizer();
+		cr.setSnapSize(new Dimension(10, 10));
+		cr.setMaximumSize(new Dimension(1920, 1080));
+		cr.setMinimumSize(new Dimension(50, 50));
+		System.out.println(cr.getDragInsets());
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new EsportsGUI().setVisible(true);
+                cr.registerComponent(new EsportsGUI());
+				EsportsGUI.getFrames()[0].setVisible(true);
             }
         });
 		

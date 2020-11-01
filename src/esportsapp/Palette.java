@@ -238,7 +238,7 @@ public final class Palette {
 		
 	}
 
-    private static SchemeEnum currentScheme = SchemeEnum.DARK;
+    private static SchemeEnum currentScheme;
 
     /**
      * Default constructor is private to prevent instantiation of this makeshift 'static' class.
