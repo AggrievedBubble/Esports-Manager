@@ -1031,7 +1031,7 @@ public class EsportsGUI extends javax.swing.JFrame {
 		ComponentResizer cr = new ComponentResizer();
 		cr.setSnapSize(new Dimension(1, 1));
 		cr.setMaximumSize(new Dimension(1920, 1080));
-		cr.setMinimumSize(new Dimension(50, 50));
+		cr.setMinimumSize(new Dimension(300, 100));
 		System.out.println(cr.getDragInsets());
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
