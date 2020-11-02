@@ -1069,11 +1069,12 @@ public class EsportsGUI extends javax.swing.JFrame {
         //</editor-fold>
 
 		Palette.setCurrentScheme(Palette.SchemeEnum.DARK);
+		
 		ComponentResizer cr = new ComponentResizer();
 		cr.setSnapSize(new Dimension(1, 1));
 		cr.setMaximumSize(new Dimension(1920, 1080));
 		cr.setMinimumSize(new Dimension(300, 100));
-		System.out.println(cr.getDragInsets());
+		
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -1190,7 +1191,7 @@ public class EsportsGUI extends javax.swing.JFrame {
     private javax.swing.JLabel naratorTipLabel;
     private javax.swing.JButton saveButton;
     private javax.swing.JPanel settingsPanel;
-    private javax.swing.JScrollPane settingsScrollPane;
+    private static javax.swing.JScrollPane settingsScrollPane;
     private javax.swing.JToggleButton settingsToggleButton;
     private javax.swing.JPanel teamsPanel;
     private static javax.swing.JScrollPane teamsScrollPane;
