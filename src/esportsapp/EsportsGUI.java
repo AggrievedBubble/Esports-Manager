@@ -56,8 +56,12 @@ public class EsportsGUI extends javax.swing.JFrame {
         loadButton = new javax.swing.JButton();
         activePanel = new javax.swing.JPanel();
         eventsPanel = new javax.swing.JPanel();
+        eventsScrollPane = new javax.swing.JScrollPane();
         teamsPanel = new javax.swing.JPanel();
+        teamsScrollPane = new javax.swing.JScrollPane();
         leaderboardPanel = new javax.swing.JPanel();
+        leaderboardScrollPane = new javax.swing.JScrollPane();
+        settingsScrollPane = new javax.swing.JScrollPane();
         settingsPanel = new javax.swing.JPanel();
         appearanceLabel = new javax.swing.JLabel();
         themeLabel = new javax.swing.JLabel();
@@ -422,14 +426,49 @@ public class EsportsGUI extends javax.swing.JFrame {
         activePanel.setLayout(new java.awt.CardLayout());
 
         eventsPanel.setOpaque(false);
-        eventsPanel.setLayout(new java.awt.GridLayout(0, 1));
+        eventsPanel.setLayout(new java.awt.GridBagLayout());
+
+        eventsScrollPane.setBorder(null);
+        eventsScrollPane.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        eventsScrollPane.setOpaque(false);
+        eventsScrollPane.setViewportView(null);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        eventsPanel.add(eventsScrollPane, gridBagConstraints);
+
         activePanel.add(eventsPanel, "eventsCard");
 
         teamsPanel.setOpaque(false);
+        teamsPanel.setLayout(new java.awt.GridBagLayout());
+
+        teamsScrollPane.setBorder(null);
+        teamsScrollPane.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        teamsScrollPane.setOpaque(false);
+        teamsScrollPane.setViewportView(null);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        teamsPanel.add(teamsScrollPane, gridBagConstraints);
+
         activePanel.add(teamsPanel, "teamsCard");
 
         leaderboardPanel.setOpaque(false);
+        leaderboardPanel.setLayout(new java.awt.GridBagLayout());
+
+        leaderboardScrollPane.setBorder(null);
+        leaderboardScrollPane.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        leaderboardScrollPane.setOpaque(false);
+        leaderboardScrollPane.setViewportView(null);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        leaderboardPanel.add(leaderboardScrollPane, gridBagConstraints);
+
         activePanel.add(leaderboardPanel, "leaderboardCard");
+
+        settingsScrollPane.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
+        settingsScrollPane.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        settingsScrollPane.setViewportBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
+        settingsScrollPane.setOpaque(false);
+        settingsScrollPane.setViewportView(null);
 
         settingsPanel.setOpaque(false);
         java.awt.GridBagLayout settingsPanelLayout = new java.awt.GridBagLayout();
@@ -699,7 +738,9 @@ public class EsportsGUI extends javax.swing.JFrame {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.SOUTHEAST;
         settingsPanel.add(disclaimerLabel, gridBagConstraints);
 
-        activePanel.add(settingsPanel, "settingsCard");
+        settingsScrollPane.setViewportView(settingsPanel);
+
+        activePanel.add(settingsScrollPane, "settingsCard");
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
@@ -1038,6 +1079,11 @@ public class EsportsGUI extends javax.swing.JFrame {
             public void run() {
                 cr.registerComponent(new EsportsGUI());
 				EsportsGUI.getFrames()[0].setVisible(true);
+				
+				eventsScrollPane.getViewport().setOpaque(false);
+				teamsScrollPane.getViewport().setOpaque(false);
+				leaderboardScrollPane.getViewport().setOpaque(false);
+				settingsScrollPane.getViewport().setOpaque(false);
             }
         });
 		
@@ -1126,8 +1172,10 @@ public class EsportsGUI extends javax.swing.JFrame {
     private javax.swing.JLabel displayLabel;
     private javax.swing.JPanel dragBarPanel;
     private javax.swing.JPanel eventsPanel;
+    private static javax.swing.JScrollPane eventsScrollPane;
     private javax.swing.JToggleButton eventsToggleButton;
     private javax.swing.JPanel leaderboardPanel;
+    private static javax.swing.JScrollPane leaderboardScrollPane;
     private javax.swing.JToggleButton leaderboardToggleButton;
     private javax.swing.JCheckBox lightThemeCheck;
     private javax.swing.JButton loadButton;
@@ -1142,8 +1190,10 @@ public class EsportsGUI extends javax.swing.JFrame {
     private javax.swing.JLabel naratorTipLabel;
     private javax.swing.JButton saveButton;
     private javax.swing.JPanel settingsPanel;
+    private javax.swing.JScrollPane settingsScrollPane;
     private javax.swing.JToggleButton settingsToggleButton;
     private javax.swing.JPanel teamsPanel;
+    private static javax.swing.JScrollPane teamsScrollPane;
     private javax.swing.JToggleButton teamsToggleButton;
     private javax.swing.ButtonGroup themeButtonGroup;
     private javax.swing.JLabel themeLabel;
