@@ -40,7 +40,10 @@ public class EsportsGUI extends javax.swing.JFrame {
         java.awt.GridBagConstraints gridBagConstraints;
 
         menuButtonGroup = new javax.swing.ButtonGroup();
+        themeButtonGroup = new javax.swing.ButtonGroup();
+        displayButtonGroup = new javax.swing.ButtonGroup();
         mainPanel = new javax.swing.JPanel();
+        dragBarPanel = new javax.swing.JPanel();
         minimiseButton = new javax.swing.JButton();
         maximiseButton = new javax.swing.JButton();
         closeButton = new javax.swing.JButton();
@@ -51,44 +54,81 @@ public class EsportsGUI extends javax.swing.JFrame {
         settingsToggleButton = new javax.swing.JToggleButton();
         saveButton = new javax.swing.JButton();
         loadButton = new javax.swing.JButton();
-        exitButton = new javax.swing.JButton();
         activePanel = new javax.swing.JPanel();
         eventsPanel = new javax.swing.JPanel();
         teamsPanel = new javax.swing.JPanel();
         leaderboardPanel = new javax.swing.JPanel();
         settingsPanel = new javax.swing.JPanel();
         appearanceLabel = new javax.swing.JLabel();
+        themeLabel = new javax.swing.JLabel();
+        darkThemeCheck = new javax.swing.JCheckBox();
+        lightThemeCheck = new javax.swing.JCheckBox();
+        displayLabel = new javax.swing.JLabel();
+        cozyDesignCheck = new javax.swing.JCheckBox();
+        compactDesignCheck = new javax.swing.JCheckBox();
+        accessibilityLabel = new javax.swing.JLabel();
+        alwaysOnTopLabel = new javax.swing.JLabel();
+        alwaysOnTopTipLabel = new javax.swing.JLabel();
         alwaysOnTopCheck = new javax.swing.JCheckBox();
+        alwaysOnTopSeparator = new javax.swing.JSeparator();
+        naratorLabel = new javax.swing.JLabel();
+        naratorTipLabel = new javax.swing.JLabel();
+        naratorCheck = new javax.swing.JCheckBox();
+        naratorSeparator = new javax.swing.JSeparator();
         versionLabel = new javax.swing.JLabel();
+        disclaimerLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Esports Manager");
         setAutoRequestFocus(false);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        setName("frame"); // NOI18N
         setUndecorated(true);
-        setPreferredSize(new java.awt.Dimension(1280, 720));
         getContentPane().setLayout(new java.awt.GridBagLayout());
 
-        mainPanel.setBackground(new java.awt.Color(32, 34, 37));
+        mainPanel.setBackground(esportsapp.Palette.getCurrentScheme().COLOR_MAIN.getColor());
+        mainPanel.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
         mainPanel.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        mainPanel.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
-            public void mouseDragged(java.awt.event.MouseEvent evt) {
-                mainPanelMouseDragged(evt);
-            }
-        });
-        mainPanel.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                mainPanelMousePressed(evt);
-            }
-        });
         mainPanel.setLayout(new java.awt.GridBagLayout());
 
-        minimiseButton.setBackground(mainPanel.getBackground());
-        minimiseButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/esportsapp/images/minimise.png"))); // NOI18N
-        minimiseButton.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        dragBarPanel.setOpaque(false);
+        dragBarPanel.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                dragBarPanelMouseDragged(evt);
+            }
+        });
+        dragBarPanel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                dragBarPanelMousePressed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout dragBarPanelLayout = new javax.swing.GroupLayout(dragBarPanel);
+        dragBarPanel.setLayout(dragBarPanelLayout);
+        dragBarPanelLayout.setHorizontalGroup(
+            dragBarPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        dragBarPanelLayout.setVerticalGroup(
+            dragBarPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        mainPanel.add(dragBarPanel, gridBagConstraints);
+
+        minimiseButton.setBackground(esportsapp.Palette.getCurrentScheme().COLOR_MAIN.getColor());
+        minimiseButton.setIcon(esportsapp.Palette.getCurrentScheme().ICON_MINIMISE.getIcon());
+        minimiseButton.setBorder(null);
         minimiseButton.setBorderPainted(false);
         minimiseButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         minimiseButton.setFocusable(false);
+        minimiseButton.setMargin(new java.awt.Insets(0, 0, 0, 0));
         minimiseButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 minimiseButtonMouseEntered(evt);
@@ -97,20 +137,25 @@ public class EsportsGUI extends javax.swing.JFrame {
                 minimiseButtonMouseExited(evt);
             }
         });
+        minimiseButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                minimiseButtonActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
-        gridBagConstraints.weightx = 1.0;
         mainPanel.add(minimiseButton, gridBagConstraints);
 
-        maximiseButton.setBackground(mainPanel.getBackground());
-        maximiseButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/esportsapp/images/maximise.png"))); // NOI18N
-        maximiseButton.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        maximiseButton.setBackground(esportsapp.Palette.getCurrentScheme().COLOR_MAIN.getColor());
+        maximiseButton.setIcon(esportsapp.Palette.getCurrentScheme().ICON_MAXIMISE.getIcon());
+        maximiseButton.setBorder(null);
         maximiseButton.setBorderPainted(false);
         maximiseButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         maximiseButton.setFocusable(false);
+        maximiseButton.setMargin(new java.awt.Insets(0, 0, 0, 0));
         maximiseButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 maximiseButtonMouseEntered(evt);
@@ -119,19 +164,25 @@ public class EsportsGUI extends javax.swing.JFrame {
                 maximiseButtonMouseExited(evt);
             }
         });
+        maximiseButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                maximiseButtonActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridx = 3;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
         mainPanel.add(maximiseButton, gridBagConstraints);
 
-        closeButton.setBackground(mainPanel.getBackground());
-        closeButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/esportsapp/images/close.png"))); // NOI18N
-        closeButton.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        closeButton.setBackground(esportsapp.Palette.getCurrentScheme().COLOR_MAIN.getColor());
+        closeButton.setIcon(esportsapp.Palette.getCurrentScheme().ICON_CLOSE.getIcon());
+        closeButton.setBorder(null);
         closeButton.setBorderPainted(false);
         closeButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         closeButton.setFocusable(false);
+        closeButton.setMargin(new java.awt.Insets(0, 0, 0, 0));
         closeButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 closeButtonMouseEntered(evt);
@@ -146,19 +197,20 @@ public class EsportsGUI extends javax.swing.JFrame {
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridx = 4;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
         mainPanel.add(closeButton, gridBagConstraints);
 
-        menuPanel.setBackground(new java.awt.Color(47, 49, 54));
+        menuPanel.setBackground(esportsapp.Palette.getCurrentScheme().COLOR_MENU_BACK.getColor());
+        menuPanel.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
         menuPanel.setLayout(new java.awt.GridBagLayout());
 
         eventsToggleButton.setBackground(menuPanel.getBackground());
         menuButtonGroup.add(eventsToggleButton);
         eventsToggleButton.setFont(eventsToggleButton.getFont().deriveFont(eventsToggleButton.getFont().getSize()+7f));
-        eventsToggleButton.setForeground(new java.awt.Color(255, 255, 255));
+        eventsToggleButton.setForeground(esportsapp.Palette.getCurrentScheme().COLOR_MENU_FRONT.getColor());
         eventsToggleButton.setText("Events");
         eventsToggleButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         eventsToggleButton.setBorderPainted(false);
@@ -186,16 +238,17 @@ public class EsportsGUI extends javax.swing.JFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.PAGE_START;
         gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(4, 4, 4, 4);
+        gridBagConstraints.insets = new java.awt.Insets(15, 20, 0, 20);
         menuPanel.add(eventsToggleButton, gridBagConstraints);
 
         teamsToggleButton.setBackground(menuPanel.getBackground());
         menuButtonGroup.add(teamsToggleButton);
         teamsToggleButton.setFont(teamsToggleButton.getFont().deriveFont(teamsToggleButton.getFont().getSize()+7f));
-        teamsToggleButton.setForeground(new java.awt.Color(255, 255, 255));
+        teamsToggleButton.setForeground(esportsapp.Palette.getCurrentScheme().COLOR_MENU_FRONT.getColor());
         teamsToggleButton.setText("Teams");
         teamsToggleButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         teamsToggleButton.setBorderPainted(false);
@@ -223,16 +276,17 @@ public class EsportsGUI extends javax.swing.JFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridwidth = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.PAGE_START;
         gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(4, 4, 4, 4);
+        gridBagConstraints.insets = new java.awt.Insets(15, 20, 0, 20);
         menuPanel.add(teamsToggleButton, gridBagConstraints);
 
         leaderboardToggleButton.setBackground(menuPanel.getBackground());
         menuButtonGroup.add(leaderboardToggleButton);
         leaderboardToggleButton.setFont(leaderboardToggleButton.getFont().deriveFont(leaderboardToggleButton.getFont().getSize()+7f));
-        leaderboardToggleButton.setForeground(new java.awt.Color(255, 255, 255));
+        leaderboardToggleButton.setForeground(esportsapp.Palette.getCurrentScheme().COLOR_MENU_FRONT.getColor());
         leaderboardToggleButton.setText("Leaderboard");
         leaderboardToggleButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         leaderboardToggleButton.setBorderPainted(false);
@@ -260,16 +314,17 @@ public class EsportsGUI extends javax.swing.JFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridwidth = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.PAGE_START;
         gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(4, 4, 4, 4);
+        gridBagConstraints.insets = new java.awt.Insets(15, 20, 0, 20);
         menuPanel.add(leaderboardToggleButton, gridBagConstraints);
 
         settingsToggleButton.setBackground(menuPanel.getBackground());
         menuButtonGroup.add(settingsToggleButton);
         settingsToggleButton.setFont(settingsToggleButton.getFont().deriveFont(settingsToggleButton.getFont().getSize()+7f));
-        settingsToggleButton.setForeground(new java.awt.Color(255, 255, 255));
+        settingsToggleButton.setForeground(esportsapp.Palette.getCurrentScheme().COLOR_MENU_FRONT.getColor());
         settingsToggleButton.setText("Settings");
         settingsToggleButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         settingsToggleButton.setBorderPainted(false);
@@ -297,21 +352,22 @@ public class EsportsGUI extends javax.swing.JFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 3;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.PAGE_START;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(4, 4, 4, 4);
+        gridBagConstraints.insets = new java.awt.Insets(15, 20, 0, 20);
         menuPanel.add(settingsToggleButton, gridBagConstraints);
 
         saveButton.setBackground(menuPanel.getBackground());
         saveButton.setFont(saveButton.getFont().deriveFont(saveButton.getFont().getSize()+7f));
-        saveButton.setForeground(new java.awt.Color(255, 255, 255));
+        saveButton.setForeground(esportsapp.Palette.getCurrentScheme().COLOR_MENU_FRONT.getColor());
         saveButton.setText("Save");
         saveButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         saveButton.setBorderPainted(false);
         saveButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         saveButton.setFocusable(false);
-        saveButton.setOpaque(true);
         saveButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 saveButtonMouseEntered(evt);
@@ -324,20 +380,19 @@ public class EsportsGUI extends javax.swing.JFrame {
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 4;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.PAGE_END;
         gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(4, 4, 4, 4);
+        gridBagConstraints.insets = new java.awt.Insets(20, 20, 20, 10);
         menuPanel.add(saveButton, gridBagConstraints);
 
         loadButton.setBackground(menuPanel.getBackground());
         loadButton.setFont(loadButton.getFont().deriveFont(loadButton.getFont().getSize()+7f));
-        loadButton.setForeground(new java.awt.Color(255, 255, 255));
+        loadButton.setForeground(esportsapp.Palette.getCurrentScheme().COLOR_MENU_FRONT.getColor());
         loadButton.setText("Load");
         loadButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         loadButton.setBorderPainted(false);
         loadButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         loadButton.setFocusable(false);
-        loadButton.setOpaque(true);
         loadButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 loadButtonMouseEntered(evt);
@@ -347,104 +402,315 @@ public class EsportsGUI extends javax.swing.JFrame {
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 5;
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 4;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.PAGE_END;
         gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(4, 4, 4, 4);
+        gridBagConstraints.insets = new java.awt.Insets(20, 10, 20, 20);
         menuPanel.add(loadButton, gridBagConstraints);
-
-        exitButton.setBackground(menuPanel.getBackground());
-        exitButton.setFont(exitButton.getFont().deriveFont(exitButton.getFont().getSize()+7f));
-        exitButton.setForeground(new java.awt.Color(255, 255, 255));
-        exitButton.setText("Exit");
-        exitButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        exitButton.setBorderPainted(false);
-        exitButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        exitButton.setFocusable(false);
-        exitButton.setOpaque(true);
-        exitButton.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                exitButtonMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                exitButtonMouseExited(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 6;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(4, 4, 4, 4);
-        menuPanel.add(exitButton, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.weightx = 0.2;
         gridBagConstraints.weighty = 1.0;
         mainPanel.add(menuPanel, gridBagConstraints);
 
+        activePanel.setBackground(esportsapp.Palette.getCurrentScheme().COLOR_ACTIVE.getColor());
+        activePanel.setBorder(javax.swing.BorderFactory.createEmptyBorder(5, 5, 5, 5));
         activePanel.setLayout(new java.awt.CardLayout());
 
+        eventsPanel.setOpaque(false);
         eventsPanel.setLayout(new java.awt.GridLayout(0, 1));
         activePanel.add(eventsPanel, "eventsCard");
+
+        teamsPanel.setOpaque(false);
         activePanel.add(teamsPanel, "teamsCard");
+
+        leaderboardPanel.setOpaque(false);
         activePanel.add(leaderboardPanel, "leaderboardCard");
 
+        settingsPanel.setOpaque(false);
         java.awt.GridBagLayout settingsPanelLayout = new java.awt.GridBagLayout();
         settingsPanelLayout.columnWidths = new int[] {0, 5, 0, 5, 0, 5, 0, 5, 0};
-        settingsPanelLayout.rowHeights = new int[] {0, 5, 0, 5, 0, 5, 0, 5, 0};
+        settingsPanelLayout.rowHeights = new int[] {0, 5, 0, 5, 0, 5, 0, 5, 0, 5, 0, 5, 0, 5, 0, 5, 0, 5, 0, 5, 0, 5, 0, 5, 0, 5, 0, 5, 0, 5, 0, 5, 0, 5, 0};
         settingsPanel.setLayout(settingsPanelLayout);
 
-        appearanceLabel.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        appearanceLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        appearanceLabel.setForeground(Palette.getCurrentScheme().COLOR_PRIMARY_TEXT.getColor());
         appearanceLabel.setText("Appearance:");
+        appearanceLabel.setFocusable(false);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridwidth = 5;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         settingsPanel.add(appearanceLabel, gridBagConstraints);
 
-        alwaysOnTopCheck.setText("Always On Top");
+        themeLabel.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        themeLabel.setForeground(Palette.getCurrentScheme().COLOR_TERTIARY_TEXT.getColor());
+        themeLabel.setText("THEME");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.gridwidth = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        settingsPanel.add(themeLabel, gridBagConstraints);
+
+        darkThemeCheck.setBackground(new java.awt.Color(114, 137, 218));
+        themeButtonGroup.add(darkThemeCheck);
+        darkThemeCheck.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        darkThemeCheck.setForeground(new java.awt.Color(255, 255, 255));
+        darkThemeCheck.setSelected(true);
+        darkThemeCheck.setText("Dark");
+        darkThemeCheck.setBorder(javax.swing.BorderFactory.createCompoundBorder(new javax.swing.border.LineBorder(new java.awt.Color(32, 34, 37), 1, true), javax.swing.BorderFactory.createEmptyBorder(5, 5, 5, 5)));
+        darkThemeCheck.setBorderPainted(true);
+        darkThemeCheck.setFocusable(false);
+        darkThemeCheck.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        darkThemeCheck.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        darkThemeCheck.setMargin(new java.awt.Insets(5, 5, 5, 5));
+        darkThemeCheck.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                darkThemeCheckItemStateChanged(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 6;
+        gridBagConstraints.gridwidth = 5;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.ipady = 10;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        settingsPanel.add(darkThemeCheck, gridBagConstraints);
+
+        lightThemeCheck.setBackground(new java.awt.Color(47, 50, 55));
+        themeButtonGroup.add(lightThemeCheck);
+        lightThemeCheck.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        lightThemeCheck.setForeground(new java.awt.Color(255, 255, 255));
+        lightThemeCheck.setText("Light");
+        lightThemeCheck.setBorder(javax.swing.BorderFactory.createCompoundBorder(new javax.swing.border.LineBorder(new java.awt.Color(32, 34, 37), 1, true), javax.swing.BorderFactory.createEmptyBorder(5, 5, 5, 5)));
+        lightThemeCheck.setBorderPainted(true);
+        lightThemeCheck.setFocusable(false);
+        lightThemeCheck.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        lightThemeCheck.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        lightThemeCheck.setMargin(new java.awt.Insets(5, 5, 5, 5));
+        lightThemeCheck.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                lightThemeCheckItemStateChanged(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 8;
+        gridBagConstraints.gridwidth = 5;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.ipady = 10;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        settingsPanel.add(lightThemeCheck, gridBagConstraints);
+
+        displayLabel.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        displayLabel.setForeground(Palette.getCurrentScheme().COLOR_TERTIARY_TEXT.getColor());
+        displayLabel.setText("DISPLAY");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 10;
+        gridBagConstraints.gridwidth = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        settingsPanel.add(displayLabel, gridBagConstraints);
+
+        cozyDesignCheck.setBackground(new java.awt.Color(114, 137, 218));
+        displayButtonGroup.add(cozyDesignCheck);
+        cozyDesignCheck.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        cozyDesignCheck.setForeground(new java.awt.Color(255, 255, 255));
+        cozyDesignCheck.setSelected(true);
+        cozyDesignCheck.setText("Cozy: Modern, beautifull and easy on your eyes.");
+        cozyDesignCheck.setBorder(javax.swing.BorderFactory.createCompoundBorder(new javax.swing.border.LineBorder(new java.awt.Color(32, 34, 37), 1, true), javax.swing.BorderFactory.createEmptyBorder(5, 5, 5, 5)));
+        cozyDesignCheck.setBorderPainted(true);
+        cozyDesignCheck.setFocusable(false);
+        cozyDesignCheck.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        cozyDesignCheck.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        cozyDesignCheck.setMargin(new java.awt.Insets(5, 5, 5, 5));
+        cozyDesignCheck.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cozyDesignCheckItemStateChanged(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 12;
+        gridBagConstraints.gridwidth = 5;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.ipady = 10;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        settingsPanel.add(cozyDesignCheck, gridBagConstraints);
+
+        compactDesignCheck.setBackground(new java.awt.Color(47, 50, 55));
+        displayButtonGroup.add(compactDesignCheck);
+        compactDesignCheck.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        compactDesignCheck.setForeground(new java.awt.Color(255, 255, 255));
+        compactDesignCheck.setText("Compact: Fit more things on the screen at one time.");
+        compactDesignCheck.setBorder(javax.swing.BorderFactory.createCompoundBorder(new javax.swing.border.LineBorder(new java.awt.Color(32, 34, 37), 1, true), javax.swing.BorderFactory.createEmptyBorder(5, 5, 5, 5)));
+        compactDesignCheck.setBorderPainted(true);
+        compactDesignCheck.setEnabled(false);
+        compactDesignCheck.setFocusable(false);
+        compactDesignCheck.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        compactDesignCheck.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        compactDesignCheck.setMargin(new java.awt.Insets(5, 5, 5, 5));
+        compactDesignCheck.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                compactDesignCheckItemStateChanged(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 14;
+        gridBagConstraints.gridwidth = 5;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.ipady = 10;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        settingsPanel.add(compactDesignCheck, gridBagConstraints);
+
+        accessibilityLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        accessibilityLabel.setForeground(Palette.getCurrentScheme().COLOR_PRIMARY_TEXT.getColor());
+        accessibilityLabel.setText("Accessibility:");
+        accessibilityLabel.setFocusable(false);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 16;
+        gridBagConstraints.gridwidth = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        settingsPanel.add(accessibilityLabel, gridBagConstraints);
+
+        alwaysOnTopLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        alwaysOnTopLabel.setForeground(Palette.getCurrentScheme().COLOR_PRIMARY_TEXT.getColor());
+        alwaysOnTopLabel.setText("Always On Top");
+        alwaysOnTopLabel.setToolTipText("");
+        alwaysOnTopLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        alwaysOnTopLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                alwaysOnTopLabelMousePressed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 18;
+        gridBagConstraints.gridwidth = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        settingsPanel.add(alwaysOnTopLabel, gridBagConstraints);
+
+        alwaysOnTopTipLabel.setForeground(Palette.getCurrentScheme().COLOR_SECONDARY_TEXT.getColor());
+        alwaysOnTopTipLabel.setText("Makes this window appear on top of other windows.");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 20;
+        gridBagConstraints.gridwidth = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.weightx = 1.0;
+        settingsPanel.add(alwaysOnTopTipLabel, gridBagConstraints);
+
+        alwaysOnTopCheck.setContentAreaFilled(false);
+        alwaysOnTopCheck.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        alwaysOnTopCheck.setFocusable(false);
+        alwaysOnTopCheck.setIcon(esportsapp.Palette.getCurrentScheme().ICON_TOGGLE_SWITCH.getIcon());
+        alwaysOnTopCheck.setSelectedIcon(esportsapp.Palette.getCurrentScheme().ICON_SELECTED_TOGGLE_SWITCH.getIcon());
         alwaysOnTopCheck.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 alwaysOnTopCheckActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.gridx = 6;
+        gridBagConstraints.gridy = 18;
+        gridBagConstraints.gridheight = 3;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
         settingsPanel.add(alwaysOnTopCheck, gridBagConstraints);
 
+        alwaysOnTopSeparator.setBackground(Palette.getCurrentScheme().COLOR_SEPARATOR.getColor());
+        alwaysOnTopSeparator.setForeground(Palette.getCurrentScheme().COLOR_SEPARATOR.getColor());
+        alwaysOnTopSeparator.setOpaque(true);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 22;
+        gridBagConstraints.gridwidth = 5;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        settingsPanel.add(alwaysOnTopSeparator, gridBagConstraints);
+
+        naratorLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        naratorLabel.setForeground(Palette.getCurrentScheme().COLOR_PRIMARY_TEXT.getColor());
+        naratorLabel.setText("Narator");
+        naratorLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 24;
+        gridBagConstraints.gridwidth = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        settingsPanel.add(naratorLabel, gridBagConstraints);
+
+        naratorTipLabel.setForeground(Palette.getCurrentScheme().COLOR_SECONDARY_TEXT.getColor());
+        naratorTipLabel.setText("Narates the text that you place your cursor on.");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 26;
+        gridBagConstraints.gridwidth = 5;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.weightx = 1.0;
+        settingsPanel.add(naratorTipLabel, gridBagConstraints);
+
+        naratorCheck.setContentAreaFilled(false);
+        naratorCheck.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        naratorCheck.setEnabled(false);
+        naratorCheck.setFocusable(false);
+        naratorCheck.setIcon(esportsapp.Palette.getCurrentScheme().ICON_TOGGLE_SWITCH.getIcon());
+        naratorCheck.setSelectedIcon(esportsapp.Palette.getCurrentScheme().ICON_SELECTED_TOGGLE_SWITCH.getIcon());
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 6;
+        gridBagConstraints.gridy = 24;
+        gridBagConstraints.gridheight = 3;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        settingsPanel.add(naratorCheck, gridBagConstraints);
+
+        naratorSeparator.setBackground(Palette.getCurrentScheme().COLOR_SEPARATOR.getColor());
+        naratorSeparator.setForeground(Palette.getCurrentScheme().COLOR_SEPARATOR.getColor());
+        naratorSeparator.setOpaque(true);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 28;
+        gridBagConstraints.gridwidth = 5;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        settingsPanel.add(naratorSeparator, gridBagConstraints);
+
+        versionLabel.setForeground(Palette.getCurrentScheme().COLOR_SECONDARY_TEXT.getColor());
         versionLabel.setText("Version: 0.5.0");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 6;
+        gridBagConstraints.gridy = 32;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.SOUTHWEST;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
         settingsPanel.add(versionLabel, gridBagConstraints);
+
+        disclaimerLabel.setForeground(Palette.getCurrentScheme().COLOR_SECONDARY_TEXT.getColor());
+        disclaimerLabel.setText("Please note that some settings may not function in this version");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridy = 32;
+        gridBagConstraints.gridwidth = 3;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.SOUTHEAST;
+        settingsPanel.add(disclaimerLabel, gridBagConstraints);
 
         activePanel.add(settingsPanel, "settingsCard");
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;
-        gridBagConstraints.gridwidth = 3;
+        gridBagConstraints.gridwidth = 4;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
         mainPanel.add(activePanel, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridwidth = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
@@ -478,179 +744,261 @@ public class EsportsGUI extends javax.swing.JFrame {
 		card.show(activePanel, "settingsCard");
     }//GEN-LAST:event_settingsToggleButtonActionPerformed
 
-    private void alwaysOnTopCheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_alwaysOnTopCheckActionPerformed
-        // TODO add your handling code here:
-		this.setAlwaysOnTop(alwaysOnTopCheck.isSelected());
-    }//GEN-LAST:event_alwaysOnTopCheckActionPerformed
-
     private void closeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeButtonActionPerformed
         // TODO add your handling code here:
 		this.dispose();
     }//GEN-LAST:event_closeButtonActionPerformed
 
-    private void mainPanelMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mainPanelMousePressed
-        // TODO add your handling code here:
-		posX = evt.getX();
-		posY = evt.getY();
-    }//GEN-LAST:event_mainPanelMousePressed
-
-    private void mainPanelMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mainPanelMouseDragged
-        // TODO add your handling code here:
-		Rectangle rectangle = getBounds();
-		this.setBounds(evt.getXOnScreen() - posX, evt.getYOnScreen() - posY, rectangle.width, rectangle.height);
-    }//GEN-LAST:event_mainPanelMouseDragged
-
     private void closeButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_closeButtonMouseEntered
         // TODO add your handling code here:
-		closeButton.setBackground(new java.awt.Color(240, 71, 71));
+		closeButton.setBackground(Palette.getCurrentScheme().COLOR_CLOSE_MOUSE_OVER.getColor());
+		closeButton.setIcon(Palette.getCurrentScheme().ICON_CLOSE_MOUSE_OVER.getIcon());
     }//GEN-LAST:event_closeButtonMouseEntered
 
     private void closeButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_closeButtonMouseExited
         // TODO add your handling code here:
-		closeButton.setBackground(mainPanel.getBackground());
+		closeButton.setBackground(Palette.getCurrentScheme().COLOR_MAIN.getColor());
+		closeButton.setIcon(Palette.getCurrentScheme().ICON_CLOSE.getIcon());
     }//GEN-LAST:event_closeButtonMouseExited
 
     private void maximiseButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_maximiseButtonMouseEntered
         // TODO add your handling code here:
-		maximiseButton.setBackground(new java.awt.Color(38, 41, 46));
+		maximiseButton.setBackground(Palette.getCurrentScheme().COLOR_MAIN_MOUSE_OVER.getColor());
+		maximiseButton.setIcon(Palette.getCurrentScheme().ICON_MAXIMISE_MOUSE_OVER.getIcon());
     }//GEN-LAST:event_maximiseButtonMouseEntered
 
     private void maximiseButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_maximiseButtonMouseExited
         // TODO add your handling code here:
-		maximiseButton.setBackground(mainPanel.getBackground());
+		maximiseButton.setBackground(Palette.getCurrentScheme().COLOR_MAIN.getColor());
+		maximiseButton.setIcon(Palette.getCurrentScheme().ICON_MAXIMISE.getIcon());
     }//GEN-LAST:event_maximiseButtonMouseExited
 
     private void minimiseButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_minimiseButtonMouseEntered
         // TODO add your handling code here:
-		minimiseButton.setBackground(new java.awt.Color(38, 41, 46));
+		minimiseButton.setBackground(Palette.getCurrentScheme().COLOR_MAIN_MOUSE_OVER.getColor());
+		minimiseButton.setIcon(Palette.getCurrentScheme().ICON_MINIMISE_MOUSE_OVER.getIcon());
     }//GEN-LAST:event_minimiseButtonMouseEntered
 
     private void minimiseButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_minimiseButtonMouseExited
         // TODO add your handling code here:
-		minimiseButton.setBackground(mainPanel.getBackground());
+		minimiseButton.setBackground(Palette.getCurrentScheme().COLOR_MAIN.getColor());
+		minimiseButton.setIcon(Palette.getCurrentScheme().ICON_MINIMISE.getIcon());
     }//GEN-LAST:event_minimiseButtonMouseExited
 
     private void eventsToggleButtonItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_eventsToggleButtonItemStateChanged
         // TODO add your handling code here:
 		if (eventsToggleButton.isSelected()) {
-			eventsToggleButton.setBackground(new java.awt.Color(57, 60, 66));
+			eventsToggleButton.setBackground(Palette.getCurrentScheme().COLOR_MENU_SELECTED_BACK.getColor());
+			eventsToggleButton.setForeground(Palette.getCurrentScheme().COLOR_MENU_SELECTED_FRONT.getColor());
 		} else {
-			eventsToggleButton.setBackground(menuPanel.getBackground());
+			eventsToggleButton.setBackground(Palette.getCurrentScheme().COLOR_MENU_BACK.getColor());
+			eventsToggleButton.setForeground(Palette.getCurrentScheme().COLOR_MENU_FRONT.getColor());
 		}
     }//GEN-LAST:event_eventsToggleButtonItemStateChanged
 
     private void teamsToggleButtonItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_teamsToggleButtonItemStateChanged
         // TODO add your handling code here:
 		if (teamsToggleButton.isSelected()) {
-			teamsToggleButton.setBackground(new java.awt.Color(57, 60, 66));
+			teamsToggleButton.setBackground(Palette.getCurrentScheme().COLOR_MENU_SELECTED_BACK.getColor());
+			teamsToggleButton.setForeground(Palette.getCurrentScheme().COLOR_MENU_SELECTED_FRONT.getColor());
 		} else {
-			teamsToggleButton.setBackground(menuPanel.getBackground());
+			teamsToggleButton.setBackground(Palette.getCurrentScheme().COLOR_MENU_BACK.getColor());
+			teamsToggleButton.setForeground(Palette.getCurrentScheme().COLOR_MENU_FRONT.getColor());
 		}
     }//GEN-LAST:event_teamsToggleButtonItemStateChanged
 
     private void leaderboardToggleButtonItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_leaderboardToggleButtonItemStateChanged
         // TODO add your handling code here:
 		if (leaderboardToggleButton.isSelected()) {
-			leaderboardToggleButton.setBackground(new java.awt.Color(57, 60, 66));
+			leaderboardToggleButton.setBackground(Palette.getCurrentScheme().COLOR_MENU_SELECTED_BACK.getColor());
+			leaderboardToggleButton.setForeground(Palette.getCurrentScheme().COLOR_MENU_SELECTED_FRONT.getColor());
 		} else {
-			leaderboardToggleButton.setBackground(menuPanel.getBackground());
+			leaderboardToggleButton.setBackground(Palette.getCurrentScheme().COLOR_MENU_BACK.getColor());
+			leaderboardToggleButton.setForeground(Palette.getCurrentScheme().COLOR_MENU_FRONT.getColor());
 		}
     }//GEN-LAST:event_leaderboardToggleButtonItemStateChanged
 
     private void settingsToggleButtonItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_settingsToggleButtonItemStateChanged
         // TODO add your handling code here:
 		if (settingsToggleButton.isSelected()) {
-			settingsToggleButton.setBackground(new java.awt.Color(57, 60, 66));
+			settingsToggleButton.setBackground(Palette.getCurrentScheme().COLOR_MENU_SELECTED_BACK.getColor());
+			settingsToggleButton.setForeground(Palette.getCurrentScheme().COLOR_MENU_SELECTED_FRONT.getColor());
 		} else {
-			settingsToggleButton.setBackground(menuPanel.getBackground());
+			settingsToggleButton.setBackground(Palette.getCurrentScheme().COLOR_MENU_BACK.getColor());
+			settingsToggleButton.setForeground(Palette.getCurrentScheme().COLOR_MENU_FRONT.getColor());
 		}
     }//GEN-LAST:event_settingsToggleButtonItemStateChanged
 
     private void eventsToggleButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_eventsToggleButtonMouseEntered
         // TODO add your handling code here:
 		if (!eventsToggleButton.isSelected()) {
-			eventsToggleButton.setBackground(new java.awt.Color(51, 54, 60));
+			eventsToggleButton.setBackground(Palette.getCurrentScheme().COLOR_MENU_MOUSE_OVER_BACK.getColor());
+			eventsToggleButton.setForeground(Palette.getCurrentScheme().COLOR_MENU_MOUSE_OVER_FRONT.getColor());
 		}
     }//GEN-LAST:event_eventsToggleButtonMouseEntered
 
     private void teamsToggleButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_teamsToggleButtonMouseEntered
         // TODO add your handling code here:
 		if (!teamsToggleButton.isSelected()) {
-			teamsToggleButton.setBackground(new java.awt.Color(51, 54, 60));
+			teamsToggleButton.setBackground(Palette.getCurrentScheme().COLOR_MENU_MOUSE_OVER_BACK.getColor());
+			teamsToggleButton.setForeground(Palette.getCurrentScheme().COLOR_MENU_MOUSE_OVER_FRONT.getColor());
 		}
     }//GEN-LAST:event_teamsToggleButtonMouseEntered
 
     private void leaderboardToggleButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_leaderboardToggleButtonMouseEntered
         // TODO add your handling code here:
 		if (!leaderboardToggleButton.isSelected()) {
-			leaderboardToggleButton.setBackground(new java.awt.Color(51, 54, 60));
+			leaderboardToggleButton.setBackground(Palette.getCurrentScheme().COLOR_MENU_MOUSE_OVER_BACK.getColor());
+			leaderboardToggleButton.setForeground(Palette.getCurrentScheme().COLOR_MENU_MOUSE_OVER_FRONT.getColor());
 		}
     }//GEN-LAST:event_leaderboardToggleButtonMouseEntered
 
     private void settingsToggleButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_settingsToggleButtonMouseEntered
         // TODO add your handling code here:
 		if (!settingsToggleButton.isSelected()) {
-			settingsToggleButton.setBackground(new java.awt.Color(51, 54, 60));
+			settingsToggleButton.setBackground(Palette.getCurrentScheme().COLOR_MENU_MOUSE_OVER_BACK.getColor());
+			settingsToggleButton.setForeground(Palette.getCurrentScheme().COLOR_MENU_MOUSE_OVER_FRONT.getColor());
 		}
     }//GEN-LAST:event_settingsToggleButtonMouseEntered
 
     private void saveButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_saveButtonMouseEntered
         // TODO add your handling code here:
-		saveButton.setBackground(new java.awt.Color(51, 54, 60));
+		saveButton.setBackground(Palette.getCurrentScheme().COLOR_MENU_MOUSE_OVER_BACK.getColor());
+		saveButton.setForeground(Palette.getCurrentScheme().COLOR_MENU_MOUSE_OVER_FRONT.getColor());
     }//GEN-LAST:event_saveButtonMouseEntered
 
     private void loadButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loadButtonMouseEntered
         // TODO add your handling code here:
-		loadButton.setBackground(new java.awt.Color(51, 54, 60));
+		loadButton.setBackground(Palette.getCurrentScheme().COLOR_MENU_MOUSE_OVER_BACK.getColor());
+		loadButton.setForeground(Palette.getCurrentScheme().COLOR_MENU_MOUSE_OVER_FRONT.getColor());
     }//GEN-LAST:event_loadButtonMouseEntered
-
-    private void exitButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitButtonMouseEntered
-        // TODO add your handling code here:
-		exitButton.setBackground(new java.awt.Color(51, 54, 60));
-    }//GEN-LAST:event_exitButtonMouseEntered
 
     private void eventsToggleButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_eventsToggleButtonMouseExited
         // TODO add your handling code here:
 		if (!eventsToggleButton.isSelected()) {
-			eventsToggleButton.setBackground(menuPanel.getBackground());
+			eventsToggleButton.setBackground(Palette.getCurrentScheme().COLOR_MENU_BACK.getColor());
+			eventsToggleButton.setForeground(Palette.getCurrentScheme().COLOR_MENU_FRONT.getColor());
 		}
     }//GEN-LAST:event_eventsToggleButtonMouseExited
 
     private void teamsToggleButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_teamsToggleButtonMouseExited
         // TODO add your handling code here:
 		if (!teamsToggleButton.isSelected()) {
-			teamsToggleButton.setBackground(menuPanel.getBackground());
+			teamsToggleButton.setBackground(Palette.getCurrentScheme().COLOR_MENU_BACK.getColor());
+			teamsToggleButton.setForeground(Palette.getCurrentScheme().COLOR_MENU_FRONT.getColor());
 		}
     }//GEN-LAST:event_teamsToggleButtonMouseExited
 
     private void leaderboardToggleButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_leaderboardToggleButtonMouseExited
         // TODO add your handling code here:
 		if (!leaderboardToggleButton.isSelected()) {
-			leaderboardToggleButton.setBackground(menuPanel.getBackground());
+			leaderboardToggleButton.setBackground(Palette.getCurrentScheme().COLOR_MENU_BACK.getColor());
+			leaderboardToggleButton.setForeground(Palette.getCurrentScheme().COLOR_MENU_FRONT.getColor());
 		}
     }//GEN-LAST:event_leaderboardToggleButtonMouseExited
 
     private void settingsToggleButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_settingsToggleButtonMouseExited
         // TODO add your handling code here:
 		if (!settingsToggleButton.isSelected()) {
-			settingsToggleButton.setBackground(menuPanel.getBackground());
+			settingsToggleButton.setBackground(Palette.getCurrentScheme().COLOR_MENU_BACK.getColor());
+			settingsToggleButton.setForeground(Palette.getCurrentScheme().COLOR_MENU_FRONT.getColor());
 		}
     }//GEN-LAST:event_settingsToggleButtonMouseExited
 
     private void saveButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_saveButtonMouseExited
         // TODO add your handling code here:
-		saveButton.setBackground(menuPanel.getBackground());
+		saveButton.setBackground(Palette.getCurrentScheme().COLOR_MENU_BACK.getColor());
+		saveButton.setForeground(Palette.getCurrentScheme().COLOR_MENU_FRONT.getColor());
     }//GEN-LAST:event_saveButtonMouseExited
 
     private void loadButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loadButtonMouseExited
         // TODO add your handling code here:
-		loadButton.setBackground(menuPanel.getBackground());
+		loadButton.setBackground(Palette.getCurrentScheme().COLOR_MENU_BACK.getColor());
+		loadButton.setForeground(Palette.getCurrentScheme().COLOR_MENU_FRONT.getColor());
     }//GEN-LAST:event_loadButtonMouseExited
 
-    private void exitButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitButtonMouseExited
+    private void dragBarPanelMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dragBarPanelMousePressed
         // TODO add your handling code here:
-		exitButton.setBackground(menuPanel.getBackground());
-    }//GEN-LAST:event_exitButtonMouseExited
+		posX = evt.getX();
+		posY = evt.getY();
+    }//GEN-LAST:event_dragBarPanelMousePressed
+
+    private void dragBarPanelMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dragBarPanelMouseDragged
+        // TODO add your handling code here:
+		Rectangle rectangle = getBounds();
+		this.setBounds(evt.getXOnScreen() - posX, evt.getYOnScreen() - posY, rectangle.width, rectangle.height);
+    }//GEN-LAST:event_dragBarPanelMouseDragged
+
+    private void alwaysOnTopLabelMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_alwaysOnTopLabelMousePressed
+        // TODO add your handling code here:
+		alwaysOnTopCheck.setSelected(!alwaysOnTopCheck.isSelected());
+    }//GEN-LAST:event_alwaysOnTopLabelMousePressed
+
+    private void alwaysOnTopCheckActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_alwaysOnTopCheckActionPerformed
+        // TODO add your handling code here:
+		this.setAlwaysOnTop(alwaysOnTopCheck.isSelected());
+    }//GEN-LAST:event_alwaysOnTopCheckActionPerformed
+
+    private void darkThemeCheckItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_darkThemeCheckItemStateChanged
+        // TODO add your handling code here:
+		if (darkThemeCheck.isSelected()) {
+			darkThemeCheck.setBackground(new java.awt.Color(114, 137, 218));
+			Palette.setCurrentScheme(Palette.SchemeEnum.DARK);
+			this.refreshComponents();
+		} else {
+			darkThemeCheck.setBackground(Palette.getCurrentScheme().COLOR_CHECK_BACK.getColor());
+		}
+    }//GEN-LAST:event_darkThemeCheckItemStateChanged
+
+    private void lightThemeCheckItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_lightThemeCheckItemStateChanged
+        // TODO add your handling code here:
+		if (lightThemeCheck.isSelected()) {
+			lightThemeCheck.setBackground(new java.awt.Color(114, 137, 218));
+			Palette.setCurrentScheme(Palette.SchemeEnum.LIGHT);
+			this.refreshComponents();
+		} else {
+			lightThemeCheck.setBackground(Palette.getCurrentScheme().COLOR_CHECK_BACK.getColor());
+		}
+    }//GEN-LAST:event_lightThemeCheckItemStateChanged
+
+    private void cozyDesignCheckItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cozyDesignCheckItemStateChanged
+        // TODO add your handling code here:
+		if (cozyDesignCheck.isSelected()) {
+			cozyDesignCheck.setBackground(new java.awt.Color(114, 137, 218));
+			cozyDesignCheck.setForeground(new java.awt.Color(255, 255, 255));
+		} else {
+			cozyDesignCheck.setBackground(Palette.getCurrentScheme().COLOR_CHECK_BACK.getColor());
+			cozyDesignCheck.setForeground(Palette.getCurrentScheme().COLOR_PRIMARY_TEXT.getColor());
+		}
+    }//GEN-LAST:event_cozyDesignCheckItemStateChanged
+
+    private void compactDesignCheckItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_compactDesignCheckItemStateChanged
+        // TODO add your handling code here:
+		if (compactDesignCheck.isSelected()) {
+			compactDesignCheck.setBackground(new java.awt.Color(114, 137, 218));
+			compactDesignCheck.setForeground(new java.awt.Color(255, 255, 255));
+		} else {
+			compactDesignCheck.setBackground(Palette.getCurrentScheme().COLOR_CHECK_BACK.getColor());
+			compactDesignCheck.setForeground(Palette.getCurrentScheme().COLOR_PRIMARY_TEXT.getColor());
+		}
+    }//GEN-LAST:event_compactDesignCheckItemStateChanged
+
+    private void maximiseButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_maximiseButtonActionPerformed
+        // TODO add your handling code here:
+		if (EsportsGUI.getFrames()[0].getExtendedState() == Frame.NORMAL) {
+			EsportsGUI.getFrames()[0].setExtendedState(EsportsGUI.getFrames()[0].getExtendedState() | JFrame.MAXIMIZED_BOTH);;
+		} else if (EsportsGUI.getFrames()[0].getExtendedState() == Frame.MAXIMIZED_BOTH) {
+			EsportsGUI.getFrames()[0].setState(Frame.NORMAL);
+			EsportsGUI.getFrames()[0].setSize(720, 480);
+			EsportsGUI.getFrames()[0].setLocationRelativeTo(null);
+		}
+		
+    }//GEN-LAST:event_maximiseButtonActionPerformed
+
+    private void minimiseButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_minimiseButtonActionPerformed
+        // TODO add your handling code here:
+		EsportsGUI.getFrames()[0].setState(Frame.ICONIFIED);
+    }//GEN-LAST:event_minimiseButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -679,38 +1027,126 @@ public class EsportsGUI extends javax.swing.JFrame {
         }
         //</editor-fold>
 
+		Palette.setCurrentScheme(Palette.SchemeEnum.DARK);
+		ComponentResizer cr = new ComponentResizer();
+		cr.setSnapSize(new Dimension(1, 1));
+		cr.setMaximumSize(new Dimension(1920, 1080));
+		cr.setMinimumSize(new Dimension(300, 100));
+		System.out.println(cr.getDragInsets());
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new EsportsGUI().setVisible(true);
+                cr.registerComponent(new EsportsGUI());
+				EsportsGUI.getFrames()[0].setVisible(true);
             }
         });
 		
-		
+	
 		
     }
 	
+	private void refreshComponents() {
+		
+		//Everything inside of Frame
+		mainPanel.setBackground(Palette.getCurrentScheme().COLOR_MAIN.getColor());
+		menuPanel.setBackground(Palette.getCurrentScheme().COLOR_MENU_BACK.getColor());
+		activePanel.setBackground(Palette.getCurrentScheme().COLOR_ACTIVE.getColor());
+		minimiseButton.setBackground(Palette.getCurrentScheme().COLOR_MAIN.getColor());
+		minimiseButton.setIcon(Palette.getCurrentScheme().ICON_MINIMISE.getIcon());
+		maximiseButton.setBackground(Palette.getCurrentScheme().COLOR_MAIN.getColor());
+		maximiseButton.setIcon(Palette.getCurrentScheme().ICON_MAXIMISE.getIcon());
+		closeButton.setBackground(Palette.getCurrentScheme().COLOR_MAIN.getColor());
+		closeButton.setIcon(Palette.getCurrentScheme().ICON_CLOSE.getIcon());
+		
+		//Everything inside of menuPanel
+		eventsToggleButton.setBackground(menuPanel.getBackground());
+		eventsToggleButton.setForeground(Palette.getCurrentScheme().COLOR_MENU_FRONT.getColor());
+		teamsToggleButton.setBackground(Palette.getCurrentScheme().COLOR_MENU_BACK.getColor());
+		teamsToggleButton.setForeground(Palette.getCurrentScheme().COLOR_MENU_FRONT.getColor());
+		leaderboardToggleButton.setBackground(Palette.getCurrentScheme().COLOR_MENU_BACK.getColor());
+		leaderboardToggleButton.setForeground(Palette.getCurrentScheme().COLOR_MENU_FRONT.getColor());
+		settingsToggleButton.setBackground(Palette.getCurrentScheme().COLOR_MENU_SELECTED_BACK.getColor());
+		settingsToggleButton.setForeground(Palette.getCurrentScheme().COLOR_MENU_SELECTED_FRONT.getColor());
+		saveButton.setBackground(Palette.getCurrentScheme().COLOR_MENU_BACK.getColor());
+		saveButton.setForeground(Palette.getCurrentScheme().COLOR_MENU_FRONT.getColor());
+		loadButton.setBackground(Palette.getCurrentScheme().COLOR_MENU_BACK.getColor());
+		loadButton.setForeground(Palette.getCurrentScheme().COLOR_MENU_FRONT.getColor());
+		
+		//Everything inside of settingsPanel
+		appearanceLabel.setForeground(Palette.getCurrentScheme().COLOR_PRIMARY_TEXT.getColor());
+		themeLabel.setForeground(Palette.getCurrentScheme().COLOR_TERTIARY_TEXT.getColor());
+		if (!darkThemeCheck.isSelected()) {
+			darkThemeCheck.setBackground(Palette.getCurrentScheme().COLOR_CHECK_BACK.getColor());
+			darkThemeCheck.setForeground(Palette.getCurrentScheme().COLOR_PRIMARY_TEXT.getColor());
+		}
+		if (!lightThemeCheck.isSelected()) {
+			lightThemeCheck.setBackground(Palette.getCurrentScheme().COLOR_CHECK_BACK.getColor());
+			darkThemeCheck.setForeground(Palette.getCurrentScheme().COLOR_PRIMARY_TEXT.getColor());
+		}
+		displayLabel.setForeground(Palette.getCurrentScheme().COLOR_TERTIARY_TEXT.getColor());
+		if (!cozyDesignCheck.isSelected()) {
+			cozyDesignCheck.setBackground(Palette.getCurrentScheme().COLOR_CHECK_BACK.getColor());
+			cozyDesignCheck.setForeground(Palette.getCurrentScheme().COLOR_PRIMARY_TEXT.getColor());
+		}
+		if (!compactDesignCheck.isSelected()) {
+			compactDesignCheck.setBackground(Palette.getCurrentScheme().COLOR_CHECK_BACK.getColor());
+			compactDesignCheck.setForeground(Palette.getCurrentScheme().COLOR_PRIMARY_TEXT.getColor());	
+		}
+		accessibilityLabel.setForeground(Palette.getCurrentScheme().COLOR_PRIMARY_TEXT.getColor());
+		alwaysOnTopLabel.setForeground(Palette.getCurrentScheme().COLOR_PRIMARY_TEXT.getColor());
+		alwaysOnTopTipLabel.setForeground(Palette.getCurrentScheme().COLOR_SECONDARY_TEXT.getColor());
+		alwaysOnTopCheck.setIcon(Palette.getCurrentScheme().ICON_TOGGLE_SWITCH.getIcon());
+		alwaysOnTopCheck.setSelectedIcon(Palette.getCurrentScheme().ICON_SELECTED_TOGGLE_SWITCH.getIcon());
+		alwaysOnTopSeparator.setBackground(Palette.getCurrentScheme().COLOR_SEPARATOR.getColor());
+		alwaysOnTopSeparator.setForeground(Palette.getCurrentScheme().COLOR_SEPARATOR.getColor());
+		naratorLabel.setForeground(Palette.getCurrentScheme().COLOR_PRIMARY_TEXT.getColor());
+		naratorTipLabel.setForeground(Palette.getCurrentScheme().COLOR_SECONDARY_TEXT.getColor());
+		naratorCheck.setIcon(Palette.getCurrentScheme().ICON_TOGGLE_SWITCH.getIcon());
+		naratorCheck.setSelectedIcon(Palette.getCurrentScheme().ICON_SELECTED_TOGGLE_SWITCH.getIcon());
+		naratorSeparator.setBackground(Palette.getCurrentScheme().COLOR_SEPARATOR.getColor());
+		naratorSeparator.setForeground(Palette.getCurrentScheme().COLOR_SEPARATOR.getColor());
+		versionLabel.setForeground(Palette.getCurrentScheme().COLOR_SECONDARY_TEXT.getColor());
+		disclaimerLabel.setForeground(Palette.getCurrentScheme().COLOR_SECONDARY_TEXT.getColor());
+	}
+	
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel accessibilityLabel;
     private javax.swing.JPanel activePanel;
     private javax.swing.JCheckBox alwaysOnTopCheck;
+    private javax.swing.JLabel alwaysOnTopLabel;
+    private javax.swing.JSeparator alwaysOnTopSeparator;
+    private javax.swing.JLabel alwaysOnTopTipLabel;
     private javax.swing.JLabel appearanceLabel;
     private javax.swing.JButton closeButton;
+    private javax.swing.JCheckBox compactDesignCheck;
+    private javax.swing.JCheckBox cozyDesignCheck;
+    private javax.swing.JCheckBox darkThemeCheck;
+    private javax.swing.JLabel disclaimerLabel;
+    private javax.swing.ButtonGroup displayButtonGroup;
+    private javax.swing.JLabel displayLabel;
+    private javax.swing.JPanel dragBarPanel;
     private javax.swing.JPanel eventsPanel;
     private javax.swing.JToggleButton eventsToggleButton;
-    private javax.swing.JButton exitButton;
     private javax.swing.JPanel leaderboardPanel;
     private javax.swing.JToggleButton leaderboardToggleButton;
+    private javax.swing.JCheckBox lightThemeCheck;
     private javax.swing.JButton loadButton;
     private javax.swing.JPanel mainPanel;
     private javax.swing.JButton maximiseButton;
     private javax.swing.ButtonGroup menuButtonGroup;
     private javax.swing.JPanel menuPanel;
     private javax.swing.JButton minimiseButton;
+    private javax.swing.JCheckBox naratorCheck;
+    private javax.swing.JLabel naratorLabel;
+    private javax.swing.JSeparator naratorSeparator;
+    private javax.swing.JLabel naratorTipLabel;
     private javax.swing.JButton saveButton;
     private javax.swing.JPanel settingsPanel;
     private javax.swing.JToggleButton settingsToggleButton;
     private javax.swing.JPanel teamsPanel;
     private javax.swing.JToggleButton teamsToggleButton;
+    private javax.swing.ButtonGroup themeButtonGroup;
+    private javax.swing.JLabel themeLabel;
     private javax.swing.JLabel versionLabel;
     // End of variables declaration//GEN-END:variables
 }
