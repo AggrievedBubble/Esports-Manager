@@ -58,6 +58,7 @@ public class EsportsGUI extends javax.swing.JFrame {
         eventsPanel = new javax.swing.JPanel();
         eventsScrollPane = new javax.swing.JScrollPane();
         eventsListPanel = new javax.swing.JPanel();
+        addEventPanel = new javax.swing.JPanel();
         addEventButton = new javax.swing.JButton();
         teamsPanel = new javax.swing.JPanel();
         teamsScrollPane = new javax.swing.JScrollPane();
@@ -438,23 +439,38 @@ public class EsportsGUI extends javax.swing.JFrame {
 
         eventsListPanel.setOpaque(false);
         eventsListPanel.setLayout(new javax.swing.BoxLayout(eventsListPanel, javax.swing.BoxLayout.Y_AXIS));
-        eventsScrollPane.setViewportView(eventsListPanel);
 
-        eventsPanel.add(eventsScrollPane, new java.awt.GridBagConstraints());
+        addEventPanel.setOpaque(false);
+        addEventPanel.setPreferredSize(new java.awt.Dimension(400, 50));
+        addEventPanel.setLayout(new java.awt.GridBagLayout());
 
-        addEventButton.setIcon(Palette.getCurrentScheme().ICON_PLUS.getIcon());
+        addEventButton.setIcon(Palette.getCurrentScheme().ICON_SMALL_PLUS.getIcon());
         addEventButton.setBorder(null);
         addEventButton.setBorderPainted(false);
         addEventButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         addEventButton.setFocusable(false);
+        addEventButton.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         addEventButton.setOpaque(false);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.SOUTHWEST;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        eventsPanel.add(addEventButton, gridBagConstraints);
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        addEventPanel.add(addEventButton, gridBagConstraints);
+
+        eventsListPanel.add(addEventPanel);
+
+        eventsScrollPane.setViewportView(eventsListPanel);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        eventsPanel.add(eventsScrollPane, gridBagConstraints);
 
         activePanel.add(eventsPanel, "eventsCard");
 
@@ -1106,6 +1122,8 @@ public class EsportsGUI extends javax.swing.JFrame {
 
 		Palette.setCurrentScheme(Palette.SchemeEnum.DARK);
 		
+		System.setProperty("awt.useSystemAAFontSettings","on");
+		
 		ComponentResizer cr = new ComponentResizer();
 		cr.setSnapSize(new Dimension(1, 1));
 		cr.setMaximumSize(new Dimension(1920, 1080));
@@ -1198,6 +1216,7 @@ public class EsportsGUI extends javax.swing.JFrame {
     private javax.swing.JLabel accessibilityLabel;
     private javax.swing.JPanel activePanel;
     private javax.swing.JButton addEventButton;
+    private javax.swing.JPanel addEventPanel;
     private javax.swing.JCheckBox alwaysOnTopCheck;
     private javax.swing.JLabel alwaysOnTopLabel;
     private javax.swing.JSeparator alwaysOnTopSeparator;

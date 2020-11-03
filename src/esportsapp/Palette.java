@@ -46,6 +46,8 @@ public final class Palette {
 				IconEnum.SELECTED_TOGGLE_SWITCH_DARK,
 				IconEnum.PLUS_DARK,
 				IconEnum.PLUS_MOUSE_OVER_DARK,
+				IconEnum.SMALL_PLUS_DARK,
+				IconEnum.SMALL_PLUS_MOUSE_OVER_DARK,
 				
 				IconEnum.CLOSE_MOUSE_OVER
 				
@@ -78,6 +80,8 @@ public final class Palette {
 				IconEnum.SELECTED_TOGGLE_SWITCH_LIGHT,
 				IconEnum.PLUS_LIGHT,
 				IconEnum.PLUS_MOUSE_OVER_LIGHT,
+				IconEnum.SMALL_PLUS_LIGHT,
+				IconEnum.SMALL_PLUS_MOUSE_OVER_LIGHT,
 				
 				IconEnum.CLOSE_MOUSE_OVER
 				
@@ -110,6 +114,8 @@ public final class Palette {
 		public IconEnum ICON_SELECTED_TOGGLE_SWITCH;
 		public IconEnum ICON_PLUS;
 		public IconEnum ICON_PLUS_MOUSE_OVER;
+		public IconEnum ICON_SMALL_PLUS;
+		public IconEnum ICON_SMALL_PLUS_MOUSE_OVER;
 		
 		public IconEnum ICON_CLOSE_MOUSE_OVER;
 
@@ -140,6 +146,8 @@ public final class Palette {
 				IconEnum ICON_SELECTED_TOGGLE_SWITCH,
 				IconEnum ICON_PLUS,
 				IconEnum ICON_PLUS_MOUSE_OVER,
+				IconEnum ICON_SMALL_PLUS,
+				IconEnum ICON_SMALL_PLUS_MOUSE_OVER,
 				
 				IconEnum ICON_CLOSE_MOUSE_OVER
 				
@@ -170,6 +178,8 @@ public final class Palette {
 			this.ICON_SELECTED_TOGGLE_SWITCH = ICON_SELECTED_TOGGLE_SWITCH;
 			this.ICON_PLUS = ICON_PLUS;
 			this.ICON_PLUS_MOUSE_OVER = ICON_PLUS_MOUSE_OVER;
+			this.ICON_SMALL_PLUS = ICON_SMALL_PLUS;
+			this.ICON_SMALL_PLUS_MOUSE_OVER = ICON_SMALL_PLUS_MOUSE_OVER;
 			
 			this.ICON_CLOSE_MOUSE_OVER = ICON_CLOSE_MOUSE_OVER;
 			
@@ -237,6 +247,10 @@ public final class Palette {
 		PLUS_LIGHT(Palette.class.getResource("/esportsapp/images/pluslight.png")),
 		PLUS_MOUSE_OVER_DARK(Palette.class.getResource("/esports/images/plusmouseoverdark.png")),
 		PLUS_MOUSE_OVER_LIGHT(Palette.class.getResource("/esportsapp/images/plusmouseoverlight.png")),
+		SMALL_PLUS_DARK(Palette.class.getResource("/esportsapp/images/smallplusdark.png")),
+		SMALL_PLUS_LIGHT(Palette.class.getResource("/esportsapp/images/smallpluslight.png")),
+		SMALL_PLUS_MOUSE_OVER_DARK(Palette.class.getResource("/esports/images/smallplusmouseoverdark.png")),
+		SMALL_PLUS_MOUSE_OVER_LIGHT(Palette.class.getResource("/esports/images/smallplusmouseoverlight.png")),
 	
 		CLOSE_MOUSE_OVER(Palette.class.getResource("/esportsapp/images/closemouseover.png"));
 		
