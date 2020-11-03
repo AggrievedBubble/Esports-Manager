@@ -249,8 +249,8 @@ public final class Palette {
 		PLUS_MOUSE_OVER_LIGHT(Palette.class.getResource("/esportsapp/images/plusmouseoverlight.png")),
 		SMALL_PLUS_DARK(Palette.class.getResource("/esportsapp/images/smallplusdark.png")),
 		SMALL_PLUS_LIGHT(Palette.class.getResource("/esportsapp/images/smallpluslight.png")),
-		SMALL_PLUS_MOUSE_OVER_DARK(Palette.class.getResource("/esports/images/smallplusmouseoverdark.png")),
-		SMALL_PLUS_MOUSE_OVER_LIGHT(Palette.class.getResource("/esports/images/smallplusmouseoverlight.png")),
+		SMALL_PLUS_MOUSE_OVER_DARK(Palette.class.getResource("/esportsapp/images/smallplusmouseoverdark.png")),
+		SMALL_PLUS_MOUSE_OVER_LIGHT(Palette.class.getResource("/esportsapp/images/smallplusmouseoverdark.png")),
 	
 		CLOSE_MOUSE_OVER(Palette.class.getResource("/esportsapp/images/closemouseover.png"));
 		

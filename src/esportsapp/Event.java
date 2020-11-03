@@ -7,6 +7,7 @@ package esportsapp;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import javax.swing.*;
 
@@ -16,7 +17,7 @@ import javax.swing.*;
  */
 public class Event extends javax.swing.JPanel {
 
-	public static ArrayList<Event> list = new ArrayList<Event>();
+	public static List<Event> list = new ArrayList<Event>();
 	
 	String name;
 	Map<Team, Integer> teamScores = new HashMap<Team, Integer>();

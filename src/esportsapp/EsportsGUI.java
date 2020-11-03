@@ -451,6 +451,14 @@ public class EsportsGUI extends javax.swing.JFrame {
         addEventButton.setFocusable(false);
         addEventButton.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         addEventButton.setOpaque(false);
+        addEventButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                addEventButtonMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                addEventButtonMouseExited(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
@@ -1093,6 +1101,16 @@ public class EsportsGUI extends javax.swing.JFrame {
 		EsportsGUI.getFrames()[0].setState(Frame.ICONIFIED);
     }//GEN-LAST:event_minimiseButtonActionPerformed
 
+    private void addEventButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addEventButtonMouseEntered
+        // TODO add your handling code here:
+		addEventButton.setIcon(Palette.getCurrentScheme().ICON_SMALL_PLUS_MOUSE_OVER.getIcon());
+    }//GEN-LAST:event_addEventButtonMouseEntered
+
+    private void addEventButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addEventButtonMouseExited
+        // TODO add your handling code here:
+		addEventButton.setIcon(Palette.getCurrentScheme().ICON_SMALL_PLUS.getIcon());
+    }//GEN-LAST:event_addEventButtonMouseExited
+
     /**
      * @param args the command line arguments
      */
@@ -1174,6 +1192,10 @@ public class EsportsGUI extends javax.swing.JFrame {
 		saveButton.setForeground(Palette.getCurrentScheme().COLOR_MENU_FRONT.getColor());
 		loadButton.setBackground(Palette.getCurrentScheme().COLOR_MENU_BACK.getColor());
 		loadButton.setForeground(Palette.getCurrentScheme().COLOR_MENU_FRONT.getColor());
+		
+		//Everything inside of eventsPanel
+		addEventButton.setIcon(Palette.getCurrentScheme().ICON_SMALL_PLUS.getIcon());
+		
 		
 		//Everything inside of settingsPanel
 		appearanceLabel.setForeground(Palette.getCurrentScheme().COLOR_PRIMARY_TEXT.getColor());
