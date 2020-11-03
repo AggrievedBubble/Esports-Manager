@@ -58,6 +58,7 @@ public class EsportsGUI extends javax.swing.JFrame {
         eventsPanel = new javax.swing.JPanel();
         eventsScrollPane = new javax.swing.JScrollPane();
         eventsListPanel = new javax.swing.JPanel();
+        addEventButton = new javax.swing.JButton();
         teamsPanel = new javax.swing.JPanel();
         teamsScrollPane = new javax.swing.JScrollPane();
         teamsListPanel = new javax.swing.JPanel();
@@ -436,23 +437,19 @@ public class EsportsGUI extends javax.swing.JFrame {
         eventsScrollPane.setViewportView(null);
 
         eventsListPanel.setOpaque(false);
-
-        javax.swing.GroupLayout eventsListPanelLayout = new javax.swing.GroupLayout(eventsListPanel);
-        eventsListPanel.setLayout(eventsListPanelLayout);
-        eventsListPanelLayout.setHorizontalGroup(
-            eventsListPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
-        eventsListPanelLayout.setVerticalGroup(
-            eventsListPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
-
+        eventsListPanel.setLayout(new javax.swing.BoxLayout(eventsListPanel, javax.swing.BoxLayout.Y_AXIS));
         eventsScrollPane.setViewportView(eventsListPanel);
 
+        eventsPanel.add(eventsScrollPane, new java.awt.GridBagConstraints());
+
+        addEventButton.setText("Add Event");
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        eventsPanel.add(eventsScrollPane, gridBagConstraints);
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.SOUTHWEST;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        eventsPanel.add(addEventButton, gridBagConstraints);
 
         activePanel.add(eventsPanel, "eventsCard");
 
@@ -1195,6 +1192,7 @@ public class EsportsGUI extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel accessibilityLabel;
     private javax.swing.JPanel activePanel;
+    private javax.swing.JButton addEventButton;
     private javax.swing.JCheckBox alwaysOnTopCheck;
     private javax.swing.JLabel alwaysOnTopLabel;
     private javax.swing.JSeparator alwaysOnTopSeparator;
