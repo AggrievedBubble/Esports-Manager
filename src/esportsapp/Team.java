@@ -19,8 +19,8 @@ public class Team extends javax.swing.JPanel {
 	public static ArrayList<Team> list = new ArrayList<Team>();
 	
 	String name;
-	Map<Member, Integer> memberScores = new HashMap<Member, Integer>();
 	int score = 0;
+	Map<Member, Integer> memberScores = new HashMap<Member, Integer>();
 	
 	/**
 	 * Creates new form Team

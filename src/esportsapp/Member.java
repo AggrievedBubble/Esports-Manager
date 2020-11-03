@@ -8,28 +8,32 @@ package esportsapp;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-import javax.swing.*;
 
 /**
  *
- * @author User
+ * @author j9neave
  */
-public class Event extends javax.swing.JPanel {
+public class Member extends javax.swing.JPanel {
 
-	public static ArrayList<Event> list = new ArrayList<Event>();
+	static ArrayList<Member> list = new ArrayList<Member>();
 	
 	String name;
-	Map<Team, Integer> teamScores = new HashMap<Team, Integer>();
+	Team team;
+	int score;
+	Map<Event, Integer> eventScores = new HashMap<Event, Integer>();
 	
 	/**
-	 * Creates new form Event
+	 * Creates new form Member
 	 */
-	public Event(String name) {
+	public Member() {
 		this.name = name;
+		this.team = team;
+		this.score = 0;
+		
+		this.team.memberScores.put(this, score);
+		Member.list.add(this);
 		
 		initComponents();
-		//EsportsGUI.getEventsListPane);
-		Event.list.add(this);
 	}
 
 	/**
@@ -40,14 +44,19 @@ public class Event extends javax.swing.JPanel {
 	@SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-        java.awt.GridBagConstraints gridBagConstraints;
 
-        setMaximumSize(new java.awt.Dimension(2147483647, 50));
-        setMinimumSize(new java.awt.Dimension(0, 50));
-        setOpaque(false);
-        setPreferredSize(new java.awt.Dimension(159, 319));
-        setLayout(new java.awt.GridBagLayout());
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 400, Short.MAX_VALUE)
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 300, Short.MAX_VALUE)
+        );
     }// </editor-fold>//GEN-END:initComponents
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables
