@@ -443,6 +443,10 @@ public class EsportsGUI extends javax.swing.JFrame {
         eventsPanel.add(eventsScrollPane, new java.awt.GridBagConstraints());
 
         addEventButton.setText("Add Event");
+        addEventButton.setBorder(null);
+        addEventButton.setBorderPainted(false);
+        addEventButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        addEventButton.setFocusable(false);
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
