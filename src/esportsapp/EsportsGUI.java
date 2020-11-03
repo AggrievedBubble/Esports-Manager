@@ -57,8 +57,10 @@ public class EsportsGUI extends javax.swing.JFrame {
         activePanel = new javax.swing.JPanel();
         eventsPanel = new javax.swing.JPanel();
         eventsScrollPane = new javax.swing.JScrollPane();
+        eventsListPanel = new javax.swing.JPanel();
         teamsPanel = new javax.swing.JPanel();
         teamsScrollPane = new javax.swing.JScrollPane();
+        teamsListPanel = new javax.swing.JPanel();
         leaderboardPanel = new javax.swing.JPanel();
         leaderboardScrollPane = new javax.swing.JScrollPane();
         settingsScrollPane = new javax.swing.JScrollPane();
@@ -432,6 +434,22 @@ public class EsportsGUI extends javax.swing.JFrame {
         eventsScrollPane.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         eventsScrollPane.setOpaque(false);
         eventsScrollPane.setViewportView(null);
+
+        eventsListPanel.setOpaque(false);
+
+        javax.swing.GroupLayout eventsListPanelLayout = new javax.swing.GroupLayout(eventsListPanel);
+        eventsListPanel.setLayout(eventsListPanelLayout);
+        eventsListPanelLayout.setHorizontalGroup(
+            eventsListPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+        eventsListPanelLayout.setVerticalGroup(
+            eventsListPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+
+        eventsScrollPane.setViewportView(eventsListPanel);
+
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         eventsPanel.add(eventsScrollPane, gridBagConstraints);
@@ -445,6 +463,22 @@ public class EsportsGUI extends javax.swing.JFrame {
         teamsScrollPane.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         teamsScrollPane.setOpaque(false);
         teamsScrollPane.setViewportView(null);
+
+        teamsListPanel.setOpaque(false);
+
+        javax.swing.GroupLayout teamsListPanelLayout = new javax.swing.GroupLayout(teamsListPanel);
+        teamsListPanel.setLayout(teamsListPanelLayout);
+        teamsListPanelLayout.setHorizontalGroup(
+            teamsListPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+        teamsListPanelLayout.setVerticalGroup(
+            teamsListPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+
+        teamsScrollPane.setViewportView(teamsListPanel);
+
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         teamsPanel.add(teamsScrollPane, gridBagConstraints);
@@ -1085,6 +1119,8 @@ public class EsportsGUI extends javax.swing.JFrame {
 				teamsScrollPane.getViewport().setOpaque(false);
 				leaderboardScrollPane.getViewport().setOpaque(false);
 				settingsScrollPane.getViewport().setOpaque(false);
+				
+				eventsToggleButton.setSelected(true);
             }
         });
 		
@@ -1172,12 +1208,13 @@ public class EsportsGUI extends javax.swing.JFrame {
     private javax.swing.ButtonGroup displayButtonGroup;
     private javax.swing.JLabel displayLabel;
     private javax.swing.JPanel dragBarPanel;
+    private javax.swing.JPanel eventsListPanel;
     private javax.swing.JPanel eventsPanel;
     private static javax.swing.JScrollPane eventsScrollPane;
-    private javax.swing.JToggleButton eventsToggleButton;
+    private static javax.swing.JToggleButton eventsToggleButton;
     private javax.swing.JPanel leaderboardPanel;
     private static javax.swing.JScrollPane leaderboardScrollPane;
-    private javax.swing.JToggleButton leaderboardToggleButton;
+    private static javax.swing.JToggleButton leaderboardToggleButton;
     private javax.swing.JCheckBox lightThemeCheck;
     private javax.swing.JButton loadButton;
     private javax.swing.JPanel mainPanel;
@@ -1192,10 +1229,11 @@ public class EsportsGUI extends javax.swing.JFrame {
     private javax.swing.JButton saveButton;
     private javax.swing.JPanel settingsPanel;
     private static javax.swing.JScrollPane settingsScrollPane;
-    private javax.swing.JToggleButton settingsToggleButton;
+    private static javax.swing.JToggleButton settingsToggleButton;
+    private javax.swing.JPanel teamsListPanel;
     private javax.swing.JPanel teamsPanel;
     private static javax.swing.JScrollPane teamsScrollPane;
-    private javax.swing.JToggleButton teamsToggleButton;
+    private static javax.swing.JToggleButton teamsToggleButton;
     private javax.swing.ButtonGroup themeButtonGroup;
     private javax.swing.JLabel themeLabel;
     private javax.swing.JLabel versionLabel;
