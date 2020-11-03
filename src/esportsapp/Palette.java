@@ -44,6 +44,8 @@ public final class Palette {
 				IconEnum.CLOSE_DARK,
 				IconEnum.TOGGLE_SWITCH_DARK,
 				IconEnum.SELECTED_TOGGLE_SWITCH_DARK,
+				IconEnum.PLUS_DARK,
+				IconEnum.PLUS_MOUSE_OVER_DARK,
 				
 				IconEnum.CLOSE_MOUSE_OVER
 				
@@ -74,6 +76,8 @@ public final class Palette {
 				IconEnum.CLOSE_LIGHT,
 				IconEnum.TOGGLE_SWITCH_LIGHT,
 				IconEnum.SELECTED_TOGGLE_SWITCH_LIGHT,
+				IconEnum.PLUS_LIGHT,
+				IconEnum.PLUS_MOUSE_OVER_LIGHT,
 				
 				IconEnum.CLOSE_MOUSE_OVER
 				
@@ -104,6 +108,8 @@ public final class Palette {
 		public IconEnum ICON_CLOSE;
 		public IconEnum ICON_TOGGLE_SWITCH;
 		public IconEnum ICON_SELECTED_TOGGLE_SWITCH;
+		public IconEnum ICON_PLUS;
+		public IconEnum ICON_PLUS_MOUSE_OVER;
 		
 		public IconEnum ICON_CLOSE_MOUSE_OVER;
 
@@ -132,6 +138,8 @@ public final class Palette {
 				IconEnum ICON_CLOSE,
 				IconEnum ICON_TOGGLE_SWITCH,
 				IconEnum ICON_SELECTED_TOGGLE_SWITCH,
+				IconEnum ICON_PLUS,
+				IconEnum ICON_PLUS_MOUSE_OVER,
 				
 				IconEnum ICON_CLOSE_MOUSE_OVER
 				
@@ -160,6 +168,8 @@ public final class Palette {
 			this.ICON_CLOSE = ICON_CLOSE;
 			this.ICON_TOGGLE_SWITCH = ICON_TOGGLE_SWITCH;
 			this.ICON_SELECTED_TOGGLE_SWITCH = ICON_SELECTED_TOGGLE_SWITCH;
+			this.ICON_PLUS = ICON_PLUS;
+			this.ICON_PLUS_MOUSE_OVER = ICON_PLUS_MOUSE_OVER;
 			
 			this.ICON_CLOSE_MOUSE_OVER = ICON_CLOSE_MOUSE_OVER;
 			
@@ -223,6 +233,10 @@ public final class Palette {
 		TOGGLE_SWITCH_LIGHT(Palette.class.getResource("/esportsapp/images/toggleswitchlight.png")),
 		SELECTED_TOGGLE_SWITCH_DARK(Palette.class.getResource("/esportsapp/images/selectedtoggleswitchdark.png")),
 		SELECTED_TOGGLE_SWITCH_LIGHT(Palette.class.getResource("/esportsapp/images/selectedtoggleswitchlight.png")),
+		PLUS_DARK(Palette.class.getResource("/esportsapp/images/plusdark.png")),
+		PLUS_LIGHT(Palette.class.getResource("/esportsapp/images/pluslight.png")),
+		PLUS_MOUSE_OVER_DARK(Palette.class.getResource("/esports/images/plusmouseoverdark.png")),
+		PLUS_MOUSE_OVER_LIGHT(Palette.class.getResource("/esportsapp/images/plusmouseoverlight.png")),
 	
 		CLOSE_MOUSE_OVER(Palette.class.getResource("/esportsapp/images/closemouseover.png"));
 		
