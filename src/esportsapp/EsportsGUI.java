@@ -449,6 +449,7 @@ public class EsportsGUI extends javax.swing.JFrame {
         addEventButton.setBorder(null);
         addEventButton.setBorderPainted(false);
         addEventButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        addEventButton.setFocusPainted(false);
         addEventButton.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         addEventButton.setOpaque(false);
         addEventButton.addMouseListener(new java.awt.event.MouseAdapter() {
