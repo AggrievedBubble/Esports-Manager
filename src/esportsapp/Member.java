@@ -47,10 +47,11 @@ public class Member extends javax.swing.JPanel {
 	
 	public void setScoreForEvent(Event evt, int scr) {
 		this.eventScores.put(evt, scr);
-		int tot = 0;
-		for (int scr2 : this.eventScores.values()) tot += scr2;
-		this.score = tot;
-		this.team.memberScores.put(this, tot);	
+		int total = this.eventScores.values().stream()
+				.mapToInt(i -> i)
+				.sum();
+		this.score = total;
+		this.team.memberScores.put(this, total);	
 		
 	}
 

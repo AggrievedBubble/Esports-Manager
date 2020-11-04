@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.awt.*;
 import javax.swing.*;
 
 /**
@@ -45,6 +46,10 @@ public class Event extends javax.swing.JPanel {
 		return evt;
 	}
 	
+	public JLabel getNameLabel() {
+		return nameLabel;
+	}
+	
 	public void addTeam(Team tm) {
 		this.teamScores.put(tm, 0);
 	}
@@ -66,10 +71,21 @@ public class Event extends javax.swing.JPanel {
 
         nameLabel = new javax.swing.JLabel();
 
+        setBackground(Palette.getCurrentScheme().COLOR_ACTIVE.getColor());
         setMaximumSize(new java.awt.Dimension(2147483647, 35));
         setMinimumSize(new java.awt.Dimension(0, 35));
-        setOpaque(false);
         setPreferredSize(new java.awt.Dimension(400, 35));
+        addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                formMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                formMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                formMouseExited(evt);
+            }
+        });
         setLayout(new java.awt.GridBagLayout());
 
         nameLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -85,6 +101,21 @@ public class Event extends javax.swing.JPanel {
         gridBagConstraints.weighty = 1.0;
         add(nameLabel, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void formMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseEntered
+        // TODO add your handling code here:
+		this.setBackground(Palette.getCurrentScheme().COLOR_MENU_MOUSE_OVER_BACK.getColor());
+    }//GEN-LAST:event_formMouseEntered
+
+    private void formMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseExited
+        // TODO add your handling code here:
+		this.setBackground(Palette.getCurrentScheme().COLOR_ACTIVE.getColor());
+    }//GEN-LAST:event_formMouseExited
+
+    private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
+        // TODO add your handling code here:
+		EsportsGUI.getManagementDialog().setVisible(true);
+    }//GEN-LAST:event_formMouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel nameLabel;

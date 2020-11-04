@@ -45,10 +45,10 @@ public class Team extends javax.swing.JPanel {
 	
 	public void updateScore() {
 		int tot = 0;
-		for (Event evt : Event.list) {
-			Integer scr = evt.teamScores.get(this);
-			if (scr != null) tot += scr;
-		}
+		tot = Event.list.stream()
+				.map(evt -> evt.teamScores.get(this))
+				.filter(scr -> (scr != null))
+				.reduce(tot, Integer::sum);
 		this.score = tot;
 	}
 
