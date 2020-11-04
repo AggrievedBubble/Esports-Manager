@@ -440,6 +440,7 @@ public class EsportsGUI extends javax.swing.JFrame {
         eventsListPanel.setOpaque(false);
         eventsListPanel.setLayout(new javax.swing.BoxLayout(eventsListPanel, javax.swing.BoxLayout.Y_AXIS));
 
+        addEventPanel.setMaximumSize(new java.awt.Dimension(2147483647, 50));
         addEventPanel.setOpaque(false);
         addEventPanel.setPreferredSize(new java.awt.Dimension(400, 50));
         addEventPanel.setLayout(new java.awt.GridBagLayout());
@@ -448,7 +449,6 @@ public class EsportsGUI extends javax.swing.JFrame {
         addEventButton.setBorder(null);
         addEventButton.setBorderPainted(false);
         addEventButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        addEventButton.setFocusable(false);
         addEventButton.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         addEventButton.setOpaque(false);
         addEventButton.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -457,6 +457,11 @@ public class EsportsGUI extends javax.swing.JFrame {
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 addEventButtonMouseExited(evt);
+            }
+        });
+        addEventButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addEventButtonActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -1111,6 +1116,20 @@ public class EsportsGUI extends javax.swing.JFrame {
 		addEventButton.setIcon(Palette.getCurrentScheme().ICON_SMALL_PLUS.getIcon());
     }//GEN-LAST:event_addEventButtonMouseExited
 
+    private void addEventButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addEventButtonActionPerformed
+        // TODO add your handling code here:
+		String proposedName = JOptionPane.showInputDialog(this, "Please enter a name:");
+		if (proposedName == null || proposedName.equals("")) return;
+		boolean nameTaken = false;
+		for (Event e : Event.list) {
+			if (e.name.equals(proposedName)) {
+				JOptionPane.showMessageDialog(this, "Name \"" + proposedName + "\" is already taken");
+				nameTaken = true;
+			}
+		}
+		if (!nameTaken) new Event(proposedName);
+    }//GEN-LAST:event_addEventButtonActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1154,9 +1173,13 @@ public class EsportsGUI extends javax.swing.JFrame {
 				EsportsGUI.getFrames()[0].setVisible(true);
 				
 				eventsScrollPane.getViewport().setOpaque(false);
+				eventsScrollPane.getVerticalScrollBar().setUnitIncrement(16);
 				teamsScrollPane.getViewport().setOpaque(false);
+				teamsScrollPane.getVerticalScrollBar().setUnitIncrement(16);
 				leaderboardScrollPane.getViewport().setOpaque(false);
+				leaderboardScrollPane.getVerticalScrollBar().setUnitIncrement(16);
 				settingsScrollPane.getViewport().setOpaque(false);
+				settingsScrollPane.getVerticalScrollBar().setUnitIncrement(16);
 				
 				eventsToggleButton.setSelected(true);
             }
@@ -1165,6 +1188,14 @@ public class EsportsGUI extends javax.swing.JFrame {
 	
 		
     }
+	
+	public static JPanel getEventsListPanel() {
+		return eventsListPanel;
+	}
+	
+	//public static JPanel getTeamsListPanel() {
+		//return teamsListPanel;
+	//}
 	
 	private void refreshComponents() {
 		
@@ -1252,7 +1283,7 @@ public class EsportsGUI extends javax.swing.JFrame {
     private javax.swing.ButtonGroup displayButtonGroup;
     private javax.swing.JLabel displayLabel;
     private javax.swing.JPanel dragBarPanel;
-    private javax.swing.JPanel eventsListPanel;
+    private static javax.swing.JPanel eventsListPanel;
     private javax.swing.JPanel eventsPanel;
     private static javax.swing.JScrollPane eventsScrollPane;
     private static javax.swing.JToggleButton eventsToggleButton;

@@ -43,10 +43,9 @@ public class Team extends javax.swing.JPanel {
 	@SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-        java.awt.GridBagConstraints gridBagConstraints;
 
-        setMaximumSize(new java.awt.Dimension(2147483647, 50));
-        setMinimumSize(new java.awt.Dimension(0, 50));
+        setMaximumSize(new java.awt.Dimension(2147483647, 40));
+        setMinimumSize(new java.awt.Dimension(0, 40));
         setOpaque(false);
         java.awt.GridBagLayout layout = new java.awt.GridBagLayout();
         layout.columnWidths = new int[] {0, 5, 0, 5, 0, 5, 0, 5, 0};

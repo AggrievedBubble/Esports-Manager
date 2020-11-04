@@ -29,7 +29,10 @@ public class Event extends javax.swing.JPanel {
 		this.name = name;
 		
 		initComponents();
-		//EsportsGUI.getEventsListPane);
+		JPanel elp = EsportsGUI.getEventsListPanel();
+		elp.add(this, Event.list.size());
+		elp.revalidate();
+		elp.repaint();
 		Event.list.add(this);
 	}
 
@@ -43,13 +46,50 @@ public class Event extends javax.swing.JPanel {
     private void initComponents() {
         java.awt.GridBagConstraints gridBagConstraints;
 
-        setMaximumSize(new java.awt.Dimension(2147483647, 50));
-        setMinimumSize(new java.awt.Dimension(0, 50));
+        nameLabel = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+
+        setMaximumSize(new java.awt.Dimension(2147483647, 35));
+        setMinimumSize(new java.awt.Dimension(0, 35));
         setOpaque(false);
-        setPreferredSize(new java.awt.Dimension(159, 319));
+        setPreferredSize(new java.awt.Dimension(400, 35));
         setLayout(new java.awt.GridBagLayout());
+
+        nameLabel.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        nameLabel.setForeground(Palette.getCurrentScheme().COLOR_PRIMARY_TEXT.getColor());
+        nameLabel.setText(this.name);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        add(nameLabel, gridBagConstraints);
+
+        jLabel1.setForeground(Palette.getCurrentScheme().COLOR_PRIMARY_TEXT.getColor());
+        jLabel1.setText("jLabel1");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        add(jLabel1, gridBagConstraints);
+
+        jLabel2.setForeground(Palette.getCurrentScheme().COLOR_TERTIARY_TEXT.getColor());
+        jLabel2.setText("jLabel2");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.weightx = 1.0;
+        add(jLabel2, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel nameLabel;
     // End of variables declaration//GEN-END:variables
 }
