@@ -21,12 +21,13 @@ public class Member extends javax.swing.JPanel {
 	String name;
 	Team team;
 	int score;
-	Map<Event, Integer> eventScores = new HashMap<Event, Integer>();
+	Map<Event, Integer> eventScores;
 	
 	/**
 	 * Creates new form Member
 	 */
 	private Member(String name, Team team) {
+		this.eventScores = new HashMap<>();
 		this.name = name;
 		this.team = team;
 		this.score = 0;

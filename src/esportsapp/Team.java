@@ -21,12 +21,13 @@ public class Team extends javax.swing.JPanel {
 	
 	String name;
 	int score = 0;
-	Map<Member, Integer> memberScores = new HashMap<Member, Integer>();
+	Map<Member, Integer> memberScores;
 	
 	/**
 	 * Creates new form Team
 	 */
 	private Team(String name) {
+		this.memberScores = new HashMap<>();
 		this.name = name;
 		this.score = 0;
 		
