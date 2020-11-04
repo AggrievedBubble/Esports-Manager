@@ -1128,7 +1128,7 @@ public class EsportsGUI extends javax.swing.JFrame {
 				nameTaken = true;
 			}
 		}
-		if (!nameTaken) new Event(proposedName);
+		if (!nameTaken) Event.add(proposedName);
     }//GEN-LAST:event_addEventButtonActionPerformed
 
     /**

@@ -26,13 +26,29 @@ public class Team extends javax.swing.JPanel {
 	/**
 	 * Creates new form Team
 	 */
-	public Team(String name) {
+	private Team(String name) {
 		this.name = name;
 		this.score = 0;
 		
+		
 		initComponents();
-		//EsportsGUI.getTeamTabbedPane().add(this.TeamName, this);
-		Team.list.add(this);
+	}
+	
+	public static Team add(String name) {
+		Team tm = new Team(name);
+		
+		Team.list.add(tm);
+		
+		return tm;
+	}
+	
+	public void updateScore() {
+		int tot = 0;
+		for (Event evt : Event.list) {
+			Integer scr = evt.teamScores.get(this);
+			if (scr != null) tot += scr;
+		}
+		this.score = tot;
 	}
 
 	/**

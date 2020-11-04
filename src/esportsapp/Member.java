@@ -26,15 +26,31 @@ public class Member extends javax.swing.JPanel {
 	/**
 	 * Creates new form Member
 	 */
-	public Member() {
+	private Member(String name, Team team) {
 		this.name = name;
 		this.team = team;
 		this.score = 0;
 		
-		this.team.memberScores.put(this, score);
-		Member.list.add(this);
 		
 		initComponents();
+	}
+	
+	public static Member add(String name, Team team) {
+		Member mem = new Member(name, team);
+		
+		mem.team.memberScores.put(mem, mem.score);
+		Member.list.add(mem);
+		
+		return mem;
+	}
+	
+	public void setScoreForEvent(Event evt, int scr) {
+		this.eventScores.put(evt, scr);
+		int tot = 0;
+		for (int scr2 : this.eventScores.values()) tot += scr2;
+		this.score = tot;
+		this.team.memberScores.put(this, tot);	
+		
 	}
 
 	/**

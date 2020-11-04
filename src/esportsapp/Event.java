@@ -25,15 +25,32 @@ public class Event extends javax.swing.JPanel {
 	/**
 	 * Creates new form Event
 	 */
-	public Event(String name) {
+	private Event(String name) {
 		this.name = name;
 		
+		
 		initComponents();
+	}
+	
+	public static Event add(String name) {
+		Event evt = new Event(name);
+		
 		JPanel elp = EsportsGUI.getEventsListPanel();
-		elp.add(this, Event.list.size());
+		elp.add(evt, Event.list.size()); 
 		elp.revalidate();
-		elp.repaint();
-		Event.list.add(this);
+		
+		Event.list.add(evt);
+		
+		return evt;
+	}
+	
+	public void addTeam(Team tm) {
+		this.teamScores.put(tm, 0);
+	}
+	
+	public void setTeamScore(Team tm, int scr) {
+		this.teamScores.put(tm, scr);
+		tm.updateScore();
 	}
 
 	/**
