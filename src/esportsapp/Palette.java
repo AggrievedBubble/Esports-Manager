@@ -34,6 +34,7 @@ public final class Palette {
 				ColorEnum.DARK_SECONDARY_TEXT,
 				ColorEnum.DARK_TERTIARY_TEXT,
 				ColorEnum.DARK_SEPARATOR,
+				ColorEnum.DARK_INPUT_BACK,
 		
 				ColorEnum.CLOSE_MOUSE_OVER,
 				
@@ -68,6 +69,7 @@ public final class Palette {
 				ColorEnum.LIGHT_SECONDARY_TEXT,
 				ColorEnum.LIGHT_TERTIARY_TEXT,
 				ColorEnum.LIGHT_SEPARATOR,
+				ColorEnum.LIGHT_INPUT_BACK,
 				
 				ColorEnum.CLOSE_MOUSE_OVER,
 		
@@ -102,6 +104,7 @@ public final class Palette {
 		public ColorEnum COLOR_SECONDARY_TEXT;
 		public ColorEnum COLOR_TERTIARY_TEXT;
 		public ColorEnum COLOR_SEPARATOR;
+		public ColorEnum COLOR_INPUT_BACK;
 		
 		public ColorEnum COLOR_CLOSE_MOUSE_OVER;
 		
@@ -134,6 +137,7 @@ public final class Palette {
 				ColorEnum COLOR_SECONDARY_TEXT,
 				ColorEnum COLOR_TERTIARY_TEXT,
 				ColorEnum COLOR_SEPARATOR,
+				ColorEnum COLOR_INPUT_BACK,
 				
 				ColorEnum COLOR_CLOSE_MOUSE_OVER,
 				
@@ -166,6 +170,7 @@ public final class Palette {
 			this.COLOR_SECONDARY_TEXT = COLOR_SECONDARY_TEXT;
 			this.COLOR_TERTIARY_TEXT = COLOR_TERTIARY_TEXT;
 			this.COLOR_SEPARATOR = COLOR_SEPARATOR;
+			this.COLOR_INPUT_BACK = COLOR_INPUT_BACK;
 			
 			this.COLOR_CLOSE_MOUSE_OVER = COLOR_CLOSE_MOUSE_OVER;
 			
@@ -204,6 +209,7 @@ public final class Palette {
 		DARK_SECONDARY_TEXT(205, 205, 205),										LIGHT_SECONDARY_TEXT(50, 50, 50),
 		DARK_TERTIARY_TEXT(155, 155, 155),										LIGHT_TERTIARY_TEXT(100, 100, 100),
 		DARK_SEPARATOR(66, 69, 74),												LIGHT_SEPARATOR(235, 235, 235),
+		DARK_INPUT_BACK(64, 68, 45),											LIGHT_INPUT_BACK(235, 237, 239),
 		
 		CLOSE_MOUSE_OVER(240, 71, 71);
 		

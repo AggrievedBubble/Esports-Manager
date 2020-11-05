@@ -115,9 +115,9 @@ public class Event extends javax.swing.JPanel {
 
     private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
         // TODO add your handling code here:
-		JDialog md = EsportsGUI.getManagementDialog();
-		EsportsGUI.setManager(this);
+		ManagementDialog<Event> md = new ManagementDialog<>(this);
 		md.setVisible(true);
+		md.nameField.setText(md.object.name);
 		
     }//GEN-LAST:event_formMouseClicked
 

@@ -17,6 +17,7 @@ import javax.swing.*;
 
 public class EsportsGUI extends javax.swing.JFrame {
 
+	private static ComponentResizer cr = new ComponentResizer();
 	private int posX;
 	private int posY;
 
@@ -40,12 +41,6 @@ public class EsportsGUI extends javax.swing.JFrame {
         menuButtonGroup = new javax.swing.ButtonGroup();
         themeButtonGroup = new javax.swing.ButtonGroup();
         displayButtonGroup = new javax.swing.ButtonGroup();
-        managementDialog = new javax.swing.JDialog();
-        mainManagementPanel = new javax.swing.JPanel();
-        managementCloseButton = new javax.swing.JButton();
-        managementDragBarPanel = new javax.swing.JPanel();
-        managementPanel = new javax.swing.JPanel();
-        managementNameField = new javax.swing.JTextField();
         mainPanel = new javax.swing.JPanel();
         dragBarPanel = new javax.swing.JPanel();
         minimiseButton = new javax.swing.JButton();
@@ -89,100 +84,6 @@ public class EsportsGUI extends javax.swing.JFrame {
         naratorSeparator = new javax.swing.JSeparator();
         versionLabel = new javax.swing.JLabel();
         disclaimerLabel = new javax.swing.JLabel();
-
-        managementDialog.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        managementDialog.setModal(true);
-        managementDialog.setUndecorated(true);
-        managementDialog.setSize(new java.awt.Dimension(400, 500));
-        managementDialog.getContentPane().setLayout(new java.awt.GridBagLayout());
-
-        mainManagementPanel.setBackground(Palette.getCurrentScheme().COLOR_MAIN.getColor());
-        mainManagementPanel.setLayout(new java.awt.GridBagLayout());
-
-        managementCloseButton.setBackground(Palette.getCurrentScheme().COLOR_MAIN.getColor());
-        managementCloseButton.setIcon(Palette.getCurrentScheme().ICON_CLOSE.getIcon());
-        managementCloseButton.setBorder(null);
-        managementCloseButton.setBorderPainted(false);
-        managementCloseButton.setFocusable(false);
-        managementCloseButton.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                managementCloseButtonMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                managementCloseButtonMouseExited(evt);
-            }
-        });
-        managementCloseButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                managementCloseButtonActionPerformed(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHEAST;
-        mainManagementPanel.add(managementCloseButton, gridBagConstraints);
-
-        managementDragBarPanel.setFocusable(false);
-        managementDragBarPanel.setOpaque(false);
-        managementDragBarPanel.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
-            public void mouseDragged(java.awt.event.MouseEvent evt) {
-                managementDragBarPanelMouseDragged(evt);
-            }
-        });
-        managementDragBarPanel.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                managementDragBarPanelMousePressed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout managementDragBarPanelLayout = new javax.swing.GroupLayout(managementDragBarPanel);
-        managementDragBarPanel.setLayout(managementDragBarPanelLayout);
-        managementDragBarPanelLayout.setHorizontalGroup(
-            managementDragBarPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-        managementDragBarPanelLayout.setVerticalGroup(
-            managementDragBarPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTH;
-        gridBagConstraints.weightx = 1.0;
-        mainManagementPanel.add(managementDragBarPanel, gridBagConstraints);
-
-        managementPanel.setBackground(Palette.getCurrentScheme().COLOR_ACTIVE.getColor());
-        managementPanel.setLayout(new java.awt.GridBagLayout());
-
-        managementNameField.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        managementNameField.setText("Name");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.FIRST_LINE_START;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
-        managementPanel.add(managementNameField, gridBagConstraints);
-
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(0, 5, 5, 5);
-        mainManagementPanel.add(managementPanel, gridBagConstraints);
-
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
-        managementDialog.getContentPane().add(mainManagementPanel, gridBagConstraints);
-
-        managementDialog.setLocationRelativeTo(null);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Esports Manager");
@@ -1229,35 +1130,6 @@ public class EsportsGUI extends javax.swing.JFrame {
 		if (!nameTaken) Event.add(proposedName);
     }//GEN-LAST:event_addEventButtonActionPerformed
 
-    private void managementCloseButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_managementCloseButtonMouseEntered
-        // TODO add your handling code here:
-		managementCloseButton.setIcon(Palette.getCurrentScheme().ICON_CLOSE_MOUSE_OVER.getIcon());
-		managementCloseButton.setBackground(Palette.getCurrentScheme().COLOR_CLOSE_MOUSE_OVER.getColor());
-    }//GEN-LAST:event_managementCloseButtonMouseEntered
-
-    private void managementCloseButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_managementCloseButtonMouseExited
-        // TODO add your handling code here:
-		managementCloseButton.setIcon(Palette.getCurrentScheme().ICON_CLOSE.getIcon());
-		managementCloseButton.setBackground(Palette.getCurrentScheme().COLOR_MAIN.getColor());
-    }//GEN-LAST:event_managementCloseButtonMouseExited
-
-    private void managementCloseButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_managementCloseButtonActionPerformed
-        // TODO add your handling code here:
-		managementDialog.setVisible(false);
-    }//GEN-LAST:event_managementCloseButtonActionPerformed
-
-    private void managementDragBarPanelMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_managementDragBarPanelMousePressed
-        // TODO add your handling code here:
-		posX = evt.getX();
-		posY = evt.getY();
-    }//GEN-LAST:event_managementDragBarPanelMousePressed
-
-    private void managementDragBarPanelMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_managementDragBarPanelMouseDragged
-        // TODO add your handling code here:
-		Rectangle rectangle = managementDialog.getBounds();
-		managementDialog.setBounds(evt.getXOnScreen() - posX, evt.getYOnScreen() - posY, rectangle.width, rectangle.height);
-    }//GEN-LAST:event_managementDragBarPanelMouseDragged
-
     /**
      * @param args the command line arguments
      */
@@ -1285,7 +1157,6 @@ public class EsportsGUI extends javax.swing.JFrame {
 		
 		System.setProperty("awt.useSystemAAFontSettings","on");
 		
-		ComponentResizer cr = new ComponentResizer();
 		cr.setSnapSize(new Dimension(1, 1));
 		cr.setMaximumSize(new Dimension(1920, 1080));
 		cr.setMinimumSize(new Dimension(300, 100));
@@ -1296,7 +1167,6 @@ public class EsportsGUI extends javax.swing.JFrame {
 			public void run() {
 				cr.registerComponent(new EsportsGUI());
 				EsportsGUI.getFrames()[0].setVisible(true);
-				cr.registerComponent(managementDialog);
 				
 				eventsScrollPane.getViewport().setOpaque(false);
 				eventsScrollPane.getVerticalScrollBar().setUnitIncrement(16);
@@ -1323,30 +1193,11 @@ public class EsportsGUI extends javax.swing.JFrame {
 		//return teamsListPanel;
 	//}
 	
-	public static JDialog getManagementDialog() {
-		return managementDialog;
-	}
-	
-	public static void setManager(Event ev) {
-		managementNameField.setText(ev.name);
-	}
-
-	
-	public static void setManager(Team tm) {
-		
-	}
-	
-	public static void setManager(Member mem) {
-		
+	public static ComponentResizer getComponentResizer() {
+		return cr;
 	}
 	
 	private void refreshComponents() {
-		
-		//Everything inside of managementDialog
-		mainManagementPanel.setBackground(Palette.getCurrentScheme().COLOR_MAIN.getColor());
-		managementCloseButton.setBackground(Palette.getCurrentScheme().COLOR_MAIN.getColor());
-		managementCloseButton.setIcon(Palette.getCurrentScheme().ICON_CLOSE.getIcon());
-		managementPanel.setBackground(Palette.getCurrentScheme().COLOR_ACTIVE.getColor());
 		
 		//Everything inside of Frame
 		mainPanel.setBackground(Palette.getCurrentScheme().COLOR_MAIN.getColor());
@@ -1446,13 +1297,7 @@ public class EsportsGUI extends javax.swing.JFrame {
     private static javax.swing.JToggleButton leaderboardToggleButton;
     private javax.swing.JCheckBox lightThemeCheck;
     private javax.swing.JButton loadButton;
-    private javax.swing.JPanel mainManagementPanel;
     private javax.swing.JPanel mainPanel;
-    private javax.swing.JButton managementCloseButton;
-    private static javax.swing.JDialog managementDialog;
-    private javax.swing.JPanel managementDragBarPanel;
-    private static javax.swing.JTextField managementNameField;
-    private javax.swing.JPanel managementPanel;
     private javax.swing.JButton maximiseButton;
     private javax.swing.ButtonGroup menuButtonGroup;
     private javax.swing.JPanel menuPanel;
