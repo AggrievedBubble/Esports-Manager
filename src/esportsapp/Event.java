@@ -35,6 +35,7 @@ public class Event extends javax.swing.JPanel {
 	}
 	
 	public static Event add(String name) {
+		name = name.trim();
 		Event evt = new Event(name);
 		
 		JPanel elp = EsportsGUI.getEventsListPanel();
@@ -114,7 +115,10 @@ public class Event extends javax.swing.JPanel {
 
     private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
         // TODO add your handling code here:
-		EsportsGUI.getManagementDialog().setVisible(true);
+		JDialog md = EsportsGUI.getManagementDialog();
+		EsportsGUI.setManager(this);
+		md.setVisible(true);
+		
     }//GEN-LAST:event_formMouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

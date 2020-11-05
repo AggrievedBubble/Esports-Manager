@@ -37,6 +37,7 @@ public class Member extends javax.swing.JPanel {
 	}
 	
 	public static Member add(String name, Team team) {
+		name = name.trim();
 		Member mem = new Member(name, team);
 		
 		mem.team.memberScores.put(mem, mem.score);

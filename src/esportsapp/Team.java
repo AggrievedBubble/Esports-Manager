@@ -36,6 +36,7 @@ public class Team extends javax.swing.JPanel {
 	}
 	
 	public static Team add(String name) {
+		name = name.trim();
 		Team tm = new Team(name);
 		
 		Team.list.add(tm);

@@ -45,6 +45,7 @@ public class EsportsGUI extends javax.swing.JFrame {
         managementCloseButton = new javax.swing.JButton();
         managementDragBarPanel = new javax.swing.JPanel();
         managementPanel = new javax.swing.JPanel();
+        managementNameField = new javax.swing.JTextField();
         mainPanel = new javax.swing.JPanel();
         dragBarPanel = new javax.swing.JPanel();
         minimiseButton = new javax.swing.JButton();
@@ -155,17 +156,15 @@ public class EsportsGUI extends javax.swing.JFrame {
         mainManagementPanel.add(managementDragBarPanel, gridBagConstraints);
 
         managementPanel.setBackground(Palette.getCurrentScheme().COLOR_ACTIVE.getColor());
+        managementPanel.setLayout(new java.awt.GridBagLayout());
 
-        javax.swing.GroupLayout managementPanelLayout = new javax.swing.GroupLayout(managementPanel);
-        managementPanel.setLayout(managementPanelLayout);
-        managementPanelLayout.setHorizontalGroup(
-            managementPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 390, Short.MAX_VALUE)
-        );
-        managementPanelLayout.setVerticalGroup(
-            managementPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 489, Short.MAX_VALUE)
-        );
+        managementNameField.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        managementNameField.setText("Name");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.FIRST_LINE_START;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        managementPanel.add(managementNameField, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -174,7 +173,7 @@ public class EsportsGUI extends javax.swing.JFrame {
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        gridBagConstraints.insets = new java.awt.Insets(0, 5, 5, 5);
         mainManagementPanel.add(managementPanel, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -1328,6 +1327,19 @@ public class EsportsGUI extends javax.swing.JFrame {
 		return managementDialog;
 	}
 	
+	public static void setManager(Event ev) {
+		managementNameField.setText(ev.name);
+	}
+
+	
+	public static void setManager(Team tm) {
+		
+	}
+	
+	public static void setManager(Member mem) {
+		
+	}
+	
 	private void refreshComponents() {
 		
 		//Everything inside of managementDialog
@@ -1439,6 +1451,7 @@ public class EsportsGUI extends javax.swing.JFrame {
     private javax.swing.JButton managementCloseButton;
     private static javax.swing.JDialog managementDialog;
     private javax.swing.JPanel managementDragBarPanel;
+    private static javax.swing.JTextField managementNameField;
     private javax.swing.JPanel managementPanel;
     private javax.swing.JButton maximiseButton;
     private javax.swing.ButtonGroup menuButtonGroup;
