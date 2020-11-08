@@ -15,7 +15,7 @@ import javax.swing.*;
  *
  * @author User
  */
-public class Team extends javax.swing.JPanel {
+public class Team extends javax.swing.JPanel implements EsportsInterface {
 
 	public static List<Team> list = new ArrayList<Team>();
 	

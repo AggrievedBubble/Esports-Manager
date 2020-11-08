@@ -14,7 +14,7 @@ import java.util.Map;
  *
  * @author j9neave
  */
-public class Member extends javax.swing.JPanel {
+public class Member extends javax.swing.JPanel implements EsportsInterface {
 
 	static List<Member> list = new ArrayList<Member>();
 	
