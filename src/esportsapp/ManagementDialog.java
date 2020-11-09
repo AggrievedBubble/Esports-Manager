@@ -12,7 +12,7 @@ import java.awt.*;
  * @author User
  * @param <T>
  */
-public class ManagementDialog<T> extends javax.swing.JDialog {
+public class ManagementDialog<T extends EsportsInterface> extends javax.swing.JDialog {
 
 	private int posX;
 	private int posY;

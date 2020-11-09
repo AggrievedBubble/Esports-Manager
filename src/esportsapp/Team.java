@@ -9,25 +9,49 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import javax.swing.*;
 
 /**
  *
  * @author User
  */
-public class Team extends javax.swing.JPanel implements EsportsInterface {
+public class Team extends javax.swing.JPanel implements EsportsInterface<Team> {
+	
+	@Override
+	public Team get() {
+		return this;
+	}
+	
+	@Override
+	public String getName() {
+		return this.name;
+	}
+	
+	@Override
+	public void setName(String name) {
+		this.name = name;
+	}
+	
+	@Override
+	public Map<Member, Integer> getScores() {
+		return this.scores;
+	}
+	
+	@Override
+	public void setScores(Map mp) {
+		this.scores = mp;
+	}
 
 	public static List<Team> list = new ArrayList<Team>();
 	
 	String name;
 	int score = 0;
-	Map<Member, Integer> memberScores;
+	Map<Member, Integer> scores;
 	
 	/**
 	 * Creates new form Team
 	 */
 	private Team(String name) {
-		this.memberScores = new HashMap<>();
+		this.scores = new HashMap<>();
 		this.name = name;
 		this.score = 0;
 		
@@ -47,7 +71,7 @@ public class Team extends javax.swing.JPanel implements EsportsInterface {
 	public void updateScore() {
 		int tot = 0;
 		tot = Event.list.stream()
-				.map(evt -> evt.teamScores.get(this))
+				.map(evt -> evt.scores.get(this))
 				.filter(scr -> (scr != null))
 				.reduce(tot, Integer::sum);
 		this.score = tot;

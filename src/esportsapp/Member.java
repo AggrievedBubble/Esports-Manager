@@ -12,22 +12,47 @@ import java.util.Map;
 
 /**
  *
- * @author j9neave
+ * @author User
  */
-public class Member extends javax.swing.JPanel implements EsportsInterface {
+public class Member extends javax.swing.JPanel implements EsportsInterface<Member> {
 
+	@Override
+	public Member get() {
+		return this;
+	}
+	
+	@Override
+	public String getName() {
+		return this.name;
+	}
+	
+	@Override
+	public void setName(String name) {
+		this.name = name;
+	}
+	
+	@Override 
+	public Map getScores() {
+		return this.scores;
+	}
+	
+	@Override
+	public void setScores(Map mp) {
+		this.scores = mp;
+	}
+	
 	static List<Member> list = new ArrayList<Member>();
 	
 	String name;
 	Team team;
 	int score;
-	Map<Event, Integer> eventScores;
+	Map<Event, Integer> scores;
 	
 	/**
 	 * Creates new form Member
 	 */
 	private Member(String name, Team team) {
-		this.eventScores = new HashMap<>();
+		this.scores = new HashMap<>();
 		this.name = name;
 		this.team = team;
 		this.score = 0;
@@ -40,19 +65,19 @@ public class Member extends javax.swing.JPanel implements EsportsInterface {
 		name = name.trim();
 		Member mem = new Member(name, team);
 		
-		mem.team.memberScores.put(mem, mem.score);
+		mem.team.scores.put(mem, mem.score);
 		Member.list.add(mem);
 		
 		return mem;
 	}
 	
 	public void setScoreForEvent(Event evt, int scr) {
-		this.eventScores.put(evt, scr);
-		int total = this.eventScores.values().stream()
+		this.scores.put(evt, scr);
+		int total = this.scores.values().stream()
 				.mapToInt(i -> i)
 				.sum();
 		this.score = total;
-		this.team.memberScores.put(this, total);	
+		this.team.scores.put(this, total);	
 		
 	}
 
@@ -77,7 +102,7 @@ public class Member extends javax.swing.JPanel implements EsportsInterface {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-
+	
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables
 }
