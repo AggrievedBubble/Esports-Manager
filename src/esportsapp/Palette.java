@@ -49,6 +49,9 @@ public final class Palette {
 				IconEnum.PLUS_MOUSE_OVER_DARK,
 				IconEnum.SMALL_PLUS_DARK,
 				IconEnum.SMALL_PLUS_MOUSE_OVER_DARK,
+				IconEnum.DEFAULT_EVENT_ICON_DARK,
+				IconEnum.DEFAULT_TEAM_ICON_DARK, 
+				IconEnum.DEFAULT_MEMBER_ICON_DARK,
 				
 				IconEnum.CLOSE_MOUSE_OVER
 				
@@ -84,6 +87,9 @@ public final class Palette {
 				IconEnum.PLUS_MOUSE_OVER_LIGHT,
 				IconEnum.SMALL_PLUS_LIGHT,
 				IconEnum.SMALL_PLUS_MOUSE_OVER_LIGHT,
+				IconEnum.DEFAULT_EVENT_ICON_LIGHT,
+				IconEnum.DEFAULT_TEAM_ICON_LIGHT,
+				IconEnum.DEFAULT_MEMBER_ICON_LIGHT,
 				
 				IconEnum.CLOSE_MOUSE_OVER
 				
@@ -119,6 +125,9 @@ public final class Palette {
 		public IconEnum ICON_PLUS_MOUSE_OVER;
 		public IconEnum ICON_SMALL_PLUS;
 		public IconEnum ICON_SMALL_PLUS_MOUSE_OVER;
+		public IconEnum ICON_DEFAULT_EVENT;
+		public IconEnum ICON_DEFAULT_TEAM;
+		public IconEnum ICON_DEFAULT_MEMBER;
 		
 		public IconEnum ICON_CLOSE_MOUSE_OVER;
 
@@ -152,6 +161,9 @@ public final class Palette {
 				IconEnum ICON_PLUS_MOUSE_OVER,
 				IconEnum ICON_SMALL_PLUS,
 				IconEnum ICON_SMALL_PLUS_MOUSE_OVER,
+				IconEnum ICON_DEFAULT_EVENT,
+				IconEnum ICON_DEFAULT_TEAM,
+				IconEnum ICON_DEFAULT_MEMBER,
 				
 				IconEnum ICON_CLOSE_MOUSE_OVER
 				
@@ -185,6 +197,9 @@ public final class Palette {
 			this.ICON_PLUS_MOUSE_OVER = ICON_PLUS_MOUSE_OVER;
 			this.ICON_SMALL_PLUS = ICON_SMALL_PLUS;
 			this.ICON_SMALL_PLUS_MOUSE_OVER = ICON_SMALL_PLUS_MOUSE_OVER;
+			this.ICON_DEFAULT_EVENT = ICON_DEFAULT_EVENT;
+			this.ICON_DEFAULT_TEAM = ICON_DEFAULT_TEAM;
+			this.ICON_DEFAULT_MEMBER = ICON_DEFAULT_MEMBER;
 			
 			this.ICON_CLOSE_MOUSE_OVER = ICON_CLOSE_MOUSE_OVER;
 			
@@ -257,6 +272,12 @@ public final class Palette {
 		SMALL_PLUS_LIGHT(Palette.class.getResource("/esportsapp/images/smallpluslight.png")),
 		SMALL_PLUS_MOUSE_OVER_DARK(Palette.class.getResource("/esportsapp/images/smallplusmouseoverdark.png")),
 		SMALL_PLUS_MOUSE_OVER_LIGHT(Palette.class.getResource("/esportsapp/images/smallplusmouseoverdark.png")),
+		DEFAULT_EVENT_ICON_DARK(Palette.class.getResource("/esportsapp/images/defaulteventicondark")),
+		DEFAULT_EVENT_ICON_LIGHT(Palette.class.getResource("/esportsapp/images/defaulteventiconlight")),
+		DEFAULT_TEAM_ICON_DARK(Palette.class.getResource("/esportsapp/images/defaultteamicondark")),
+		DEFAULT_TEAM_ICON_LIGHT(Palette.class.getResource("/esportsapp/images/defaultteamiconlight")),
+		DEFAULT_MEMBER_ICON_DARK(Palette.class.getResource("/esportsapp/images/defaultmembericondark")),
+		DEFAULT_MEMBER_ICON_LIGHT(Palette.class.getResource("/esportsapp/images/defeaultmembericonlight")),
 	
 		CLOSE_MOUSE_OVER(Palette.class.getResource("/esportsapp/images/closemouseover.png"));
 		
