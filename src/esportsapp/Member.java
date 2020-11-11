@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import javax.swing.*;
 
 /**
  *
@@ -31,6 +32,36 @@ public class Member extends javax.swing.JPanel implements EsportsInterface<Membe
 		this.name = name;
 	}
 	
+	@Override
+	public ImageIcon getIcon() {
+		return this.icon;
+	}
+	
+	@Override
+	public void setIcon(ImageIcon icn) {
+		this.icon = icn;
+	}
+	
+	@Override
+	public String getDescription() {
+		return this.description;
+	}
+	
+	@Override
+	public void setDescription(String desc) {
+		this.description = desc;
+	}
+	
+	@Override
+	public int getScore() {
+		return this.score;
+	}
+	
+	@Override
+	public void setScore(int scr) {
+		this.score = scr;
+	}
+	
 	@Override 
 	public Map getScores() {
 		return this.scores;
@@ -41,19 +72,27 @@ public class Member extends javax.swing.JPanel implements EsportsInterface<Membe
 		this.scores = mp;
 	}
 	
-	static List<Member> list = new ArrayList<Member>();
+	public static List<Member> list = new ArrayList<Member>();
+	private static final long serialVersionUID = 46L;
 	
 	String name;
-	Team team;
+	ImageIcon icon;
+	String description;
 	int score;
 	Map<Event, Integer> scores;
+	
+	Team team;
 	
 	/**
 	 * Creates new form Member
 	 */
 	private Member(String name, Team team) {
-		this.scores = new HashMap<>();
 		this.name = name;
+		this.icon = Palette.getCurrentScheme().ICON_DEFAULT_MEMBER.getIcon();
+		this.description = "";
+		this.scores = new HashMap<>();
+		
+		
 		this.team = team;
 		this.score = 0;
 		

@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import javax.swing.*;
 
 /**
  *
@@ -32,6 +33,36 @@ public class Team extends javax.swing.JPanel implements EsportsInterface<Team> {
 	}
 	
 	@Override
+	public ImageIcon getIcon() {
+		return this.icon;
+	}
+	
+	@Override
+	public void setIcon(ImageIcon icn) {
+		this.icon = icn;
+	}
+	
+	@Override
+	public String getDescription() {
+		return this.description;
+	}
+	
+	@Override
+	public void setDescription(String desc) {
+		this.description = desc;
+	}
+	
+	@Override
+	public int getScore() {
+		return this.score;
+	}
+	
+	@Override
+	public void setScore(int scr) {
+		this.score = scr;
+	}
+	
+	@Override
 	public Map<Member, Integer> getScores() {
 		return this.scores;
 	}
@@ -42,17 +73,23 @@ public class Team extends javax.swing.JPanel implements EsportsInterface<Team> {
 	}
 
 	public static List<Team> list = new ArrayList<Team>();
+	private static final long serialVersionUID = 44L;
 	
 	String name;
-	int score = 0;
+	ImageIcon icon;
+	int score;
+	String description;
 	Map<Member, Integer> scores;
 	
 	/**
 	 * Creates new form Team
 	 */
 	private Team(String name) {
-		this.scores = new HashMap<>();
 		this.name = name;
+		this.icon = Palette.getCurrentScheme().ICON_DEFAULT_TEAM.getIcon();
+		this.description = "";
+		this.scores = new HashMap<>();
+		
 		this.score = 0;
 		
 		

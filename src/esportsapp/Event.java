@@ -10,6 +10,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import javax.swing.*;
+import java.awt.*;
 
 /**
  *
@@ -33,6 +34,36 @@ public class Event extends javax.swing.JPanel implements EsportsInterface<Event>
 	}
 	
 	@Override
+	public ImageIcon getIcon() {
+		return this.icon;
+	}
+	
+	@Override 
+	public void setIcon(ImageIcon icn) {
+		this.icon = icn;
+	}
+	
+	@Override 
+	public String getDescription() {
+		return this.description;
+	}
+	
+	@Override
+	public void setDescription(String desc) {
+		this.description = desc;
+	}
+	
+	@Override
+	public int getScore() {
+		return this.score;
+	}
+	
+	@Override
+	public void setScore(int scr) {
+		this.score = scr;
+	}
+	
+	@Override
 	public Map<Team, Integer> getScores() {
 		return this.scores;
 	}
@@ -43,16 +74,23 @@ public class Event extends javax.swing.JPanel implements EsportsInterface<Event>
 	}
 	
 	public static List<Event> list = new ArrayList<Event>();
+	private static final long serialVersionUID = 42;
 	
 	String name;
+	ImageIcon icon;
+	String description;
+	int score;
 	Map<Team, Integer> scores;
 	
 	/**
 	 * Creates new form Event
 	 */
 	private Event(String name) {
-		this.scores = new HashMap<>();
 		this.name = name;
+		this.icon = Palette.getCurrentScheme().ICON_DEFAULT_EVENT.getIcon();
+		this.description = "";
+		this.score = 0;
+		this.scores = new HashMap<>();
 		
 		
 		initComponents();
@@ -95,6 +133,7 @@ public class Event extends javax.swing.JPanel implements EsportsInterface<Event>
         java.awt.GridBagConstraints gridBagConstraints;
 
         nameLabel = new javax.swing.JLabel();
+        iconLabel = new javax.swing.JLabel();
 
         setBackground(Palette.getCurrentScheme().COLOR_ACTIVE.getColor());
         setMaximumSize(new java.awt.Dimension(2147483647, 35));
@@ -118,13 +157,20 @@ public class Event extends javax.swing.JPanel implements EsportsInterface<Event>
         nameLabel.setText(this.name);
         nameLabel.setBorder(javax.swing.BorderFactory.createEmptyBorder(5, 5, 5, 5));
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         add(nameLabel, gridBagConstraints);
+
+        iconLabel.setIcon(new ImageIcon(this.icon.getImage().getScaledInstance(32, 32, Image.SCALE_DEFAULT)));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        add(iconLabel, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
 
     private void formMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseEntered
@@ -146,6 +192,7 @@ public class Event extends javax.swing.JPanel implements EsportsInterface<Event>
     }//GEN-LAST:event_formMouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel iconLabel;
     private javax.swing.JLabel nameLabel;
     // End of variables declaration//GEN-END:variables
 }

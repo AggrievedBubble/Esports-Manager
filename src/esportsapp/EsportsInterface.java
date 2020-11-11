@@ -7,7 +7,7 @@ package esportsapp;
 
 import java.io.Serializable;
 import java.util.Map;
-import javax.swing.Icon;
+import javax.swing.ImageIcon;
 
 /**
  *
@@ -19,10 +19,12 @@ public interface EsportsInterface<T> extends Serializable{
 	public T get();
 	public String getName();
 	public void setName(String name);
-	public Icon getIcon();
-	public void setIcon(Icon icn);
+	public ImageIcon getIcon();
+	public void setIcon(ImageIcon icn);
 	public String getDescription();
 	public void setDescription(String str);
+	public int getScore();
+	public void setScore(int scr);
 	public Map getScores();
 	public void setScores(Map scr);
 	

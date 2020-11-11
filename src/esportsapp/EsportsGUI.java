@@ -496,18 +496,7 @@ public class EsportsGUI extends javax.swing.JFrame {
         teamsScrollPane.setViewportView(null);
 
         teamsListPanel.setOpaque(false);
-
-        javax.swing.GroupLayout teamsListPanelLayout = new javax.swing.GroupLayout(teamsListPanel);
-        teamsListPanel.setLayout(teamsListPanelLayout);
-        teamsListPanelLayout.setHorizontalGroup(
-            teamsListPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
-        teamsListPanelLayout.setVerticalGroup(
-            teamsListPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
-
+        teamsListPanel.setLayout(new javax.swing.BoxLayout(teamsListPanel, javax.swing.BoxLayout.Y_AXIS));
         teamsScrollPane.setViewportView(teamsListPanel);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
