@@ -6,6 +6,8 @@
 package esportsapp;
 
 import java.awt.*;
+import javax.swing.*;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
  *
@@ -35,7 +37,9 @@ public class ManagementDialog<T extends EsportsInterface> extends javax.swing.JD
 	
 	private void open() {
 		EsportsGUI.getComponentResizer().registerComponent(this);
-		
+		this.nameField.setText(this.object.getName());
+		this.jTextArea1.setText(this.object.getDescription());
+		this.iconLabel.setIcon(new ImageIcon(this.object.getIcon().getImage().getScaledInstance(32, 32, Image.SCALE_DEFAULT)));
 	}
 
 	/**
@@ -56,6 +60,8 @@ public class ManagementDialog<T extends EsportsInterface> extends javax.swing.JD
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
         iconLabel = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(200, 300));
@@ -141,11 +147,14 @@ public class ManagementDialog<T extends EsportsInterface> extends javax.swing.JD
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         managementPanel.add(nameField, gridBagConstraints);
+
+        jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
@@ -154,13 +163,16 @@ public class ManagementDialog<T extends EsportsInterface> extends javax.swing.JD
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
-        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.gridwidth = 3;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTH;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(0, 5, 5, 5);
         managementPanel.add(jScrollPane1, gridBagConstraints);
+
+        iconLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                iconLabelMouseClicked(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
@@ -168,11 +180,57 @@ public class ManagementDialog<T extends EsportsInterface> extends javax.swing.JD
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         managementPanel.add(iconLabel, gridBagConstraints);
 
+        jButton1.setBackground(Palette.getCurrentScheme().COLOR_MENU_BACK.getColor());
+        jButton1.setForeground(Palette.getCurrentScheme().COLOR_PRIMARY_TEXT.getColor());
+        jButton1.setText("Apply");
+        jButton1.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createEtchedBorder(), javax.swing.BorderFactory.createEmptyBorder(5, 5, 5, 5)));
+        jButton1.setContentAreaFilled(false);
+        jButton1.setEnabled(false);
+        jButton1.setFocusable(false);
+        jButton1.setPreferredSize(new java.awt.Dimension(50, 25));
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jButton1MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jButton1MouseExited(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 5, 0);
+        managementPanel.add(jButton1, gridBagConstraints);
+
+        jButton2.setBackground(Palette.getCurrentScheme().COLOR_MENU_BACK.getColor());
+        jButton2.setForeground(Palette.getCurrentScheme().COLOR_PRIMARY_TEXT.getColor());
+        jButton2.setText("Cancel");
+        jButton2.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createEtchedBorder(), javax.swing.BorderFactory.createEmptyBorder(5, 5, 5, 5)));
+        jButton2.setContentAreaFilled(false);
+        jButton2.setFocusable(false);
+        jButton2.setPreferredSize(new java.awt.Dimension(50, 25));
+        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jButton2MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jButton2MouseExited(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 5, 5);
+        managementPanel.add(jButton2, gridBagConstraints);
+
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.gridwidth = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTH;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(0, 5, 5, 5);
@@ -227,10 +285,47 @@ public class ManagementDialog<T extends EsportsInterface> extends javax.swing.JD
 		this.object.getClass();
     }//GEN-LAST:event_nameFieldActionPerformed
 
+    private void jButton1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseEntered
+        // TODO add your handling code here:
+		jButton1.setBackground(Palette.getCurrentScheme().COLOR_MENU_MOUSE_OVER_BACK.getColor());
+		jButton1.setForeground(Palette.getCurrentScheme().COLOR_MENU_MOUSE_OVER_FRONT.getColor());
+    }//GEN-LAST:event_jButton1MouseEntered
+
+    private void jButton1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseExited
+        // TODO add your handling code here:
+		jButton1.setBackground(Palette.getCurrentScheme().COLOR_MENU_BACK.getColor());
+		jButton1.setForeground(Palette.getCurrentScheme().COLOR_MENU_FRONT.getColor());
+    }//GEN-LAST:event_jButton1MouseExited
+
+    private void jButton2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseEntered
+        // TODO add your handling code here:
+		jButton2.setBackground(Palette.getCurrentScheme().COLOR_MENU_MOUSE_OVER_BACK.getColor());
+		jButton2.setForeground(Palette.getCurrentScheme().COLOR_MENU_MOUSE_OVER_FRONT.getColor());
+    }//GEN-LAST:event_jButton2MouseEntered
+
+    private void jButton2MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseExited
+        // TODO add your handling code here:
+		jButton2.setBackground(Palette.getCurrentScheme().COLOR_MENU_BACK.getColor());
+		jButton2.setForeground(Palette.getCurrentScheme().COLOR_MENU_FRONT.getColor());
+    }//GEN-LAST:event_jButton2MouseExited
+
+    private void iconLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_iconLabelMouseClicked
+        // TODO add your handling code here:
+		JFileChooser chooser = new JFileChooser();
+		FileNameExtensionFilter filter = new FileNameExtensionFilter("JPEG & PNG Images", "jpeg", "png");
+		chooser.setFileFilter(filter);
+		int returnVal = chooser.showOpenDialog(EsportsGUI.getFrames()[0]);
+		if(returnVal == JFileChooser.APPROVE_OPTION) {
+			
+	    }
+    }//GEN-LAST:event_iconLabelMouseClicked
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton closeButton;
     private javax.swing.JPanel dragBarPanel;
     private javax.swing.JLabel iconLabel;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JPanel mainPanel;

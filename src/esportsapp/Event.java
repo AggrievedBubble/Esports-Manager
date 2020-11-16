@@ -9,8 +9,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import javax.swing.*;
 import java.awt.*;
+import javax.swing.*;
 
 /**
  *
@@ -111,6 +111,10 @@ public class Event extends javax.swing.JPanel implements EsportsInterface<Event>
 	
 	public JLabel getNameLabel() {
 		return nameLabel;
+	}
+	
+	public JLabel getIconLabel() {
+		return iconLabel;
 	}
 	
 	public void addTeam(Team tm) {

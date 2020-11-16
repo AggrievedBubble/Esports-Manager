@@ -50,10 +50,10 @@ public final class Palette {
 				IconEnum.PLUS_MOUSE_OVER_DARK,
 				IconEnum.SMALL_PLUS_DARK,
 				IconEnum.SMALL_PLUS_MOUSE_OVER_DARK,
-				IconEnum.DEFAULT_EVENT_ICON_DARK,
-				IconEnum.DEFAULT_TEAM_ICON_DARK, 
-				IconEnum.DEFAULT_MEMBER_ICON_DARK,
 				
+				IconEnum.DEFAULT_EVENT_ICON,
+				IconEnum.DEFAULT_TEAM_ICON, 
+				IconEnum.DEFAULT_MEMBER_ICON,
 				IconEnum.CLOSE_MOUSE_OVER
 				
 		),
@@ -88,10 +88,10 @@ public final class Palette {
 				IconEnum.PLUS_MOUSE_OVER_LIGHT,
 				IconEnum.SMALL_PLUS_LIGHT,
 				IconEnum.SMALL_PLUS_MOUSE_OVER_LIGHT,
-				IconEnum.DEFAULT_EVENT_ICON_LIGHT,
-				IconEnum.DEFAULT_TEAM_ICON_LIGHT,
-				IconEnum.DEFAULT_MEMBER_ICON_LIGHT,
 				
+				IconEnum.DEFAULT_EVENT_ICON,
+				IconEnum.DEFAULT_TEAM_ICON,
+				IconEnum.DEFAULT_MEMBER_ICON,
 				IconEnum.CLOSE_MOUSE_OVER
 				
 		);
@@ -273,12 +273,9 @@ public final class Palette {
 		SMALL_PLUS_LIGHT(Palette.class.getResource("/esportsapp/images/smallpluslight.png")),
 		SMALL_PLUS_MOUSE_OVER_DARK(Palette.class.getResource("/esportsapp/images/smallplusmouseoverdark.png")),
 		SMALL_PLUS_MOUSE_OVER_LIGHT(Palette.class.getResource("/esportsapp/images/smallplusmouseoverdark.png")),
-		DEFAULT_EVENT_ICON_DARK(Palette.class.getResource("/esportsapp/images/defaulteventicondark.png")),
-		DEFAULT_EVENT_ICON_LIGHT(Palette.class.getResource("/esportsapp/images/defaulteventiconlight.png")),
-		DEFAULT_TEAM_ICON_DARK(Palette.class.getResource("/esportsapp/images/defaultteamicondark.png")),
-		DEFAULT_TEAM_ICON_LIGHT(Palette.class.getResource("/esportsapp/images/defaultteamiconlight.png")),
-		DEFAULT_MEMBER_ICON_DARK(Palette.class.getResource("/esportsapp/images/defaultmembericondark.png")),
-		DEFAULT_MEMBER_ICON_LIGHT(Palette.class.getResource("/esportsapp/images/defeaultmembericonlight.png")),
+		DEFAULT_EVENT_ICON(Palette.class.getResource("/esportsapp/images/defaulteventiconlight.png")),
+		DEFAULT_TEAM_ICON(Palette.class.getResource("/esportsapp/images/defaultteamiconlight.png")),
+		DEFAULT_MEMBER_ICON(Palette.class.getResource("/esportsapp/images/defeaultmembericonlight.png")),
 	
 		CLOSE_MOUSE_OVER(Palette.class.getResource("/esportsapp/images/closemouseover.png"));
 		

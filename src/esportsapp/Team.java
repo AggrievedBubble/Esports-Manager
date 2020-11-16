@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.awt.*;
 import javax.swing.*;
 
 /**
@@ -122,19 +123,44 @@ public class Team extends javax.swing.JPanel implements EsportsInterface<Team> {
 	@SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        java.awt.GridBagConstraints gridBagConstraints;
+
+        nameLabel = new javax.swing.JLabel();
+        iconLabel = new javax.swing.JLabel();
 
         setMaximumSize(new java.awt.Dimension(2147483647, 40));
         setMinimumSize(new java.awt.Dimension(0, 40));
         setOpaque(false);
+        setPreferredSize(new java.awt.Dimension(400, 35));
         java.awt.GridBagLayout layout = new java.awt.GridBagLayout();
-        layout.columnWidths = new int[] {0, 5, 0, 5, 0, 5, 0, 5, 0};
-        layout.rowHeights = new int[] {0, 5, 0, 5, 0, 5, 0, 5, 0};
         layout.columnWeights = new double[] {0.0};
         layout.rowWeights = new double[] {0.0};
         setLayout(layout);
+
+        nameLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        nameLabel.setForeground(Palette.getCurrentScheme().COLOR_PRIMARY_TEXT.getColor());
+        nameLabel.setText(this.name);
+        nameLabel.setBorder(javax.swing.BorderFactory.createEmptyBorder(5, 5, 5, 5));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        add(nameLabel, gridBagConstraints);
+
+        iconLabel.setIcon(new ImageIcon(this.icon.getImage().getScaledInstance(32, 32, Image.SCALE_DEFAULT)));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        add(iconLabel, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel iconLabel;
+    private javax.swing.JLabel nameLabel;
     // End of variables declaration//GEN-END:variables
 }

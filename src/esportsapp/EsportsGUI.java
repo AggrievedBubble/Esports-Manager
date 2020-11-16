@@ -17,7 +17,7 @@ import javax.swing.*;
 
 public class EsportsGUI extends javax.swing.JFrame {
 
-	private static ComponentResizer cr = new ComponentResizer();
+	private static final ComponentResizer cr = new ComponentResizer();
 	private int posX;
 	private int posY;
 
