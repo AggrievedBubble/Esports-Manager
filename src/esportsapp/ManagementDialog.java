@@ -6,6 +6,7 @@
 package esportsapp;
 
 import java.awt.*;
+import java.io.File;
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
@@ -38,7 +39,7 @@ public class ManagementDialog<T extends EsportsInterface> extends javax.swing.JD
 	private void open() {
 		EsportsGUI.getComponentResizer().registerComponent(this);
 		this.nameField.setText(this.object.getName());
-		this.jTextArea1.setText(this.object.getDescription());
+		this.descriptionTextArea.setText(this.object.getDescription());
 		this.iconLabel.setIcon(new ImageIcon(this.object.getIcon().getImage().getScaledInstance(32, 32, Image.SCALE_DEFAULT)));
 	}
 
@@ -58,10 +59,10 @@ public class ManagementDialog<T extends EsportsInterface> extends javax.swing.JD
         managementPanel = new javax.swing.JPanel();
         nameField = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        descriptionTextArea = new javax.swing.JTextArea();
         iconLabel = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        applyButton = new javax.swing.JButton();
+        cancelButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(200, 300));
@@ -139,9 +140,9 @@ public class ManagementDialog<T extends EsportsInterface> extends javax.swing.JD
         nameField.setText("Name");
         nameField.setBorder(null);
         nameField.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-        nameField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nameFieldActionPerformed(evt);
+        nameField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                nameFieldKeyTyped(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -156,9 +157,9 @@ public class ManagementDialog<T extends EsportsInterface> extends javax.swing.JD
 
         jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        descriptionTextArea.setColumns(20);
+        descriptionTextArea.setRows(5);
+        jScrollPane1.setViewportView(descriptionTextArea);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -180,20 +181,25 @@ public class ManagementDialog<T extends EsportsInterface> extends javax.swing.JD
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         managementPanel.add(iconLabel, gridBagConstraints);
 
-        jButton1.setBackground(Palette.getCurrentScheme().COLOR_MENU_BACK.getColor());
-        jButton1.setForeground(Palette.getCurrentScheme().COLOR_PRIMARY_TEXT.getColor());
-        jButton1.setText("Apply");
-        jButton1.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createEtchedBorder(), javax.swing.BorderFactory.createEmptyBorder(5, 5, 5, 5)));
-        jButton1.setContentAreaFilled(false);
-        jButton1.setEnabled(false);
-        jButton1.setFocusable(false);
-        jButton1.setPreferredSize(new java.awt.Dimension(50, 25));
-        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+        applyButton.setBackground(Palette.getCurrentScheme().COLOR_MENU_BACK.getColor());
+        applyButton.setForeground(Palette.getCurrentScheme().COLOR_PRIMARY_TEXT.getColor());
+        applyButton.setText("Apply");
+        applyButton.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createEtchedBorder(), javax.swing.BorderFactory.createEmptyBorder(5, 5, 5, 5)));
+        applyButton.setContentAreaFilled(false);
+        applyButton.setEnabled(false);
+        applyButton.setFocusable(false);
+        applyButton.setPreferredSize(new java.awt.Dimension(50, 25));
+        applyButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jButton1MouseEntered(evt);
+                applyButtonMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                jButton1MouseExited(evt);
+                applyButtonMouseExited(evt);
+            }
+        });
+        applyButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                applyButtonActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -202,28 +208,28 @@ public class ManagementDialog<T extends EsportsInterface> extends javax.swing.JD
         gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 5, 0);
-        managementPanel.add(jButton1, gridBagConstraints);
+        managementPanel.add(applyButton, gridBagConstraints);
 
-        jButton2.setBackground(Palette.getCurrentScheme().COLOR_MENU_BACK.getColor());
-        jButton2.setForeground(Palette.getCurrentScheme().COLOR_PRIMARY_TEXT.getColor());
-        jButton2.setText("Cancel");
-        jButton2.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createEtchedBorder(), javax.swing.BorderFactory.createEmptyBorder(5, 5, 5, 5)));
-        jButton2.setContentAreaFilled(false);
-        jButton2.setFocusable(false);
-        jButton2.setPreferredSize(new java.awt.Dimension(50, 25));
-        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+        cancelButton.setBackground(Palette.getCurrentScheme().COLOR_MENU_BACK.getColor());
+        cancelButton.setForeground(Palette.getCurrentScheme().COLOR_PRIMARY_TEXT.getColor());
+        cancelButton.setText("Cancel");
+        cancelButton.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createEtchedBorder(), javax.swing.BorderFactory.createEmptyBorder(5, 5, 5, 5)));
+        cancelButton.setContentAreaFilled(false);
+        cancelButton.setFocusable(false);
+        cancelButton.setPreferredSize(new java.awt.Dimension(50, 25));
+        cancelButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jButton2MouseEntered(evt);
+                cancelButtonMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                jButton2MouseExited(evt);
+                cancelButtonMouseExited(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 5, 5);
-        managementPanel.add(jButton2, gridBagConstraints);
+        managementPanel.add(cancelButton, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -278,56 +284,75 @@ public class ManagementDialog<T extends EsportsInterface> extends javax.swing.JD
         posY = evt.getY();
     }//GEN-LAST:event_dragBarPanelMousePressed
 
-    private void nameFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameFieldActionPerformed
+    private void applyButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_applyButtonMouseEntered
         // TODO add your handling code here:
-		String proposedName = nameField.getText();
-		if (proposedName == null | proposedName.equals(""))
-		this.object.getClass();
-    }//GEN-LAST:event_nameFieldActionPerformed
+		applyButton.setBackground(Palette.getCurrentScheme().COLOR_MENU_MOUSE_OVER_BACK.getColor());
+		applyButton.setForeground(Palette.getCurrentScheme().COLOR_MENU_MOUSE_OVER_FRONT.getColor());
+    }//GEN-LAST:event_applyButtonMouseEntered
 
-    private void jButton1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseEntered
+    private void applyButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_applyButtonMouseExited
         // TODO add your handling code here:
-		jButton1.setBackground(Palette.getCurrentScheme().COLOR_MENU_MOUSE_OVER_BACK.getColor());
-		jButton1.setForeground(Palette.getCurrentScheme().COLOR_MENU_MOUSE_OVER_FRONT.getColor());
-    }//GEN-LAST:event_jButton1MouseEntered
+		applyButton.setBackground(Palette.getCurrentScheme().COLOR_MENU_BACK.getColor());
+		applyButton.setForeground(Palette.getCurrentScheme().COLOR_MENU_FRONT.getColor());
+    }//GEN-LAST:event_applyButtonMouseExited
 
-    private void jButton1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseExited
+    private void cancelButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelButtonMouseEntered
         // TODO add your handling code here:
-		jButton1.setBackground(Palette.getCurrentScheme().COLOR_MENU_BACK.getColor());
-		jButton1.setForeground(Palette.getCurrentScheme().COLOR_MENU_FRONT.getColor());
-    }//GEN-LAST:event_jButton1MouseExited
+		cancelButton.setBackground(Palette.getCurrentScheme().COLOR_MENU_MOUSE_OVER_BACK.getColor());
+		cancelButton.setForeground(Palette.getCurrentScheme().COLOR_MENU_MOUSE_OVER_FRONT.getColor());
+    }//GEN-LAST:event_cancelButtonMouseEntered
 
-    private void jButton2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseEntered
+    private void cancelButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelButtonMouseExited
         // TODO add your handling code here:
-		jButton2.setBackground(Palette.getCurrentScheme().COLOR_MENU_MOUSE_OVER_BACK.getColor());
-		jButton2.setForeground(Palette.getCurrentScheme().COLOR_MENU_MOUSE_OVER_FRONT.getColor());
-    }//GEN-LAST:event_jButton2MouseEntered
+		cancelButton.setBackground(Palette.getCurrentScheme().COLOR_MENU_BACK.getColor());
+		cancelButton.setForeground(Palette.getCurrentScheme().COLOR_MENU_FRONT.getColor());
+    }//GEN-LAST:event_cancelButtonMouseExited
 
-    private void jButton2MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseExited
-        // TODO add your handling code here:
-		jButton2.setBackground(Palette.getCurrentScheme().COLOR_MENU_BACK.getColor());
-		jButton2.setForeground(Palette.getCurrentScheme().COLOR_MENU_FRONT.getColor());
-    }//GEN-LAST:event_jButton2MouseExited
-
+	JFileChooser chooser = new JFileChooser();
+	
     private void iconLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_iconLabelMouseClicked
         // TODO add your handling code here:
-		JFileChooser chooser = new JFileChooser();
-		FileNameExtensionFilter filter = new FileNameExtensionFilter("JPEG & PNG Images", "jpeg", "png");
+		FileNameExtensionFilter filter = new FileNameExtensionFilter("JPEG & PNG Images", "jpeg", "jpg", "png");
 		chooser.setFileFilter(filter);
 		int returnVal = chooser.showOpenDialog(EsportsGUI.getFrames()[0]);
 		if(returnVal == JFileChooser.APPROVE_OPTION) {
-			
+			if (chooser.getSelectedFile().exists()) {
+				this.iconLabel.setIcon(new ImageIcon(new ImageIcon(chooser.getSelectedFile().getAbsolutePath()).getImage().getScaledInstance(32, 32, Image.SCALE_DEFAULT)));
+				this.applyButton.setEnabled(true);
+			}
 	    }
     }//GEN-LAST:event_iconLabelMouseClicked
 
+    private void applyButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_applyButtonActionPerformed
+        // TODO add your handling code here:
+		if (!this.nameField.getText().equals("")) {
+			this.object.setName(this.nameField.getText());
+		} else {
+			JOptionPane.showMessageDialog(this, "Name cannot be empty!");
+			return;
+		}
+		if (this.chooser.getSelectedFile().exists()){
+			this.object.setIcon(new ImageIcon(chooser.getSelectedFile().getAbsolutePath()));
+		}
+
+		this.object.setDescription(this.descriptionTextArea.getText());
+		this.applyButton.setEnabled(false);
+			
+    }//GEN-LAST:event_applyButtonActionPerformed
+
+    private void nameFieldKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nameFieldKeyTyped
+        // TODO add your handling code here:
+		this.applyButton.setEnabled(true);
+    }//GEN-LAST:event_nameFieldKeyTyped
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton applyButton;
+    private javax.swing.JButton cancelButton;
     private javax.swing.JButton closeButton;
+    private javax.swing.JTextArea descriptionTextArea;
     private javax.swing.JPanel dragBarPanel;
     private javax.swing.JLabel iconLabel;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JPanel mainPanel;
     private javax.swing.JPanel managementPanel;
     protected javax.swing.JTextField nameField;

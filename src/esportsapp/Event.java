@@ -31,6 +31,7 @@ public class Event extends javax.swing.JPanel implements EsportsInterface<Event>
 	@Override
 	public void setName(String name) {
 		this.name = name;
+		this.nameLabel.setText(name);
 	}
 	
 	@Override
@@ -41,6 +42,7 @@ public class Event extends javax.swing.JPanel implements EsportsInterface<Event>
 	@Override 
 	public void setIcon(ImageIcon icn) {
 		this.icon = icn;
+		this.iconLabel.setIcon(new ImageIcon(this.icon.getImage().getScaledInstance(32, 32, Image.SCALE_DEFAULT)));
 	}
 	
 	@Override 
