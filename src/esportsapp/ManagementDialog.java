@@ -156,16 +156,29 @@ public class ManagementDialog<T extends EsportsInterface> extends javax.swing.JD
         managementPanel.add(nameField, gridBagConstraints);
 
         jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        jScrollPane1.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
+        jScrollPane1.setPreferredSize(new java.awt.Dimension(183, 100));
 
         descriptionTextArea.setColumns(20);
-        descriptionTextArea.setRows(5);
+        descriptionTextArea.setLineWrap(true);
+        descriptionTextArea.setRows(4);
+        descriptionTextArea.setTabSize(4);
+        descriptionTextArea.setWrapStyleWord(true);
+        descriptionTextArea.setPreferredSize(new java.awt.Dimension(164, 100));
+        descriptionTextArea.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                descriptionTextAreaKeyTyped(evt);
+            }
+        });
         jScrollPane1.setViewportView(descriptionTextArea);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.gridwidth = 3;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTH;
+        gridBagConstraints.weighty = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(0, 5, 5, 5);
         managementPanel.add(jScrollPane1, gridBagConstraints);
 
@@ -184,7 +197,7 @@ public class ManagementDialog<T extends EsportsInterface> extends javax.swing.JD
         applyButton.setBackground(Palette.getCurrentScheme().COLOR_MENU_BACK.getColor());
         applyButton.setForeground(Palette.getCurrentScheme().COLOR_PRIMARY_TEXT.getColor());
         applyButton.setText("Apply");
-        applyButton.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createEtchedBorder(), javax.swing.BorderFactory.createEmptyBorder(5, 5, 5, 5)));
+        applyButton.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         applyButton.setContentAreaFilled(false);
         applyButton.setEnabled(false);
         applyButton.setFocusable(false);
@@ -213,7 +226,7 @@ public class ManagementDialog<T extends EsportsInterface> extends javax.swing.JD
         cancelButton.setBackground(Palette.getCurrentScheme().COLOR_MENU_BACK.getColor());
         cancelButton.setForeground(Palette.getCurrentScheme().COLOR_PRIMARY_TEXT.getColor());
         cancelButton.setText("Cancel");
-        cancelButton.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createEtchedBorder(), javax.swing.BorderFactory.createEmptyBorder(5, 5, 5, 5)));
+        cancelButton.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         cancelButton.setContentAreaFilled(false);
         cancelButton.setFocusable(false);
         cancelButton.setPreferredSize(new java.awt.Dimension(50, 25));
@@ -331,7 +344,7 @@ public class ManagementDialog<T extends EsportsInterface> extends javax.swing.JD
 			JOptionPane.showMessageDialog(this, "Name cannot be empty!");
 			return;
 		}
-		if (this.chooser.getSelectedFile().exists()){
+		if (this.chooser.getSelectedFile() == null || this.chooser.getSelectedFile().exists()){
 			this.object.setIcon(new ImageIcon(chooser.getSelectedFile().getAbsolutePath()));
 		}
 
@@ -344,6 +357,11 @@ public class ManagementDialog<T extends EsportsInterface> extends javax.swing.JD
         // TODO add your handling code here:
 		this.applyButton.setEnabled(true);
     }//GEN-LAST:event_nameFieldKeyTyped
+
+    private void descriptionTextAreaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_descriptionTextAreaKeyTyped
+        // TODO add your handling code here:
+        this.applyButton.setEnabled(true);
+    }//GEN-LAST:event_descriptionTextAreaKeyTyped
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton applyButton;
