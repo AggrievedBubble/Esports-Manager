@@ -6,7 +6,18 @@
 package esportsapp;
 
 import java.awt.*;
+import java.io.BufferedInputStream;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.*;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 
 
@@ -20,6 +31,7 @@ public class EsportsGUI extends javax.swing.JFrame {
 	private static final ComponentResizer cr = new ComponentResizer();
 	private int posX;
 	private int posY;
+	static JFileChooser chooser = new JFileChooser();
 
     /**
      * Creates new form EsportsGUI
@@ -383,6 +395,11 @@ public class EsportsGUI extends javax.swing.JFrame {
                 saveButtonMouseExited(evt);
             }
         });
+        saveButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                saveButtonActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 4;
@@ -406,6 +423,11 @@ public class EsportsGUI extends javax.swing.JFrame {
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 loadButtonMouseExited(evt);
+            }
+        });
+        loadButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                loadButtonActionPerformed(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -1119,9 +1141,50 @@ public class EsportsGUI extends javax.swing.JFrame {
 		if (!nameTaken) Event.add(proposedName);
     }//GEN-LAST:event_addEventButtonActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
+    private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
+        // TODO add your handling code here:
+		FileNameExtensionFilter filter = new FileNameExtensionFilter("esports save files(.esports)", "esports");
+		chooser.setFileFilter(filter);
+		int returnVal = chooser.showOpenDialog(EsportsGUI.getFrames()[0]);
+		if(returnVal == JFileChooser.APPROVE_OPTION) {
+			try (FileOutputStream fos = new FileOutputStream(chooser.getSelectedFile().getAbsolutePath()); ObjectOutputStream oos = new ObjectOutputStream(fos);) {
+				java.util.List arr = new ArrayList<>();
+				arr.add(Event.list);
+				arr.add(Team.list);
+				arr.add(Member.list);
+				oos.writeObject(arr);
+			} catch (FileNotFoundException ex) {
+				Logger.getLogger(EsportsGUI.class.getName()).log(Level.SEVERE, null, ex);
+			} catch (IOException ex) {
+				Logger.getLogger(EsportsGUI.class.getName()).log(Level.SEVERE, null, ex);
+			}
+	    }
+    }//GEN-LAST:event_saveButtonActionPerformed
+
+    private void loadButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loadButtonActionPerformed
+        // TODO add your handling code here:
+		FileNameExtensionFilter filter = new FileNameExtensionFilter("esports save files(.esports)", "esports");
+		chooser.setFileFilter(filter);
+		int returnVal = chooser.showOpenDialog(EsportsGUI.getFrames()[0]);
+		if(returnVal == JFileChooser.APPROVE_OPTION) {
+			if (chooser.getSelectedFile().exists()) {
+				try (FileInputStream fis = new FileInputStream(chooser.getSelectedFile().getAbsolutePath()); ObjectInputStream ois = new ObjectInputStream(fis);) {
+					java.util.List arr = (java.util.List) ois.readObject();
+					Event.list = (java.util.List<Event>) arr.get(0);
+					Team.list = (java.util.List<Team>) arr.get(1);
+					Member.list = (java.util.List<Member>) arr.get(2);
+					
+				} catch (IOException ex) {
+					Logger.getLogger(EsportsGUI.class.getName()).log(Level.SEVERE, null, ex);
+				} catch (ClassNotFoundException ex) {
+					Logger.getLogger(EsportsGUI.class.getName()).log(Level.SEVERE, null, ex);
+				}
+			} else {
+				JOptionPane.showMessageDialog(this, "File Not Found");
+			}
+		}
+    }//GEN-LAST:event_loadButtonActionPerformed
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">

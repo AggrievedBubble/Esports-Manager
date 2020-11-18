@@ -6,7 +6,6 @@
 package esportsapp;
 
 import java.awt.*;
-import java.io.File;
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
@@ -347,10 +346,10 @@ public class ManagementDialog<T extends EsportsInterface> extends javax.swing.JD
 		if (this.chooser.getSelectedFile() == null || this.chooser.getSelectedFile().exists()){
 			this.object.setIcon(new ImageIcon(chooser.getSelectedFile().getAbsolutePath()));
 		}
-
+		
 		this.object.setDescription(this.descriptionTextArea.getText());
 		this.applyButton.setEnabled(false);
-			
+		
     }//GEN-LAST:event_applyButtonActionPerformed
 
     private void nameFieldKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nameFieldKeyTyped
