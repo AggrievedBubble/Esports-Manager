@@ -1143,9 +1143,9 @@ public class EsportsGUI extends javax.swing.JFrame {
 
     private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
         // TODO add your handling code here:
-		FileNameExtensionFilter filter = new FileNameExtensionFilter("esports save files(.esports)", "esports");
-		chooser.setFileFilter(filter);
-		int returnVal = chooser.showOpenDialog(EsportsGUI.getFrames()[0]);
+		
+		chooser.
+		int returnVal = chooser.showSaveDialog(EsportsGUI.getFrames()[0]);
 		if(returnVal == JFileChooser.APPROVE_OPTION) {
 			try (FileOutputStream fos = new FileOutputStream(chooser.getSelectedFile().getAbsolutePath()); ObjectOutputStream oos = new ObjectOutputStream(fos);) {
 				java.util.List arr = new ArrayList<>();
@@ -1170,13 +1170,28 @@ public class EsportsGUI extends javax.swing.JFrame {
 			if (chooser.getSelectedFile().exists()) {
 				try (FileInputStream fis = new FileInputStream(chooser.getSelectedFile().getAbsolutePath()); ObjectInputStream ois = new ObjectInputStream(fis);) {
 					java.util.List arr = (java.util.List) ois.readObject();
+					JPanel elp = EsportsGUI.getEventsListPanel();
 					Event.list = (java.util.List<Event>) arr.get(0);
+					Event.list.stream()
+							.map((ev) -> (ev))
+							.forEach((ev) -> {
+								elp.add(ev, elp.getComponentCount()-1);
+							});
+					elp.revalidate();
+					
+					JPanel tlp = EsportsGUI.getTeamsListPanel();
 					Team.list = (java.util.List<Team>) arr.get(1);
+					Team.list.stream()
+							.map((tm) -> (tm))
+							.forEach((tm) -> {
+								tlp.add(tm, tlp.getComponentCount()-1);
+							});
+					tlp.revalidate();
+					
+					
 					Member.list = (java.util.List<Member>) arr.get(2);
 					
-				} catch (IOException ex) {
-					Logger.getLogger(EsportsGUI.class.getName()).log(Level.SEVERE, null, ex);
-				} catch (ClassNotFoundException ex) {
+				} catch (IOException | ClassNotFoundException ex) {
 					Logger.getLogger(EsportsGUI.class.getName()).log(Level.SEVERE, null, ex);
 				}
 			} else {
@@ -1241,9 +1256,9 @@ public class EsportsGUI extends javax.swing.JFrame {
 		return eventsListPanel;
 	}
 	
-	//public static JPanel getTeamsListPanel() {
-		//return teamsListPanel;
-	//}
+	public static JPanel getTeamsListPanel() {
+		return teamsListPanel;
+	}
 	
 	public static ComponentResizer getComponentResizer() {
 		return cr;
@@ -1362,7 +1377,7 @@ public class EsportsGUI extends javax.swing.JFrame {
     private javax.swing.JPanel settingsPanel;
     private static javax.swing.JScrollPane settingsScrollPane;
     private static javax.swing.JToggleButton settingsToggleButton;
-    private javax.swing.JPanel teamsListPanel;
+    private static javax.swing.JPanel teamsListPanel;
     private javax.swing.JPanel teamsPanel;
     private static javax.swing.JScrollPane teamsScrollPane;
     private static javax.swing.JToggleButton teamsToggleButton;
