@@ -237,6 +237,11 @@ public class ManagementDialog<T extends EsportsInterface> extends javax.swing.JD
                 cancelButtonMouseExited(evt);
             }
         });
+        cancelButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelButtonActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 2;
@@ -343,13 +348,11 @@ public class ManagementDialog<T extends EsportsInterface> extends javax.swing.JD
 			JOptionPane.showMessageDialog(this, "Name cannot be empty!");
 			return;
 		}
+		this.object.setDescription(this.descriptionTextArea.getText());
+		this.applyButton.setEnabled(false);
 		if (this.chooser.getSelectedFile() == null || this.chooser.getSelectedFile().exists()){
 			this.object.setIcon(new ImageIcon(chooser.getSelectedFile().getAbsolutePath()));
 		}
-		
-		this.object.setDescription(this.descriptionTextArea.getText());
-		this.applyButton.setEnabled(false);
-		
     }//GEN-LAST:event_applyButtonActionPerformed
 
     private void nameFieldKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nameFieldKeyTyped
@@ -361,6 +364,11 @@ public class ManagementDialog<T extends EsportsInterface> extends javax.swing.JD
         // TODO add your handling code here:
         this.applyButton.setEnabled(true);
     }//GEN-LAST:event_descriptionTextAreaKeyTyped
+
+    private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
+        // TODO add your handling code here:
+		this.dispose();
+    }//GEN-LAST:event_cancelButtonActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton applyButton;
