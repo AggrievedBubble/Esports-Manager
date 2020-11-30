@@ -1175,6 +1175,9 @@ public class EsportsGUI extends javax.swing.JFrame {
 				try (FileInputStream fis = new FileInputStream(chooser.getSelectedFile().getAbsolutePath()); ObjectInputStream ois = new ObjectInputStream(fis);) {
 					java.util.List arr = (java.util.List) ois.readObject();
 					JPanel elp = EsportsGUI.getEventsListPanel();
+					for (Event ev : Event.list) {
+						elp.remove(ev);
+					}
 					Event.list = (java.util.List<Event>) arr.get(0);
 					Event.list.stream()
 							.map((ev) -> (ev))
@@ -1220,6 +1223,9 @@ public class EsportsGUI extends javax.swing.JFrame {
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(EsportsGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+		//</editor-fold>
+		//</editor-fold>
+		//</editor-fold>
 		//</editor-fold>
 		
         //</editor-fold>
