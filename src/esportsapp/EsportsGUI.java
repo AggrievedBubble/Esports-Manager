@@ -7,6 +7,7 @@ package esportsapp;
 
 import java.awt.*;
 import java.io.BufferedInputStream;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -1144,7 +1145,9 @@ public class EsportsGUI extends javax.swing.JFrame {
     private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
         // TODO add your handling code here:
 		
-		chooser.
+		chooser.setDialogType(JFileChooser.SAVE_DIALOG);
+		chooser.setSelectedFile(new File("tournament.esports"));
+		chooser.setFileFilter(new FileNameExtensionFilter("esports files(.esports)", "esports"));
 		int returnVal = chooser.showSaveDialog(EsportsGUI.getFrames()[0]);
 		if(returnVal == JFileChooser.APPROVE_OPTION) {
 			try (FileOutputStream fos = new FileOutputStream(chooser.getSelectedFile().getAbsolutePath()); ObjectOutputStream oos = new ObjectOutputStream(fos);) {
@@ -1163,8 +1166,9 @@ public class EsportsGUI extends javax.swing.JFrame {
 
     private void loadButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loadButtonActionPerformed
         // TODO add your handling code here:
-		FileNameExtensionFilter filter = new FileNameExtensionFilter("esports save files(.esports)", "esports");
-		chooser.setFileFilter(filter);
+		chooser.setDialogType(JFileChooser.OPEN_DIALOG);
+		chooser.setSelectedFile(new File(""));
+		chooser.setFileFilter(new FileNameExtensionFilter("esports files(.esports)", "esports"));
 		int returnVal = chooser.showOpenDialog(EsportsGUI.getFrames()[0]);
 		if(returnVal == JFileChooser.APPROVE_OPTION) {
 			if (chooser.getSelectedFile().exists()) {
