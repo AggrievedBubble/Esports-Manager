@@ -31,6 +31,7 @@ public class Team implements EsportsInterface<Team> {
 	@Override
 	public void setName(String name) {
 		this.name = name;
+		this.panel.getNameLabel().setText(name);
 	}
 	
 	@Override
@@ -41,6 +42,7 @@ public class Team implements EsportsInterface<Team> {
 	@Override
 	public void setIcon(ImageIcon icn) {
 		this.icon = icn;
+		this.panel.getIconLabel().setIcon(new ImageIcon(this.icon.getImage().getScaledInstance(32, 32, Image.SCALE_DEFAULT)));
 	}
 	
 	@Override

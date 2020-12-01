@@ -31,7 +31,7 @@ public class Event implements EsportsInterface<Event>{
 	@Override
 	public void setName(String name) {
 		this.name = name;
-		//this.nameLabel.setText(name);
+		this.panel.getNameLabel().setText(name);
 	}
 	
 	@Override

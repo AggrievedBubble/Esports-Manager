@@ -75,6 +75,8 @@ public class EsportsGUI extends javax.swing.JFrame {
         teamsPanel = new javax.swing.JPanel();
         teamsScrollPane = new javax.swing.JScrollPane();
         teamsListPanel = new javax.swing.JPanel();
+        addTeamPanel = new javax.swing.JPanel();
+        addTeamButton = new javax.swing.JButton();
         leaderboardPanel = new javax.swing.JPanel();
         leaderboardScrollPane = new javax.swing.JScrollPane();
         settingsScrollPane = new javax.swing.JScrollPane();
@@ -518,12 +520,55 @@ public class EsportsGUI extends javax.swing.JFrame {
         teamsScrollPane.setOpaque(false);
         teamsScrollPane.setViewportView(null);
 
+        teamsListPanel.setMaximumSize(new java.awt.Dimension(2147483647, 50));
+        teamsListPanel.setMinimumSize(new java.awt.Dimension(10, 10));
         teamsListPanel.setOpaque(false);
+        teamsListPanel.setPreferredSize(new java.awt.Dimension(400, 50));
         teamsListPanel.setLayout(new javax.swing.BoxLayout(teamsListPanel, javax.swing.BoxLayout.Y_AXIS));
+
+        addTeamPanel.setMaximumSize(new java.awt.Dimension(2147483647, 50));
+        addTeamPanel.setMinimumSize(new java.awt.Dimension(10, 10));
+        addTeamPanel.setOpaque(false);
+        addTeamPanel.setPreferredSize(new java.awt.Dimension(400, 50));
+        addTeamPanel.setLayout(new java.awt.GridBagLayout());
+
+        addTeamButton.setIcon(Palette.getCurrentScheme().ICON_SMALL_PLUS.getIcon());
+        addTeamButton.setBorder(null);
+        addTeamButton.setBorderPainted(false);
+        addTeamButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        addTeamButton.setFocusPainted(false);
+        addTeamButton.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        addTeamButton.setOpaque(false);
+        addTeamButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                addTeamButtonMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                addTeamButtonMouseExited(evt);
+            }
+        });
+        addTeamButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addTeamButtonActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        addTeamPanel.add(addTeamButton, gridBagConstraints);
+
+        teamsListPanel.add(addTeamPanel);
+
         teamsScrollPane.setViewportView(teamsListPanel);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
         teamsPanel.add(teamsScrollPane, gridBagConstraints);
 
         activePanel.add(teamsPanel, "teamsCard");
@@ -1211,6 +1256,30 @@ public class EsportsGUI extends javax.swing.JFrame {
 		}
     }//GEN-LAST:event_loadButtonActionPerformed
 
+    private void addTeamButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addTeamButtonMouseEntered
+        // TODO add your handling code here:
+		addTeamButton.setIcon(Palette.getCurrentScheme().ICON_SMALL_PLUS_MOUSE_OVER.getIcon());
+    }//GEN-LAST:event_addTeamButtonMouseEntered
+
+    private void addTeamButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addTeamButtonMouseExited
+        // TODO add your handling code here:
+		addTeamButton.setIcon(Palette.getCurrentScheme().ICON_SMALL_PLUS.getIcon());
+    }//GEN-LAST:event_addTeamButtonMouseExited
+
+    private void addTeamButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addTeamButtonActionPerformed
+        // TODO add your handling code here:
+		String proposedName = JOptionPane.showInputDialog(this, "Please enter a name:").trim();
+		if (proposedName == null || proposedName.equals("")) return;
+		boolean nameTaken = false;
+		for (Team tm : Team.list) {
+			if (tm.name.equals(proposedName)) {
+				JOptionPane.showMessageDialog(this, "Team name \"" + proposedName + "\" is already taken");
+				nameTaken = true;
+			}
+		}
+		if (!nameTaken) Team.add(proposedName);
+    }//GEN-LAST:event_addTeamButtonActionPerformed
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -1356,6 +1425,8 @@ public class EsportsGUI extends javax.swing.JFrame {
     private javax.swing.JPanel activePanel;
     private javax.swing.JButton addEventButton;
     private javax.swing.JPanel addEventPanel;
+    private javax.swing.JButton addTeamButton;
+    private javax.swing.JPanel addTeamPanel;
     private javax.swing.JCheckBox alwaysOnTopCheck;
     private javax.swing.JLabel alwaysOnTopLabel;
     private javax.swing.JSeparator alwaysOnTopSeparator;
