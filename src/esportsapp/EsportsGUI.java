@@ -1130,7 +1130,7 @@ public class EsportsGUI extends javax.swing.JFrame {
 
     private void addEventButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addEventButtonActionPerformed
         // TODO add your handling code here:
-		String proposedName = JOptionPane.showInputDialog(this, "Please enter a name:");
+		String proposedName = JOptionPane.showInputDialog(this, "Please enter a name:").trim();
 		if (proposedName == null || proposedName.equals("")) return;
 		boolean nameTaken = false;
 		for (Event e : Event.list) {
@@ -1175,14 +1175,17 @@ public class EsportsGUI extends javax.swing.JFrame {
 				try (FileInputStream fis = new FileInputStream(chooser.getSelectedFile().getAbsolutePath()); ObjectInputStream ois = new ObjectInputStream(fis);) {
 					java.util.List arr = (java.util.List) ois.readObject();
 					JPanel elp = EsportsGUI.getEventsListPanel();
-					for (Event ev : Event.list) {
-						elp.remove(ev);
-					}
+					Event.list.stream()
+							.map((ev) -> (ev.panel))
+							.forEach((evp) -> {
+								elp.remove(evp);
+							});
 					Event.list = (java.util.List<Event>) arr.get(0);
 					Event.list.stream()
 							.map((ev) -> (ev))
 							.forEach((ev) -> {
-								elp.add(ev, elp.getComponentCount()-1);
+								ev.panel = new ListComponent<>(Event.class, ev);
+								elp.add(ev.panel, elp.getComponentCount() - 1);
 							});
 					elp.revalidate();
 					
@@ -1191,7 +1194,8 @@ public class EsportsGUI extends javax.swing.JFrame {
 					Team.list.stream()
 							.map((tm) -> (tm))
 							.forEach((tm) -> {
-								tlp.add(tm, tlp.getComponentCount()-1);
+								tm.panel = new ListComponent<>(Team.class, tm);
+								tlp.add(tm.panel, tlp.getComponentCount() - 1);
 							});
 					tlp.revalidate();
 					
@@ -1305,8 +1309,8 @@ public class EsportsGUI extends javax.swing.JFrame {
 		addEventButton.setIcon(Palette.getCurrentScheme().ICON_SMALL_PLUS.getIcon());
 		Event.list.stream()
 				.forEach(ev -> {
-					ev.setBackground(Palette.getCurrentScheme().COLOR_ACTIVE.getColor());
-					ev.getNameLabel().setForeground(Palette.getCurrentScheme().COLOR_PRIMARY_TEXT.getColor());
+					ev.panel.setBackground(Palette.getCurrentScheme().COLOR_ACTIVE.getColor());
+					ev.panel.getNameLabel().setForeground(Palette.getCurrentScheme().COLOR_PRIMARY_TEXT.getColor());
 				});
 		
 		
