@@ -6,11 +6,21 @@
 package esportsapp;
 
 import java.awt.*;
-import javax.swing.*;
-
-import java.util.ArrayList;
+import java.io.BufferedInputStream;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.*;
+import javax.swing.filechooser.FileNameExtensionFilter;
+
+
 
 /**
  *
@@ -19,8 +29,10 @@ import java.io.IOException;
 
 public class EsportsGUI extends javax.swing.JFrame {
 
+	private static final ComponentResizer cr = new ComponentResizer();
 	private int posX;
 	private int posY;
+	static JFileChooser chooser = new JFileChooser();
 
     /**
      * Creates new form EsportsGUI
@@ -56,8 +68,18 @@ public class EsportsGUI extends javax.swing.JFrame {
         loadButton = new javax.swing.JButton();
         activePanel = new javax.swing.JPanel();
         eventsPanel = new javax.swing.JPanel();
+        eventsScrollPane = new javax.swing.JScrollPane();
+        eventsListPanel = new javax.swing.JPanel();
+        addEventPanel = new javax.swing.JPanel();
+        addEventButton = new javax.swing.JButton();
         teamsPanel = new javax.swing.JPanel();
+        teamsScrollPane = new javax.swing.JScrollPane();
+        teamsListPanel = new javax.swing.JPanel();
+        addTeamPanel = new javax.swing.JPanel();
+        addTeamButton = new javax.swing.JButton();
         leaderboardPanel = new javax.swing.JPanel();
+        leaderboardScrollPane = new javax.swing.JScrollPane();
+        settingsScrollPane = new javax.swing.JScrollPane();
         settingsPanel = new javax.swing.JPanel();
         appearanceLabel = new javax.swing.JLabel();
         themeLabel = new javax.swing.JLabel();
@@ -376,6 +398,11 @@ public class EsportsGUI extends javax.swing.JFrame {
                 saveButtonMouseExited(evt);
             }
         });
+        saveButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                saveButtonActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 4;
@@ -401,6 +428,11 @@ public class EsportsGUI extends javax.swing.JFrame {
                 loadButtonMouseExited(evt);
             }
         });
+        loadButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                loadButtonActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 4;
@@ -422,14 +454,143 @@ public class EsportsGUI extends javax.swing.JFrame {
         activePanel.setLayout(new java.awt.CardLayout());
 
         eventsPanel.setOpaque(false);
-        eventsPanel.setLayout(new java.awt.GridLayout(0, 1));
+        eventsPanel.setLayout(new java.awt.GridBagLayout());
+
+        eventsScrollPane.setBorder(null);
+        eventsScrollPane.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        eventsScrollPane.setOpaque(false);
+        eventsScrollPane.setViewportView(null);
+
+        eventsListPanel.setOpaque(false);
+        eventsListPanel.setLayout(new javax.swing.BoxLayout(eventsListPanel, javax.swing.BoxLayout.Y_AXIS));
+
+        addEventPanel.setMaximumSize(new java.awt.Dimension(2147483647, 50));
+        addEventPanel.setOpaque(false);
+        addEventPanel.setPreferredSize(new java.awt.Dimension(400, 50));
+        addEventPanel.setLayout(new java.awt.GridBagLayout());
+
+        addEventButton.setIcon(Palette.getCurrentScheme().ICON_SMALL_PLUS.getIcon());
+        addEventButton.setBorder(null);
+        addEventButton.setBorderPainted(false);
+        addEventButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        addEventButton.setFocusPainted(false);
+        addEventButton.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        addEventButton.setOpaque(false);
+        addEventButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                addEventButtonMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                addEventButtonMouseExited(evt);
+            }
+        });
+        addEventButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addEventButtonActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        addEventPanel.add(addEventButton, gridBagConstraints);
+
+        eventsListPanel.add(addEventPanel);
+
+        eventsScrollPane.setViewportView(eventsListPanel);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        eventsPanel.add(eventsScrollPane, gridBagConstraints);
+
         activePanel.add(eventsPanel, "eventsCard");
 
         teamsPanel.setOpaque(false);
+        teamsPanel.setLayout(new java.awt.GridBagLayout());
+
+        teamsScrollPane.setBorder(null);
+        teamsScrollPane.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        teamsScrollPane.setOpaque(false);
+        teamsScrollPane.setViewportView(null);
+
+        teamsListPanel.setMaximumSize(new java.awt.Dimension(2147483647, 50));
+        teamsListPanel.setMinimumSize(new java.awt.Dimension(10, 10));
+        teamsListPanel.setOpaque(false);
+        teamsListPanel.setPreferredSize(new java.awt.Dimension(400, 50));
+        teamsListPanel.setLayout(new javax.swing.BoxLayout(teamsListPanel, javax.swing.BoxLayout.Y_AXIS));
+
+        addTeamPanel.setMaximumSize(new java.awt.Dimension(2147483647, 50));
+        addTeamPanel.setMinimumSize(new java.awt.Dimension(10, 10));
+        addTeamPanel.setOpaque(false);
+        addTeamPanel.setPreferredSize(new java.awt.Dimension(400, 50));
+        addTeamPanel.setLayout(new java.awt.GridBagLayout());
+
+        addTeamButton.setIcon(Palette.getCurrentScheme().ICON_SMALL_PLUS.getIcon());
+        addTeamButton.setBorder(null);
+        addTeamButton.setBorderPainted(false);
+        addTeamButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        addTeamButton.setFocusPainted(false);
+        addTeamButton.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        addTeamButton.setOpaque(false);
+        addTeamButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                addTeamButtonMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                addTeamButtonMouseExited(evt);
+            }
+        });
+        addTeamButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addTeamButtonActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        addTeamPanel.add(addTeamButton, gridBagConstraints);
+
+        teamsListPanel.add(addTeamPanel);
+
+        teamsScrollPane.setViewportView(teamsListPanel);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        teamsPanel.add(teamsScrollPane, gridBagConstraints);
+
         activePanel.add(teamsPanel, "teamsCard");
 
         leaderboardPanel.setOpaque(false);
+        leaderboardPanel.setLayout(new java.awt.GridBagLayout());
+
+        leaderboardScrollPane.setBorder(null);
+        leaderboardScrollPane.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        leaderboardScrollPane.setOpaque(false);
+        leaderboardScrollPane.setViewportView(null);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        leaderboardPanel.add(leaderboardScrollPane, gridBagConstraints);
+
         activePanel.add(leaderboardPanel, "leaderboardCard");
+
+        settingsScrollPane.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
+        settingsScrollPane.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        settingsScrollPane.setViewportBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
+        settingsScrollPane.setOpaque(false);
+        settingsScrollPane.setViewportView(null);
 
         settingsPanel.setOpaque(false);
         java.awt.GridBagLayout settingsPanelLayout = new java.awt.GridBagLayout();
@@ -699,7 +860,9 @@ public class EsportsGUI extends javax.swing.JFrame {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.SOUTHEAST;
         settingsPanel.add(disclaimerLabel, gridBagConstraints);
 
-        activePanel.add(settingsPanel, "settingsCard");
+        settingsScrollPane.setViewportView(settingsPanel);
+
+        activePanel.add(settingsScrollPane, "settingsCard");
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
@@ -746,7 +909,7 @@ public class EsportsGUI extends javax.swing.JFrame {
 
     private void closeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeButtonActionPerformed
         // TODO add your handling code here:
-		this.dispose();
+		System.exit(0);
     }//GEN-LAST:event_closeButtonActionPerformed
 
     private void closeButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_closeButtonMouseEntered
@@ -925,7 +1088,7 @@ public class EsportsGUI extends javax.swing.JFrame {
 
     private void dragBarPanelMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dragBarPanelMouseDragged
         // TODO add your handling code here:
-		Rectangle rectangle = getBounds();
+		Rectangle rectangle = this.getBounds();
 		this.setBounds(evt.getXOnScreen() - posX, evt.getYOnScreen() - posY, rectangle.width, rectangle.height);
     }//GEN-LAST:event_dragBarPanelMouseDragged
 
@@ -986,7 +1149,7 @@ public class EsportsGUI extends javax.swing.JFrame {
     private void maximiseButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_maximiseButtonActionPerformed
         // TODO add your handling code here:
 		if (EsportsGUI.getFrames()[0].getExtendedState() == Frame.NORMAL) {
-			EsportsGUI.getFrames()[0].setExtendedState(EsportsGUI.getFrames()[0].getExtendedState() | JFrame.MAXIMIZED_BOTH);;
+			EsportsGUI.getFrames()[0].setExtendedState(EsportsGUI.getFrames()[0].getExtendedState() | JFrame.MAXIMIZED_BOTH);
 		} else if (EsportsGUI.getFrames()[0].getExtendedState() == Frame.MAXIMIZED_BOTH) {
 			EsportsGUI.getFrames()[0].setState(Frame.NORMAL);
 			EsportsGUI.getFrames()[0].setSize(720, 480);
@@ -1000,9 +1163,123 @@ public class EsportsGUI extends javax.swing.JFrame {
 		EsportsGUI.getFrames()[0].setState(Frame.ICONIFIED);
     }//GEN-LAST:event_minimiseButtonActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
+    private void addEventButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addEventButtonMouseEntered
+        // TODO add your handling code here:
+		addEventButton.setIcon(Palette.getCurrentScheme().ICON_SMALL_PLUS_MOUSE_OVER.getIcon());
+    }//GEN-LAST:event_addEventButtonMouseEntered
+
+    private void addEventButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addEventButtonMouseExited
+        // TODO add your handling code here:
+		addEventButton.setIcon(Palette.getCurrentScheme().ICON_SMALL_PLUS.getIcon());
+    }//GEN-LAST:event_addEventButtonMouseExited
+
+    private void addEventButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addEventButtonActionPerformed
+        // TODO add your handling code here:
+		String proposedName = JOptionPane.showInputDialog(this, "Please enter a name:").trim();
+		if (proposedName == null || proposedName.equals("")) return;
+		boolean nameTaken = false;
+		for (Event e : Event.list) {
+			if (e.name.equals(proposedName)) {
+				JOptionPane.showMessageDialog(this, "Event name \"" + proposedName + "\" is already taken");
+				nameTaken = true;
+			}
+		}
+		if (!nameTaken) Event.add(proposedName);
+    }//GEN-LAST:event_addEventButtonActionPerformed
+
+    private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
+        // TODO add your handling code here:
+		
+		chooser.setDialogType(JFileChooser.SAVE_DIALOG);
+		chooser.setSelectedFile(new File("tournament.esports"));
+		chooser.setFileFilter(new FileNameExtensionFilter("esports files(.esports)", "esports"));
+		int returnVal = chooser.showSaveDialog(EsportsGUI.getFrames()[0]);
+		if(returnVal == JFileChooser.APPROVE_OPTION) {
+			try (FileOutputStream fos = new FileOutputStream(chooser.getSelectedFile().getAbsolutePath()); ObjectOutputStream oos = new ObjectOutputStream(fos);) {
+				java.util.List arr = new ArrayList<>();
+				arr.add(Event.list);
+				arr.add(Team.list);
+				arr.add(Member.list);
+				oos.writeObject(arr);
+			} catch (FileNotFoundException ex) {
+				Logger.getLogger(EsportsGUI.class.getName()).log(Level.SEVERE, null, ex);
+			} catch (IOException ex) {
+				Logger.getLogger(EsportsGUI.class.getName()).log(Level.SEVERE, null, ex);
+			}
+	    }
+    }//GEN-LAST:event_saveButtonActionPerformed
+
+    private void loadButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loadButtonActionPerformed
+        // TODO add your handling code here:
+		chooser.setDialogType(JFileChooser.OPEN_DIALOG);
+		chooser.setSelectedFile(new File(""));
+		chooser.setFileFilter(new FileNameExtensionFilter("esports files(.esports)", "esports"));
+		int returnVal = chooser.showOpenDialog(EsportsGUI.getFrames()[0]);
+		if(returnVal == JFileChooser.APPROVE_OPTION) {
+			if (chooser.getSelectedFile().exists()) {
+				try (FileInputStream fis = new FileInputStream(chooser.getSelectedFile().getAbsolutePath()); ObjectInputStream ois = new ObjectInputStream(fis);) {
+					java.util.List arr = (java.util.List) ois.readObject();
+					JPanel elp = EsportsGUI.getEventsListPanel();
+					Event.list.stream()
+							.map((ev) -> (ev.panel))
+							.forEach((evp) -> {
+								elp.remove(evp);
+							});
+					Event.list = (java.util.List<Event>) arr.get(0);
+					Event.list.stream()
+							.map((ev) -> (ev))
+							.forEach((ev) -> {
+								ev.panel = new ListComponent<>(Event.class, ev);
+								elp.add(ev.panel, elp.getComponentCount() - 1);
+							});
+					elp.revalidate();
+					
+					JPanel tlp = EsportsGUI.getTeamsListPanel();
+					Team.list = (java.util.List<Team>) arr.get(1);
+					Team.list.stream()
+							.map((tm) -> (tm))
+							.forEach((tm) -> {
+								tm.panel = new ListComponent<>(Team.class, tm);
+								tlp.add(tm.panel, tlp.getComponentCount() - 1);
+							});
+					tlp.revalidate();
+					
+					
+					Member.list = (java.util.List<Member>) arr.get(2);
+					
+				} catch (IOException | ClassNotFoundException ex) {
+					Logger.getLogger(EsportsGUI.class.getName()).log(Level.SEVERE, null, ex);
+				}
+			} else {
+				JOptionPane.showMessageDialog(this, "File Not Found");
+			}
+		}
+    }//GEN-LAST:event_loadButtonActionPerformed
+
+    private void addTeamButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addTeamButtonMouseEntered
+        // TODO add your handling code here:
+		addTeamButton.setIcon(Palette.getCurrentScheme().ICON_SMALL_PLUS_MOUSE_OVER.getIcon());
+    }//GEN-LAST:event_addTeamButtonMouseEntered
+
+    private void addTeamButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addTeamButtonMouseExited
+        // TODO add your handling code here:
+		addTeamButton.setIcon(Palette.getCurrentScheme().ICON_SMALL_PLUS.getIcon());
+    }//GEN-LAST:event_addTeamButtonMouseExited
+
+    private void addTeamButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addTeamButtonActionPerformed
+        // TODO add your handling code here:
+		String proposedName = JOptionPane.showInputDialog(this, "Please enter a name:").trim();
+		if (proposedName == null || proposedName.equals("")) return;
+		boolean nameTaken = false;
+		for (Team tm : Team.list) {
+			if (tm.name.equals(proposedName)) {
+				JOptionPane.showMessageDialog(this, "Team name \"" + proposedName + "\" is already taken");
+				nameTaken = true;
+			}
+		}
+		if (!nameTaken) Team.add(proposedName);
+    }//GEN-LAST:event_addTeamButtonActionPerformed
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -1010,40 +1287,65 @@ public class EsportsGUI extends javax.swing.JFrame {
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
         try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+            for (var info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Windows".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(EsportsGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(EsportsGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(EsportsGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(EsportsGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+		//</editor-fold>
+		//</editor-fold>
+		//</editor-fold>
+		//</editor-fold>
+		
         //</editor-fold>
 
 		Palette.setCurrentScheme(Palette.SchemeEnum.DARK);
-		ComponentResizer cr = new ComponentResizer();
+		
+		System.setProperty("awt.useSystemAAFontSettings","on");
+		
 		cr.setSnapSize(new Dimension(1, 1));
 		cr.setMaximumSize(new Dimension(1920, 1080));
 		cr.setMinimumSize(new Dimension(300, 100));
-		System.out.println(cr.getDragInsets());
+		
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                cr.registerComponent(new EsportsGUI());
+			@Override
+			public void run() {
+				cr.registerComponent(new EsportsGUI());
 				EsportsGUI.getFrames()[0].setVisible(true);
-            }
-        });
+				
+				eventsScrollPane.getViewport().setOpaque(false);
+				eventsScrollPane.getVerticalScrollBar().setUnitIncrement(16);
+				teamsScrollPane.getViewport().setOpaque(false);
+				teamsScrollPane.getVerticalScrollBar().setUnitIncrement(16);
+				leaderboardScrollPane.getViewport().setOpaque(false);
+				leaderboardScrollPane.getVerticalScrollBar().setUnitIncrement(16);
+				settingsScrollPane.getViewport().setOpaque(false);
+				settingsScrollPane.getVerticalScrollBar().setUnitIncrement(16);
+				
+				eventsToggleButton.setSelected(true);
+			}
+		});
 		
 	
 		
     }
+	
+	public static JPanel getEventsListPanel() {
+		return eventsListPanel;
+	}
+	
+	public static JPanel getTeamsListPanel() {
+		return teamsListPanel;
+	}
+	
+	public static ComponentResizer getComponentResizer() {
+		return cr;
+	}
 	
 	private void refreshComponents() {
 		
@@ -1071,6 +1373,15 @@ public class EsportsGUI extends javax.swing.JFrame {
 		saveButton.setForeground(Palette.getCurrentScheme().COLOR_MENU_FRONT.getColor());
 		loadButton.setBackground(Palette.getCurrentScheme().COLOR_MENU_BACK.getColor());
 		loadButton.setForeground(Palette.getCurrentScheme().COLOR_MENU_FRONT.getColor());
+		
+		//Everything inside of eventsPanel
+		addEventButton.setIcon(Palette.getCurrentScheme().ICON_SMALL_PLUS.getIcon());
+		Event.list.stream()
+				.forEach(ev -> {
+					ev.panel.setBackground(Palette.getCurrentScheme().COLOR_ACTIVE.getColor());
+					ev.panel.getNameLabel().setForeground(Palette.getCurrentScheme().COLOR_PRIMARY_TEXT.getColor());
+				});
+		
 		
 		//Everything inside of settingsPanel
 		appearanceLabel.setForeground(Palette.getCurrentScheme().COLOR_PRIMARY_TEXT.getColor());
@@ -1112,6 +1423,10 @@ public class EsportsGUI extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel accessibilityLabel;
     private javax.swing.JPanel activePanel;
+    private javax.swing.JButton addEventButton;
+    private javax.swing.JPanel addEventPanel;
+    private javax.swing.JButton addTeamButton;
+    private javax.swing.JPanel addTeamPanel;
     private javax.swing.JCheckBox alwaysOnTopCheck;
     private javax.swing.JLabel alwaysOnTopLabel;
     private javax.swing.JSeparator alwaysOnTopSeparator;
@@ -1125,10 +1440,13 @@ public class EsportsGUI extends javax.swing.JFrame {
     private javax.swing.ButtonGroup displayButtonGroup;
     private javax.swing.JLabel displayLabel;
     private javax.swing.JPanel dragBarPanel;
+    private static javax.swing.JPanel eventsListPanel;
     private javax.swing.JPanel eventsPanel;
-    private javax.swing.JToggleButton eventsToggleButton;
+    private static javax.swing.JScrollPane eventsScrollPane;
+    private static javax.swing.JToggleButton eventsToggleButton;
     private javax.swing.JPanel leaderboardPanel;
-    private javax.swing.JToggleButton leaderboardToggleButton;
+    private static javax.swing.JScrollPane leaderboardScrollPane;
+    private static javax.swing.JToggleButton leaderboardToggleButton;
     private javax.swing.JCheckBox lightThemeCheck;
     private javax.swing.JButton loadButton;
     private javax.swing.JPanel mainPanel;
@@ -1142,9 +1460,12 @@ public class EsportsGUI extends javax.swing.JFrame {
     private javax.swing.JLabel naratorTipLabel;
     private javax.swing.JButton saveButton;
     private javax.swing.JPanel settingsPanel;
-    private javax.swing.JToggleButton settingsToggleButton;
+    private static javax.swing.JScrollPane settingsScrollPane;
+    private static javax.swing.JToggleButton settingsToggleButton;
+    private static javax.swing.JPanel teamsListPanel;
     private javax.swing.JPanel teamsPanel;
-    private javax.swing.JToggleButton teamsToggleButton;
+    private static javax.swing.JScrollPane teamsScrollPane;
+    private static javax.swing.JToggleButton teamsToggleButton;
     private javax.swing.ButtonGroup themeButtonGroup;
     private javax.swing.JLabel themeLabel;
     private javax.swing.JLabel versionLabel;

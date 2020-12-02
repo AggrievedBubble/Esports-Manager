@@ -6,6 +6,7 @@
 package esportsapp;
 
 import java.awt.Color;
+import java.awt.Image;
 import java.net.URL;
 import javax.swing.ImageIcon;
 
@@ -34,6 +35,7 @@ public final class Palette {
 				ColorEnum.DARK_SECONDARY_TEXT,
 				ColorEnum.DARK_TERTIARY_TEXT,
 				ColorEnum.DARK_SEPARATOR,
+				ColorEnum.DARK_INPUT_BACK,
 		
 				ColorEnum.CLOSE_MOUSE_OVER,
 				
@@ -44,7 +46,14 @@ public final class Palette {
 				IconEnum.CLOSE_DARK,
 				IconEnum.TOGGLE_SWITCH_DARK,
 				IconEnum.SELECTED_TOGGLE_SWITCH_DARK,
+				IconEnum.PLUS_DARK,
+				IconEnum.PLUS_MOUSE_OVER_DARK,
+				IconEnum.SMALL_PLUS_DARK,
+				IconEnum.SMALL_PLUS_MOUSE_OVER_DARK,
 				
+				IconEnum.DEFAULT_EVENT_ICON,
+				IconEnum.DEFAULT_TEAM_ICON, 
+				IconEnum.DEFAULT_MEMBER_ICON,
 				IconEnum.CLOSE_MOUSE_OVER
 				
 		),
@@ -64,6 +73,7 @@ public final class Palette {
 				ColorEnum.LIGHT_SECONDARY_TEXT,
 				ColorEnum.LIGHT_TERTIARY_TEXT,
 				ColorEnum.LIGHT_SEPARATOR,
+				ColorEnum.LIGHT_INPUT_BACK,
 				
 				ColorEnum.CLOSE_MOUSE_OVER,
 		
@@ -74,7 +84,14 @@ public final class Palette {
 				IconEnum.CLOSE_LIGHT,
 				IconEnum.TOGGLE_SWITCH_LIGHT,
 				IconEnum.SELECTED_TOGGLE_SWITCH_LIGHT,
+				IconEnum.PLUS_LIGHT,
+				IconEnum.PLUS_MOUSE_OVER_LIGHT,
+				IconEnum.SMALL_PLUS_LIGHT,
+				IconEnum.SMALL_PLUS_MOUSE_OVER_LIGHT,
 				
+				IconEnum.DEFAULT_EVENT_ICON,
+				IconEnum.DEFAULT_TEAM_ICON,
+				IconEnum.DEFAULT_MEMBER_ICON,
 				IconEnum.CLOSE_MOUSE_OVER
 				
 		);
@@ -94,6 +111,7 @@ public final class Palette {
 		public ColorEnum COLOR_SECONDARY_TEXT;
 		public ColorEnum COLOR_TERTIARY_TEXT;
 		public ColorEnum COLOR_SEPARATOR;
+		public ColorEnum COLOR_INPUT_BACK;
 		
 		public ColorEnum COLOR_CLOSE_MOUSE_OVER;
 		
@@ -104,6 +122,13 @@ public final class Palette {
 		public IconEnum ICON_CLOSE;
 		public IconEnum ICON_TOGGLE_SWITCH;
 		public IconEnum ICON_SELECTED_TOGGLE_SWITCH;
+		public IconEnum ICON_PLUS;
+		public IconEnum ICON_PLUS_MOUSE_OVER;
+		public IconEnum ICON_SMALL_PLUS;
+		public IconEnum ICON_SMALL_PLUS_MOUSE_OVER;
+		public IconEnum ICON_DEFAULT_EVENT;
+		public IconEnum ICON_DEFAULT_TEAM;
+		public IconEnum ICON_DEFAULT_MEMBER;
 		
 		public IconEnum ICON_CLOSE_MOUSE_OVER;
 
@@ -122,6 +147,7 @@ public final class Palette {
 				ColorEnum COLOR_SECONDARY_TEXT,
 				ColorEnum COLOR_TERTIARY_TEXT,
 				ColorEnum COLOR_SEPARATOR,
+				ColorEnum COLOR_INPUT_BACK,
 				
 				ColorEnum COLOR_CLOSE_MOUSE_OVER,
 				
@@ -132,6 +158,13 @@ public final class Palette {
 				IconEnum ICON_CLOSE,
 				IconEnum ICON_TOGGLE_SWITCH,
 				IconEnum ICON_SELECTED_TOGGLE_SWITCH,
+				IconEnum ICON_PLUS,
+				IconEnum ICON_PLUS_MOUSE_OVER,
+				IconEnum ICON_SMALL_PLUS,
+				IconEnum ICON_SMALL_PLUS_MOUSE_OVER,
+				IconEnum ICON_DEFAULT_EVENT,
+				IconEnum ICON_DEFAULT_TEAM,
+				IconEnum ICON_DEFAULT_MEMBER,
 				
 				IconEnum ICON_CLOSE_MOUSE_OVER
 				
@@ -150,6 +183,7 @@ public final class Palette {
 			this.COLOR_SECONDARY_TEXT = COLOR_SECONDARY_TEXT;
 			this.COLOR_TERTIARY_TEXT = COLOR_TERTIARY_TEXT;
 			this.COLOR_SEPARATOR = COLOR_SEPARATOR;
+			this.COLOR_INPUT_BACK = COLOR_INPUT_BACK;
 			
 			this.COLOR_CLOSE_MOUSE_OVER = COLOR_CLOSE_MOUSE_OVER;
 			
@@ -160,6 +194,13 @@ public final class Palette {
 			this.ICON_CLOSE = ICON_CLOSE;
 			this.ICON_TOGGLE_SWITCH = ICON_TOGGLE_SWITCH;
 			this.ICON_SELECTED_TOGGLE_SWITCH = ICON_SELECTED_TOGGLE_SWITCH;
+			this.ICON_PLUS = ICON_PLUS;
+			this.ICON_PLUS_MOUSE_OVER = ICON_PLUS_MOUSE_OVER;
+			this.ICON_SMALL_PLUS = ICON_SMALL_PLUS;
+			this.ICON_SMALL_PLUS_MOUSE_OVER = ICON_SMALL_PLUS_MOUSE_OVER;
+			this.ICON_DEFAULT_EVENT = ICON_DEFAULT_EVENT;
+			this.ICON_DEFAULT_TEAM = ICON_DEFAULT_TEAM;
+			this.ICON_DEFAULT_MEMBER = ICON_DEFAULT_MEMBER;
 			
 			this.ICON_CLOSE_MOUSE_OVER = ICON_CLOSE_MOUSE_OVER;
 			
@@ -184,6 +225,7 @@ public final class Palette {
 		DARK_SECONDARY_TEXT(205, 205, 205),										LIGHT_SECONDARY_TEXT(50, 50, 50),
 		DARK_TERTIARY_TEXT(155, 155, 155),										LIGHT_TERTIARY_TEXT(100, 100, 100),
 		DARK_SEPARATOR(66, 69, 74),												LIGHT_SEPARATOR(235, 235, 235),
+		DARK_INPUT_BACK(64, 68, 72),											LIGHT_INPUT_BACK(235, 237, 239),
 		
 		CLOSE_MOUSE_OVER(240, 71, 71);
 		
@@ -223,6 +265,17 @@ public final class Palette {
 		TOGGLE_SWITCH_LIGHT(Palette.class.getResource("/esportsapp/images/toggleswitchlight.png")),
 		SELECTED_TOGGLE_SWITCH_DARK(Palette.class.getResource("/esportsapp/images/selectedtoggleswitchdark.png")),
 		SELECTED_TOGGLE_SWITCH_LIGHT(Palette.class.getResource("/esportsapp/images/selectedtoggleswitchlight.png")),
+		PLUS_DARK(Palette.class.getResource("/esportsapp/images/plusdark.png")),
+		PLUS_LIGHT(Palette.class.getResource("/esportsapp/images/pluslight.png")),
+		PLUS_MOUSE_OVER_DARK(Palette.class.getResource("/esports/images/plusmouseoverdark.png")),
+		PLUS_MOUSE_OVER_LIGHT(Palette.class.getResource("/esportsapp/images/plusmouseoverlight.png")),
+		SMALL_PLUS_DARK(Palette.class.getResource("/esportsapp/images/smallplusdark.png")),
+		SMALL_PLUS_LIGHT(Palette.class.getResource("/esportsapp/images/smallpluslight.png")),
+		SMALL_PLUS_MOUSE_OVER_DARK(Palette.class.getResource("/esportsapp/images/smallplusmouseoverdark.png")),
+		SMALL_PLUS_MOUSE_OVER_LIGHT(Palette.class.getResource("/esportsapp/images/smallplusmouseoverdark.png")),
+		DEFAULT_EVENT_ICON(Palette.class.getResource("/esportsapp/images/defaulteventicon.png")),
+		DEFAULT_TEAM_ICON(Palette.class.getResource("/esportsapp/images/defaultteamicon.png")),
+		DEFAULT_MEMBER_ICON(Palette.class.getResource("/esportsapp/images/defeaultmembericon.png")),
 	
 		CLOSE_MOUSE_OVER(Palette.class.getResource("/esportsapp/images/closemouseover.png"));
 		

@@ -9,17 +9,16 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.awt.*;
-import javax.swing.*;
+import javax.swing.ImageIcon;
 
 /**
  *
  * @author j9neave
  */
-public class Team implements EsportsInterface<Team> {
+public class Member implements EsportsInterface<Member> {
 	
 	@Override
-	public Team get() {
+	public Member get() {
 		return this;
 	}
 	
@@ -31,7 +30,6 @@ public class Team implements EsportsInterface<Team> {
 	@Override
 	public void setName(String name) {
 		this.name = name;
-		this.panel.getNameLabel().setText(name);
 	}
 	
 	@Override
@@ -42,7 +40,6 @@ public class Team implements EsportsInterface<Team> {
 	@Override
 	public void setIcon(ImageIcon icn) {
 		this.icon = icn;
-		this.panel.getIconLabel().setIcon(new ImageIcon(this.icon.getImage().getScaledInstance(32, 32, Image.SCALE_DEFAULT)));
 	}
 	
 	@Override
@@ -65,8 +62,8 @@ public class Team implements EsportsInterface<Team> {
 		this.score = scr;
 	}
 	
-	@Override
-	public Map<Member, Integer> getScores() {
+	@Override 
+	public Map getScores() {
 		return this.scores;
 	}
 	
@@ -74,48 +71,48 @@ public class Team implements EsportsInterface<Team> {
 	public void setScores(Map mp) {
 		this.scores = mp;
 	}
-
-	public static List<Team> list = new ArrayList<Team>();
-	private static final long serialVersionUID = 44L;
+	
+	public static List<Member> list = new ArrayList<>();
+	private static final long serialVersionUID = 46L;
 	
 	String name;
 	ImageIcon icon;
-	int score;
 	String description;
-	Map<Member, Integer> scores;
-	transient ListComponent<Team> panel;
+	int score;
+	Map<Event, Integer> scores;
 	
-	private Team(String name) {
+	Team team;
+	
+	private Member(String name, Team team) {
 		this.name = name;
-		this.icon = Palette.getCurrentScheme().ICON_DEFAULT_TEAM.getIcon();
+		this.icon = Palette.getCurrentScheme().ICON_DEFAULT_MEMBER.getIcon();
 		this.description = "";
 		this.scores = new HashMap<>();
 		
+		
+		this.team = team;
 		this.score = 0;
 		
 	}
 	
-	public static Team add(String name) {
+	public static Member add(String name, Team team) {
 		name = name.trim();
-		Team tm = new Team(name);
+		Member mem = new Member(name, team);
 		
-		tm.panel = new ListComponent<>(Team.class, tm);
-		JPanel tlp = EsportsGUI.getTeamsListPanel();
-		tlp.add(tm.panel, tlp.getComponentCount() - 1);
-		tlp.revalidate();
+		mem.team.scores.put(mem, mem.score);
+		Member.list.add(mem);
 		
-		Team.list.add(tm);
-		
-		return tm;
+		return mem;
 	}
 	
-	public void updateScore() {
-		int tot = 0;
-		tot = Event.list.stream()
-				.map(evt -> evt.scores.get(this))
-				.filter(scr -> (scr != null))
-				.reduce(tot, Integer::sum);
-		this.score = tot;
+	public void setScoreForEvent(Event evt, int scr) {
+		this.scores.put(evt, scr);
+		int total = this.scores.values().stream()
+				.mapToInt(i -> i)
+				.sum();
+		this.score = total;
+		this.team.scores.put(this, total);	
+		
 	}
 	
 }
