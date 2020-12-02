@@ -104,7 +104,7 @@ public class ListComponent<T extends EsportsInterface> extends javax.swing.JPane
 
     private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
         // TODO add your handling code here:
-		ManagementDialog<T> md = new ManagementDialog<T>(this.object);
+		ManagementDialog<T> md = new ManagementDialog<T>(this.type, this.object);
 		md.setVisible(true);
 		md.nameField.setText(md.object.getName());
     }//GEN-LAST:event_formMouseClicked
