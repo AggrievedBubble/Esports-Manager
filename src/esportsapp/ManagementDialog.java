@@ -44,6 +44,19 @@ public class ManagementDialog<T extends EsportsInterface> extends javax.swing.JD
 		this.iconLabel.setIcon(new ImageIcon(this.object.getIcon().getImage().getScaledInstance(32, 32, Image.SCALE_DEFAULT)));
 		CardLayout card = (CardLayout)genericPanel.getLayout();
 		card.show(genericPanel, this.type.getName());
+		
+		if (this.type.getName().equals("esportsapp.Event")) {
+			//event prep
+			addPanel.setVisible(false);
+			Team.list.stream()
+				.map((t) -> (t))
+				.forEach((t) -> {
+				if (!this.object.getScores().containsKey(t)) {
+					addPanel.add(t.panel);
+				}
+				});
+		}
+		
 	}
 
 	/**
@@ -65,14 +78,15 @@ public class ManagementDialog<T extends EsportsInterface> extends javax.swing.JD
         descriptionTextArea = new javax.swing.JTextArea();
         iconLabel = new javax.swing.JLabel();
         genericPanel = new javax.swing.JPanel();
+        eventGenericPanel = new javax.swing.JPanel();
+        participantsListLabel = new javax.swing.JLabel();
+        addPanel = new javax.swing.JPanel();
+        participantsListPanel = new javax.swing.JPanel();
+        addPanelToggle = new javax.swing.JToggleButton();
         teamGenericPanel = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         memberGenericPanel = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        eventGenericPanel = new javax.swing.JPanel();
-        participantsListLabel = new javax.swing.JLabel();
-        participantsListPanel = new javax.swing.JPanel();
-        addTeamButton = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         cancelButton = new javax.swing.JButton();
         applyButton = new javax.swing.JButton();
@@ -129,7 +143,7 @@ public class ManagementDialog<T extends EsportsInterface> extends javax.swing.JD
         dragBarPanel.setLayout(dragBarPanelLayout);
         dragBarPanelLayout.setHorizontalGroup(
             dragBarPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 525, Short.MAX_VALUE)
+            .addGap(0, 399, Short.MAX_VALUE)
         );
         dragBarPanelLayout.setVerticalGroup(
             dragBarPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -210,6 +224,67 @@ public class ManagementDialog<T extends EsportsInterface> extends javax.swing.JD
         genericPanel.setOpaque(false);
         genericPanel.setLayout(new java.awt.CardLayout());
 
+        eventGenericPanel.setOpaque(false);
+        eventGenericPanel.setLayout(new java.awt.GridBagLayout());
+
+        participantsListLabel.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        participantsListLabel.setForeground(Palette.getCurrentScheme().COLOR_PRIMARY_TEXT.getColor()
+        );
+        participantsListLabel.setText("Participating Teams");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        eventGenericPanel.add(participantsListLabel, gridBagConstraints);
+
+        addPanel.setBackground(Palette.getCurrentScheme().COLOR_MAIN.getColor());
+        addPanel.setLayout(new javax.swing.BoxLayout(addPanel, javax.swing.BoxLayout.Y_AXIS));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHEAST;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(0, 5, 20, 20);
+        eventGenericPanel.add(addPanel, gridBagConstraints);
+
+        participantsListPanel.setBorder(javax.swing.BorderFactory.createLineBorder(Palette.getCurrentScheme().COLOR_MAIN.getColor()
+        ));
+        participantsListPanel.setOpaque(false);
+        participantsListPanel.setLayout(new javax.swing.BoxLayout(participantsListPanel, javax.swing.BoxLayout.LINE_AXIS));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.gridheight = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(5, 0, 0, 0);
+        eventGenericPanel.add(participantsListPanel, gridBagConstraints);
+
+        addPanelToggle.setBackground(Palette.getCurrentScheme().COLOR_MENU_BACK.getColor());
+        addPanelToggle.setForeground(Palette.getCurrentScheme().COLOR_MENU_FRONT.getColor());
+        addPanelToggle.setText("+");
+        addPanelToggle.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        addPanelToggle.setContentAreaFilled(false);
+        addPanelToggle.setFocusable(false);
+        addPanelToggle.setMinimumSize(new java.awt.Dimension(25, 19));
+        addPanelToggle.setPreferredSize(new java.awt.Dimension(25, 19));
+        addPanelToggle.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                addPanelToggleItemStateChanged(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(0, 5, 0, 0);
+        eventGenericPanel.add(addPanelToggle, gridBagConstraints);
+
+        genericPanel.add(eventGenericPanel, "esportsapp.Event");
+
         teamGenericPanel.setOpaque(false);
         teamGenericPanel.setLayout(new java.awt.GridBagLayout());
 
@@ -226,61 +301,11 @@ public class ManagementDialog<T extends EsportsInterface> extends javax.swing.JD
 
         genericPanel.add(memberGenericPanel, "esportsapp.Member");
 
-        eventGenericPanel.setOpaque(false);
-        eventGenericPanel.setLayout(new java.awt.GridBagLayout());
-
-        participantsListLabel.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        participantsListLabel.setForeground(Palette.getCurrentScheme().COLOR_PRIMARY_TEXT.getColor()
-        );
-        participantsListLabel.setText("Participating Teams");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        eventGenericPanel.add(participantsListLabel, gridBagConstraints);
-
-        participantsListPanel.setOpaque(false);
-        participantsListPanel.setLayout(new javax.swing.BoxLayout(participantsListPanel, javax.swing.BoxLayout.Y_AXIS));
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
-        eventGenericPanel.add(participantsListPanel, gridBagConstraints);
-
-        addTeamButton.setIcon(Palette.getCurrentScheme().ICON_SMALL_PLUS.getIcon());
-        addTeamButton.setBorder(null);
-        addTeamButton.setFocusPainted(false);
-        addTeamButton.setOpaque(false);
-        addTeamButton.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                addTeamButtonMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                addTeamButtonMouseExited(evt);
-            }
-        });
-        addTeamButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addTeamButtonActionPerformed(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
-        eventGenericPanel.add(addTeamButton, gridBagConstraints);
-
-        genericPanel.add(eventGenericPanel, "esportsapp.Event");
-
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.gridwidth = 3;
+        gridBagConstraints.gridheight = 3;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.weightx = 1.0;
@@ -348,7 +373,7 @@ public class ManagementDialog<T extends EsportsInterface> extends javax.swing.JD
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridy = 5;
         gridBagConstraints.gridwidth = 3;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.SOUTHEAST;
         gridBagConstraints.weightx = 1.0;
@@ -479,23 +504,21 @@ public class ManagementDialog<T extends EsportsInterface> extends javax.swing.JD
 		this.dispose();
     }//GEN-LAST:event_cancelButtonActionPerformed
 
-    private void addTeamButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addTeamButtonMouseEntered
+    private void addPanelToggleItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_addPanelToggleItemStateChanged
         // TODO add your handling code here:
-		addTeamButton.setIcon(Palette.getCurrentScheme().ICON_SMALL_PLUS_MOUSE_OVER.getIcon());
-    }//GEN-LAST:event_addTeamButtonMouseEntered
-
-    private void addTeamButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addTeamButtonMouseExited
-        // TODO add your handling code here:
-		addTeamButton.setIcon(Palette.getCurrentScheme().ICON_SMALL_PLUS.getIcon());
-    }//GEN-LAST:event_addTeamButtonMouseExited
-
-    private void addTeamButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addTeamButtonActionPerformed
-        // TODO add your handling code here:
-		//participantsListPanel.add(new ListComponent<>(this.type, this.object));
-    }//GEN-LAST:event_addTeamButtonActionPerformed
+		addPanel.setVisible(addPanelToggle.isSelected());
+		if (addPanelToggle.isSelected()) {
+			addPanelToggle.setBackground(Palette.getCurrentScheme().COLOR_MAIN.getColor());
+			addPanelToggle.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
+		} else {
+			addPanelToggle.setBackground(Palette.getCurrentScheme().COLOR_MENU_BACK.getColor());
+			addPanelToggle.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+		}
+    }//GEN-LAST:event_addPanelToggleItemStateChanged
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton addTeamButton;
+    private javax.swing.JPanel addPanel;
+    private javax.swing.JToggleButton addPanelToggle;
     private javax.swing.JButton applyButton;
     private javax.swing.JButton cancelButton;
     private javax.swing.JButton closeButton;
