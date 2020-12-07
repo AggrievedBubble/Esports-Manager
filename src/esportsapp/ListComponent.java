@@ -27,11 +27,15 @@ public class ListComponent<T extends EsportsInterface> extends javax.swing.JPane
 	 * @param t
 	 * @param obj
 	 */
-	public ListComponent(Class<T> t, T obj) {
+	public ListComponent(Class<T> t, T obj, java.util.function.Consumer onClick) {
 		this.type = t;
 		this.object = obj;
 		
 		initComponents();
+		
+		iconLabel.setIcon(new ImageIcon(this.object.getIcon().getImage().getScaledInstance(32, 32, Image.SCALE_DEFAULT)));
+		nameLabel.setText(this.object.getName());
+		scoreLabel.setText(String.valueOf(this.object.getScore()));
 	}
 	
 	public JLabel getIconLabel() {
@@ -54,10 +58,11 @@ public class ListComponent<T extends EsportsInterface> extends javax.swing.JPane
 
         iconLabel = new javax.swing.JLabel();
         nameLabel = new javax.swing.JLabel();
+        scoreLabel = new javax.swing.JLabel();
 
         setBackground(Palette.getCurrentScheme().COLOR_ACTIVE.getColor());
         setMaximumSize(new java.awt.Dimension(2147483647, 35));
-        setMinimumSize(new java.awt.Dimension(200, 35));
+        setMinimumSize(new java.awt.Dimension(75, 35));
         setPreferredSize(new java.awt.Dimension(400, 35));
         addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -71,25 +76,34 @@ public class ListComponent<T extends EsportsInterface> extends javax.swing.JPane
             }
         });
         setLayout(new java.awt.GridBagLayout());
-
-        iconLabel.setIcon(new ImageIcon(this.object.getIcon().getImage().getScaledInstance(32, 32, Image.SCALE_DEFAULT)));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         add(iconLabel, gridBagConstraints);
 
         nameLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         nameLabel.setForeground(Palette.getCurrentScheme().COLOR_PRIMARY_TEXT.getColor());
-        nameLabel.setText(this.object.getName());
+        nameLabel.setText("NAME");
         nameLabel.setBorder(javax.swing.BorderFactory.createEmptyBorder(5, 5, 5, 5));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.ipady = 3;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         add(nameLabel, gridBagConstraints);
+
+        scoreLabel.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        scoreLabel.setForeground(Palette.getCurrentScheme().COLOR_SECONDARY_TEXT.getColor()
+        );
+        scoreLabel.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        scoreLabel.setText("SCORE");
+        scoreLabel.setBorder(javax.swing.BorderFactory.createEmptyBorder(5, 5, 5, 5));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.weightx = 1.0;
+        add(scoreLabel, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
 
     private void formMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseEntered
@@ -113,5 +127,6 @@ public class ListComponent<T extends EsportsInterface> extends javax.swing.JPane
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel iconLabel;
     private javax.swing.JLabel nameLabel;
+    private javax.swing.JLabel scoreLabel;
     // End of variables declaration//GEN-END:variables
 }

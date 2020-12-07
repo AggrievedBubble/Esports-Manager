@@ -52,7 +52,7 @@ public class ManagementDialog<T extends EsportsInterface> extends javax.swing.JD
 				.map((t) -> (t))
 				.forEach((t) -> {
 				if (!this.object.getScores().containsKey(t)) {
-					addPanel.add(t.panel);
+					addPanelList.add(t.panel);
 				}
 				});
 		}
@@ -81,6 +81,8 @@ public class ManagementDialog<T extends EsportsInterface> extends javax.swing.JD
         eventGenericPanel = new javax.swing.JPanel();
         participantsListLabel = new javax.swing.JLabel();
         addPanel = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        addPanelList = new javax.swing.JPanel();
         participantsListPanel = new javax.swing.JPanel();
         addPanelToggle = new javax.swing.JToggleButton();
         teamGenericPanel = new javax.swing.JPanel();
@@ -237,7 +239,22 @@ public class ManagementDialog<T extends EsportsInterface> extends javax.swing.JD
         eventGenericPanel.add(participantsListLabel, gridBagConstraints);
 
         addPanel.setBackground(Palette.getCurrentScheme().COLOR_MAIN.getColor());
-        addPanel.setLayout(new javax.swing.BoxLayout(addPanel, javax.swing.BoxLayout.Y_AXIS));
+        addPanel.setLayout(new java.awt.GridBagLayout());
+
+        jScrollPane2.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        jScrollPane2.setOpaque(false);
+
+        addPanelList.setOpaque(false);
+        addPanelList.setLayout(new javax.swing.BoxLayout(addPanelList, javax.swing.BoxLayout.Y_AXIS));
+        jScrollPane2.setViewportView(addPanelList);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
+        addPanel.add(jScrollPane2, gridBagConstraints);
+
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;
@@ -518,6 +535,7 @@ public class ManagementDialog<T extends EsportsInterface> extends javax.swing.JD
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel addPanel;
+    private javax.swing.JPanel addPanelList;
     private javax.swing.JToggleButton addPanelToggle;
     private javax.swing.JButton applyButton;
     private javax.swing.JButton cancelButton;
@@ -531,6 +549,7 @@ public class ManagementDialog<T extends EsportsInterface> extends javax.swing.JD
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JPanel mainPanel;
     private javax.swing.JPanel managementPanel;
     private javax.swing.JPanel memberGenericPanel;
