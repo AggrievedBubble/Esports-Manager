@@ -96,17 +96,22 @@ public class Event implements EsportsInterface<Event>{
 	
 	public static Event add(String name) {
 		name = name.trim();
-		Event evt = new Event(name);
+		Event ev = new Event(name);
 		
 		// create panel and add to elp
-		evt.panel = new ListComponent<>(Event.class, evt);
+		ev.panel = new ListComponent<>(ev, (lc) -> {
+			ManagementDialog<Event> md = new ManagementDialog<>(Event.class, lc.get());
+			md.setVisible(true);
+			md.nameField.setText(md.object.getName());
+		});
+		
 		JPanel elp = EsportsGUI.getEventsListPanel();
-		elp.add(evt.panel, elp.getComponentCount() - 1);
+		elp.add(ev.panel, elp.getComponentCount() - 1);
 		elp.revalidate();
 		
-		Event.list.add(evt);
+		Event.list.add(ev);
 		
-		return evt;
+		return ev;
 	}
 	
 	public void addTeam(Team tm) {

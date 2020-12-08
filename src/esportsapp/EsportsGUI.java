@@ -1229,7 +1229,11 @@ public class EsportsGUI extends javax.swing.JFrame {
 					Event.list.stream()
 							.map((ev) -> (ev))
 							.forEach((ev) -> {
-								ev.panel = new ListComponent<>(Event.class, ev);
+								ev.panel = new ListComponent<>(ev, (lc) -> {
+									ManagementDialog<Event> md = new ManagementDialog<>(Event.class, lc.get());
+									md.setVisible(true);
+									md.nameField.setText(md.object.getName());
+								});
 								elp.add(ev.panel, elp.getComponentCount() - 1);
 							});
 					elp.revalidate();
@@ -1239,7 +1243,11 @@ public class EsportsGUI extends javax.swing.JFrame {
 					Team.list.stream()
 							.map((tm) -> (tm))
 							.forEach((tm) -> {
-								tm.panel = new ListComponent<>(Team.class, tm);
+								tm.panel = new ListComponent<>(tm, ((lc) -> {
+									ManagementDialog<Team> md = new ManagementDialog<>(Team.class, lc.get());
+									md.setVisible(true);
+									md.nameField.setText(md.object.getName());
+								}));
 								tlp.add(tm.panel, tlp.getComponentCount() - 1);
 							});
 					tlp.revalidate();

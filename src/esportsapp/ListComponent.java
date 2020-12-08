@@ -17,6 +17,7 @@ public class ListComponent<T extends EsportsInterface> extends javax.swing.JPane
 	
 	Class<T> type;
 	T object;
+	java.util.function.Consumer onClick;
 	
 	public ListComponent<T> get() {
 		return this;
@@ -24,12 +25,13 @@ public class ListComponent<T extends EsportsInterface> extends javax.swing.JPane
 	
 	/**
 	 * Creates new form ListComponent
-	 * @param t
-	 * @param obj
+	 * @param obj object that the list component should mimic
+	 * @param onClick function to perform on click
 	 */
-	public ListComponent(Class<T> t, T obj, java.util.function.Consumer onClick) {
-		this.type = t;
+	public ListComponent(T obj, java.util.function.Consumer<T> onClick) {
+		this.type = type;
 		this.object = obj;
+		this.onClick = onClick;
 		
 		initComponents();
 		
@@ -87,9 +89,8 @@ public class ListComponent<T extends EsportsInterface> extends javax.swing.JPane
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
         add(nameLabel, gridBagConstraints);
 
         scoreLabel.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -101,7 +102,7 @@ public class ListComponent<T extends EsportsInterface> extends javax.swing.JPane
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
         add(scoreLabel, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
@@ -118,9 +119,7 @@ public class ListComponent<T extends EsportsInterface> extends javax.swing.JPane
 
     private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
         // TODO add your handling code here:
-		ManagementDialog<T> md = new ManagementDialog<T>(this.type, this.object);
-		md.setVisible(true);
-		md.nameField.setText(md.object.getName());
+		this.onClick.accept(this.object);
     }//GEN-LAST:event_formMouseClicked
 
 	

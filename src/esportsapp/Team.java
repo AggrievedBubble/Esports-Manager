@@ -99,7 +99,11 @@ public class Team implements EsportsInterface<Team> {
 		name = name.trim();
 		Team tm = new Team(name);
 		
-		tm.panel = new ListComponent<>(Team.class, tm);
+		tm.panel = new ListComponent<>(tm, (lc) -> {
+			ManagementDialog<Team> md = new ManagementDialog<>(Team.class, lc.get());
+			md.setVisible(true);
+			md.nameField.setText(md.object.getName());
+		});
 		JPanel tlp = EsportsGUI.getTeamsListPanel();
 		tlp.add(tm.panel, tlp.getComponentCount() - 1);
 		tlp.revalidate();

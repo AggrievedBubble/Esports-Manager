@@ -52,7 +52,10 @@ public class ManagementDialog<T extends EsportsInterface> extends javax.swing.JD
 				.map((t) -> (t))
 				.forEach((t) -> {
 				if (!this.object.getScores().containsKey(t)) {
-					addPanelList.add(t.panel);
+					ListComponent<Team> comp = new ListComponent<>(t, (lc) -> {
+						
+					});
+					addPanelList.add(comp);
 				}
 				});
 		}
