@@ -28,7 +28,7 @@ public class ListComponent<T extends EsportsInterface> extends javax.swing.JPane
 	 * @param obj object that the list component should mimic
 	 * @param onClick function to perform on click
 	 */
-	public ListComponent(T obj, java.util.function.Consumer<T> onClick) {
+	public ListComponent(T obj, java.util.function.Consumer<ListComponent> onClick) {
 		this.type = type;
 		this.object = obj;
 		this.onClick = onClick;
@@ -40,12 +40,16 @@ public class ListComponent<T extends EsportsInterface> extends javax.swing.JPane
 		scoreLabel.setText(String.valueOf(this.object.getScore()));
 	}
 	
+	public JLabel getNameLabel() {
+		return nameLabel;
+	}
+	
 	public JLabel getIconLabel() {
 		return iconLabel;
 	}
 	
-	public JLabel getNameLabel() {
-		return nameLabel;
+	public JLabel getScoreLabel() {
+		return scoreLabel;
 	}
 
 	/**
@@ -79,6 +83,8 @@ public class ListComponent<T extends EsportsInterface> extends javax.swing.JPane
         });
         setLayout(new java.awt.GridBagLayout());
         gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         add(iconLabel, gridBagConstraints);
 
@@ -87,23 +93,20 @@ public class ListComponent<T extends EsportsInterface> extends javax.swing.JPane
         nameLabel.setText("NAME");
         nameLabel.setBorder(javax.swing.BorderFactory.createEmptyBorder(5, 5, 5, 5));
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 0;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
         gridBagConstraints.weightx = 1.0;
         add(nameLabel, gridBagConstraints);
 
         scoreLabel.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         scoreLabel.setForeground(Palette.getCurrentScheme().COLOR_SECONDARY_TEXT.getColor()
         );
-        scoreLabel.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        scoreLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         scoreLabel.setText("SCORE");
         scoreLabel.setBorder(javax.swing.BorderFactory.createEmptyBorder(5, 5, 5, 5));
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 0;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
         add(scoreLabel, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -119,7 +122,7 @@ public class ListComponent<T extends EsportsInterface> extends javax.swing.JPane
 
     private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
         // TODO add your handling code here:
-		this.onClick.accept(this.object);
+		this.onClick.accept(this);
     }//GEN-LAST:event_formMouseClicked
 
 	

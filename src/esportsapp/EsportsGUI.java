@@ -1230,7 +1230,7 @@ public class EsportsGUI extends javax.swing.JFrame {
 							.map((ev) -> (ev))
 							.forEach((ev) -> {
 								ev.panel = new ListComponent<>(ev, (lc) -> {
-									ManagementDialog<Event> md = new ManagementDialog<>(Event.class, lc.get());
+									ManagementDialog<Event> md = new ManagementDialog<>(Event.class, ev);
 									md.setVisible(true);
 									md.nameField.setText(md.object.getName());
 								});
@@ -1244,7 +1244,7 @@ public class EsportsGUI extends javax.swing.JFrame {
 							.map((tm) -> (tm))
 							.forEach((tm) -> {
 								tm.panel = new ListComponent<>(tm, ((lc) -> {
-									ManagementDialog<Team> md = new ManagementDialog<>(Team.class, lc.get());
+									ManagementDialog<Team> md = new ManagementDialog<>(Team.class, tm);
 									md.setVisible(true);
 									md.nameField.setText(md.object.getName());
 								}));
@@ -1388,6 +1388,7 @@ public class EsportsGUI extends javax.swing.JFrame {
 				.forEach(ev -> {
 					ev.panel.setBackground(Palette.getCurrentScheme().COLOR_ACTIVE.getColor());
 					ev.panel.getNameLabel().setForeground(Palette.getCurrentScheme().COLOR_PRIMARY_TEXT.getColor());
+					ev.panel.getScoreLabel().setForeground(Palette.getCurrentScheme().COLOR_SECONDARY_TEXT.getColor());
 				});
 		
 		

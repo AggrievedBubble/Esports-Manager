@@ -31,7 +31,7 @@ public class Team implements EsportsInterface<Team> {
 	@Override
 	public void setName(String name) {
 		this.name = name;
-		this.panel.getNameLabel().setText(name);
+		this.panel.getNameLabel().setText(name + this.score);
 	}
 	
 	@Override
@@ -63,6 +63,7 @@ public class Team implements EsportsInterface<Team> {
 	@Override
 	public void setScore(int scr) {
 		this.score = scr;
+		this.panel.getScoreLabel().setText(this.name + scr);
 	}
 	
 	@Override
@@ -100,7 +101,7 @@ public class Team implements EsportsInterface<Team> {
 		Team tm = new Team(name);
 		
 		tm.panel = new ListComponent<>(tm, (lc) -> {
-			ManagementDialog<Team> md = new ManagementDialog<>(Team.class, lc.get());
+			ManagementDialog<Team> md = new ManagementDialog<>(Team.class, tm);
 			md.setVisible(true);
 			md.nameField.setText(md.object.getName());
 		});

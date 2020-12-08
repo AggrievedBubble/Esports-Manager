@@ -100,7 +100,7 @@ public class Event implements EsportsInterface<Event>{
 		
 		// create panel and add to elp
 		ev.panel = new ListComponent<>(ev, (lc) -> {
-			ManagementDialog<Event> md = new ManagementDialog<>(Event.class, lc.get());
+			ManagementDialog<Event> md = new ManagementDialog<>(Event.class, ev);
 			md.setVisible(true);
 			md.nameField.setText(md.object.getName());
 		});
