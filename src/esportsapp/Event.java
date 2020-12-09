@@ -105,6 +105,8 @@ public class Event implements EsportsInterface<Event>{
 			md.nameField.setText(md.object.getName());
 		});
 		
+		ev.panel.getScoreLabel().setText("");
+		
 		JPanel elp = EsportsGUI.getEventsListPanel();
 		elp.add(ev.panel, elp.getComponentCount() - 1);
 		elp.revalidate();

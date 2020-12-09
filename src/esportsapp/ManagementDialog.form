@@ -418,7 +418,7 @@
                 </Container>
               </SubComponents>
             </Container>
-            <Container class="javax.swing.JPanel" name="jPanel3">
+            <Container class="javax.swing.JPanel" name="buttonPanel">
               <Properties>
                 <Property name="opaque" type="boolean" value="false"/>
               </Properties>

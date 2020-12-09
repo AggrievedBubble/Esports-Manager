@@ -69,7 +69,14 @@ public class ManagementDialog<T extends EsportsInterface> extends javax.swing.JD
 								addPanelList.add(lc);
 								not_participating.add(t);
 							} else {
-								
+								String proposed_score = JOptionPane.showInputDialog(this, "What did Team \"" + lc.object.getName() + "\" score in this Event?").trim();
+								if (proposed_score == null || proposed_score.equals("")) return;
+								if (isInteger(proposed_score)) {
+									this.object.getScores().put(lc.object, proposed_score);
+									lc.getScoreLabel().setText(proposed_score);
+								} else {
+									JOptionPane.showMessageDialog(this, "\"" + proposed_score + "\" is not recognised as an integer");
+								}
 							}
 						}
 						addPanel.revalidate();
@@ -83,6 +90,9 @@ public class ManagementDialog<T extends EsportsInterface> extends javax.swing.JD
 						
 						applyButton.setEnabled(true);
 					});
+					
+					comp.getScoreLabel().setText((String)this.object.getScores().get(t));
+					
 					if (!this.object.getScores().containsKey(t)) {
 						not_participating.add(t);
 						addPanelList.add(comp);
@@ -99,6 +109,30 @@ public class ManagementDialog<T extends EsportsInterface> extends javax.swing.JD
 		}
 		
 	}
+	
+	public static boolean isInteger(String str) {
+    if (str == null) {
+        return false;
+    }
+    int length = str.length();
+    if (length == 0) {
+        return false;
+    }
+    int i = 0;
+    if (str.charAt(0) == '-') {
+        if (length == 1) {
+            return false;
+        }
+        i = 1;
+    }
+    for (; i < length; i++) {
+        char c = str.charAt(i);
+        if (c < '0' || c > '9') {
+            return false;
+        }
+    }
+    return true;
+}
 
 	/**
 	 * This method is called from within the constructor to initialize the form.
@@ -132,7 +166,7 @@ public class ManagementDialog<T extends EsportsInterface> extends javax.swing.JD
         jLabel3 = new javax.swing.JLabel();
         memberGenericPanel = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        jPanel3 = new javax.swing.JPanel();
+        buttonPanel = new javax.swing.JPanel();
         cancelButton = new javax.swing.JButton();
         applyButton = new javax.swing.JButton();
 
@@ -380,8 +414,8 @@ public class ManagementDialog<T extends EsportsInterface> extends javax.swing.JD
         gridBagConstraints.insets = new java.awt.Insets(0, 5, 5, 5);
         managementPanel.add(genericPanel, gridBagConstraints);
 
-        jPanel3.setOpaque(false);
-        jPanel3.setLayout(new java.awt.GridBagLayout());
+        buttonPanel.setOpaque(false);
+        buttonPanel.setLayout(new java.awt.GridBagLayout());
 
         cancelButton.setBackground(Palette.getCurrentScheme().COLOR_MENU_BACK.getColor());
         cancelButton.setForeground(Palette.getCurrentScheme().COLOR_PRIMARY_TEXT.getColor());
@@ -407,7 +441,7 @@ public class ManagementDialog<T extends EsportsInterface> extends javax.swing.JD
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 5, 5);
-        jPanel3.add(cancelButton, gridBagConstraints);
+        buttonPanel.add(cancelButton, gridBagConstraints);
 
         applyButton.setBackground(Palette.getCurrentScheme().COLOR_MENU_BACK.getColor());
         applyButton.setForeground(Palette.getCurrentScheme().COLOR_PRIMARY_TEXT.getColor());
@@ -436,7 +470,7 @@ public class ManagementDialog<T extends EsportsInterface> extends javax.swing.JD
         gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 5, 0);
-        jPanel3.add(applyButton, gridBagConstraints);
+        buttonPanel.add(applyButton, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -444,7 +478,7 @@ public class ManagementDialog<T extends EsportsInterface> extends javax.swing.JD
         gridBagConstraints.gridwidth = 3;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.SOUTHEAST;
         gridBagConstraints.weightx = 1.0;
-        managementPanel.add(jPanel3, gridBagConstraints);
+        managementPanel.add(buttonPanel, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -563,8 +597,13 @@ public class ManagementDialog<T extends EsportsInterface> extends javax.swing.JD
 			for (Component tc : participantsPanelList.getComponents()) {
 				ListComponent<Team> tlc = (ListComponent<Team>)tc;
 				if (!this.object.getScores().containsKey(tlc.object)) this.object.getScores().put(tlc.object, 0);
-					
+				int total = 0;
+				for (Event e : Event.list) {
+					if (e.getScores().get(tlc.object) != null) total += (int) e.getScores().get(tlc.object);
+				}
+				tlc.object.setScore(total);
 			}
+			
 			
 		}
 		
@@ -604,6 +643,7 @@ public class ManagementDialog<T extends EsportsInterface> extends javax.swing.JD
     private javax.swing.JScrollPane addPanelScrollPane;
     private javax.swing.JToggleButton addPanelToggle;
     private javax.swing.JButton applyButton;
+    private javax.swing.JPanel buttonPanel;
     private javax.swing.JButton cancelButton;
     private javax.swing.JButton closeButton;
     private javax.swing.JTextArea descriptionTextArea;
@@ -613,7 +653,6 @@ public class ManagementDialog<T extends EsportsInterface> extends javax.swing.JD
     private javax.swing.JLabel iconLabel;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPanel mainPanel;
     private javax.swing.JPanel managementPanel;

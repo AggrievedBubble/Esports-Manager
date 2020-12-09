@@ -33,6 +33,7 @@ public class EsportsGUI extends javax.swing.JFrame {
 	private int posX;
 	private int posY;
 	static JFileChooser chooser = new JFileChooser();
+	private static FileNameExtensionFilter filter = new FileNameExtensionFilter("esports files(.esports)", "esports");
 
     /**
      * Creates new form EsportsGUI
@@ -1192,9 +1193,10 @@ public class EsportsGUI extends javax.swing.JFrame {
 		
 		chooser.setDialogType(JFileChooser.SAVE_DIALOG);
 		chooser.setSelectedFile(new File("tournament.esports"));
-		chooser.setFileFilter(new FileNameExtensionFilter("esports files(.esports)", "esports"));
+		chooser.setFileFilter(filter);
 		int returnVal = chooser.showSaveDialog(EsportsGUI.getFrames()[0]);
 		if(returnVal == JFileChooser.APPROVE_OPTION) {
+			if (!chooser.getSelectedFile().getAbsolutePath().endsWith(".esports") && chooser.getFileFilter().equals(filter)) chooser.setSelectedFile(new File(chooser.getSelectedFile().getAbsolutePath() + ".esports"));
 			try (FileOutputStream fos = new FileOutputStream(chooser.getSelectedFile().getAbsolutePath()); ObjectOutputStream oos = new ObjectOutputStream(fos);) {
 				java.util.List arr = new ArrayList<>();
 				arr.add(Event.list);
@@ -1213,7 +1215,7 @@ public class EsportsGUI extends javax.swing.JFrame {
         // TODO add your handling code here:
 		chooser.setDialogType(JFileChooser.OPEN_DIALOG);
 		chooser.setSelectedFile(new File(""));
-		chooser.setFileFilter(new FileNameExtensionFilter("esports files(.esports)", "esports"));
+		chooser.setFileFilter(filter);
 		int returnVal = chooser.showOpenDialog(EsportsGUI.getFrames()[0]);
 		if(returnVal == JFileChooser.APPROVE_OPTION) {
 			if (chooser.getSelectedFile().exists()) {
