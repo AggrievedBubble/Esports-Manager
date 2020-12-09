@@ -13,7 +13,7 @@ import javax.swing.*;
  * @author j9neave
  * @param <T>
  */
-public class ListComponent<T extends EsportsInterface> extends javax.swing.JPanel {
+public class ListComponent<T extends EsportsInterface> extends javax.swing.JPanel implements Scrollable {
 	
 	Class<T> type;
 	T object;
@@ -68,8 +68,7 @@ public class ListComponent<T extends EsportsInterface> extends javax.swing.JPane
 
         setBackground(Palette.getCurrentScheme().COLOR_ACTIVE.getColor());
         setMaximumSize(new java.awt.Dimension(2147483647, 35));
-        setMinimumSize(new java.awt.Dimension(75, 35));
-        setPreferredSize(new java.awt.Dimension(400, 35));
+        setMinimumSize(new java.awt.Dimension(0, 0));
         addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 formMouseClicked(evt);
@@ -131,4 +130,29 @@ public class ListComponent<T extends EsportsInterface> extends javax.swing.JPane
     private javax.swing.JLabel nameLabel;
     private javax.swing.JLabel scoreLabel;
     // End of variables declaration//GEN-END:variables
+
+	@Override
+	public Dimension getPreferredScrollableViewportSize() {
+		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+	}
+
+	@Override
+	public int getScrollableUnitIncrement(Rectangle visibleRect, int orientation, int direction) {
+		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+	}
+
+	@Override
+	public int getScrollableBlockIncrement(Rectangle visibleRect, int orientation, int direction) {
+		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+	}
+
+	@Override
+	public boolean getScrollableTracksViewportWidth() {
+		return true;
+	}
+
+	@Override
+	public boolean getScrollableTracksViewportHeight() {
+		return false;
+	}
 }
