@@ -61,7 +61,7 @@ public class Event implements EsportsInterface<Event>{
 	}
 	
 	@Override
-	public void setScore(int scr) {
+	public void setScore(Integer scr) {
 		this.score = scr;
 	}
 	

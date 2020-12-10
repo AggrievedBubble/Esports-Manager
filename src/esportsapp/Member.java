@@ -58,7 +58,7 @@ public class Member implements EsportsInterface<Member> {
 	}
 	
 	@Override
-	public void setScore(int scr) {
+	public void setScore(Integer scr) {
 		this.score = scr;
 	}
 	

@@ -61,13 +61,20 @@ public class Team implements EsportsInterface<Team> {
 	}
 	
 	@Override
-	public void setScore(int scr) {
-		this.score = scr;
-		if (scr == 0) {
+	public void setScore(Integer scr) {
+		if (scr == null) {
+			this.score = 0;
 			this.panel.getScoreLabel().setText("");
 		} else {
-			this.panel.getScoreLabel().setText(String.valueOf(scr));
+			this.score = scr;
+			if (scr == 0) {
+				this.panel.getScoreLabel().setText("0");
+			} else {
+				this.panel.getScoreLabel().setText(String.valueOf(scr));
+			}
 		}
+		
+		
 		
 	}
 	
@@ -128,14 +135,21 @@ public class Team implements EsportsInterface<Team> {
 	
 	public void updateScore() {
 		int tot = 0;
+		Boolean all_null = true;
 		for (Event e : Event.list) {
 			if (e.getScores().get(this) == null) {
 				tot += 0;
 			} else {
 				tot += Integer.parseInt(String.valueOf(e.getScores().get(this)));
+				all_null = false;
 			}
 		}
-		this.setScore(tot);
+		if (all_null) {
+			this.setScore(null);
+		} else {
+			this.setScore(tot);
+		}
+		
 	}
 	
 }

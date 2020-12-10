@@ -24,7 +24,7 @@ public interface EsportsInterface<T> extends Serializable{
 	public String getDescription();
 	public void setDescription(String str);
 	public int getScore();
-	public void setScore(int scr);
+	public void setScore(Integer scr);
 	public Map getScores();
 	public void setScores(Map scr);
 	
