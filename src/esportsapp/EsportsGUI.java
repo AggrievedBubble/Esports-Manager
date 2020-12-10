@@ -33,7 +33,7 @@ public class EsportsGUI extends javax.swing.JFrame {
 	private int posX;
 	private int posY;
 	static JFileChooser chooser = new JFileChooser();
-	private static FileNameExtensionFilter filter = new FileNameExtensionFilter("esports files(.esports)", "esports");
+	private static final FileNameExtensionFilter filter = new FileNameExtensionFilter("esports files(.esports)", "esports");
 
     /**
      * Creates new form EsportsGUI

@@ -63,7 +63,12 @@ public class Team implements EsportsInterface<Team> {
 	@Override
 	public void setScore(int scr) {
 		this.score = scr;
-		this.panel.getScoreLabel().setText(this.name + scr);
+		if (scr == 0) {
+			this.panel.getScoreLabel().setText("");
+		} else {
+			this.panel.getScoreLabel().setText(String.valueOf(scr));
+		}
+		
 	}
 	
 	@Override
@@ -105,6 +110,13 @@ public class Team implements EsportsInterface<Team> {
 			md.setVisible(true);
 			md.nameField.setText(md.object.getName());
 		});
+		
+		if (tm.score == 0) {
+			tm.panel.getScoreLabel().setText("");
+		} else {
+			tm.panel.getScoreLabel().setText(String.valueOf(tm.score));
+		}
+		
 		JPanel tlp = EsportsGUI.getTeamsListPanel();
 		tlp.add(tm.panel, tlp.getComponentCount() - 1);
 		tlp.revalidate();
@@ -116,11 +128,14 @@ public class Team implements EsportsInterface<Team> {
 	
 	public void updateScore() {
 		int tot = 0;
-		tot = Event.list.stream()
-				.map(evt -> evt.scores.get(this))
-				.filter(scr -> (scr != null))
-				.reduce(tot, Integer::sum);
-		this.score = tot;
+		for (Event e : Event.list) {
+			if (e.getScores().get(this) == null) {
+				tot += 0;
+			} else {
+				tot += Integer.parseInt(String.valueOf(e.getScores().get(this)));
+			}
+		}
+		this.setScore(tot);
 	}
 	
 }

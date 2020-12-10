@@ -91,7 +91,11 @@ public class ManagementDialog<T extends EsportsInterface> extends javax.swing.JD
 						applyButton.setEnabled(true);
 					});
 					
-					comp.getScoreLabel().setText((String)this.object.getScores().get(t));
+					if (this.object.getScores().get(t) == null) {
+						comp.getScoreLabel().setText("");
+					} else {
+						comp.getScoreLabel().setText(String.valueOf(this.object.getScores().get(t)));
+					}
 					
 					if (!this.object.getScores().containsKey(t)) {
 						not_participating.add(t);
@@ -333,7 +337,7 @@ public class ManagementDialog<T extends EsportsInterface> extends javax.swing.JD
         eventGenericLayeredPanel.add(addPanelToggle, gridBagConstraints);
 
         addPanel.setBackground(Palette.getCurrentScheme().COLOR_MAIN.getColor());
-        addPanel.setLayout(new java.awt.GridLayout());
+        addPanel.setLayout(new java.awt.GridLayout(1, 0));
 
         addPanelScrollPane.setBorder(null);
         addPanelScrollPane.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
@@ -358,7 +362,7 @@ public class ManagementDialog<T extends EsportsInterface> extends javax.swing.JD
         eventGenericLayeredPanel.add(addPanel, gridBagConstraints);
 
         participantsPanel.setOpaque(false);
-        participantsPanel.setLayout(new java.awt.GridLayout());
+        participantsPanel.setLayout(new java.awt.GridLayout(1, 0));
 
         participantsPanelScrollPane.setBorder(null);
         participantsPanelScrollPane.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
@@ -592,16 +596,13 @@ public class ManagementDialog<T extends EsportsInterface> extends javax.swing.JD
 			for (Component tc : addPanelList.getComponents()) {
 				ListComponent<Team> tlc = (ListComponent<Team>)tc;
 				this.object.getScores().remove(tlc.object.get());
+				tlc.object.updateScore();
 			}
 			
 			for (Component tc : participantsPanelList.getComponents()) {
 				ListComponent<Team> tlc = (ListComponent<Team>)tc;
 				if (!this.object.getScores().containsKey(tlc.object)) this.object.getScores().put(tlc.object, 0);
-				int total = 0;
-				for (Event e : Event.list) {
-					if (e.getScores().get(tlc.object) != null) total += (int) e.getScores().get(tlc.object);
-				}
-				tlc.object.setScore(total);
+				tlc.object.updateScore();
 			}
 			
 			
