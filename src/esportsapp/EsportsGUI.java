@@ -455,7 +455,7 @@ public class EsportsGUI extends javax.swing.JFrame {
         activePanel.setLayout(new java.awt.CardLayout());
 
         eventsPanel.setOpaque(false);
-        eventsPanel.setLayout(new java.awt.GridBagLayout());
+        eventsPanel.setLayout(new java.awt.GridLayout());
 
         eventsScrollPane.setBorder(null);
         eventsScrollPane.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
@@ -503,32 +503,21 @@ public class EsportsGUI extends javax.swing.JFrame {
 
         eventsScrollPane.setViewportView(eventsListPanel);
 
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
-        eventsPanel.add(eventsScrollPane, gridBagConstraints);
+        eventsPanel.add(eventsScrollPane);
 
         activePanel.add(eventsPanel, "eventsCard");
 
         teamsPanel.setOpaque(false);
-        teamsPanel.setLayout(new java.awt.GridBagLayout());
+        teamsPanel.setLayout(new java.awt.GridLayout());
 
         teamsScrollPane.setBorder(null);
         teamsScrollPane.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         teamsScrollPane.setOpaque(false);
-        teamsScrollPane.setViewportView(teamsListPanel);
 
-        teamsListPanel.setMaximumSize(new java.awt.Dimension(2147483647, 50));
         teamsListPanel.setOpaque(false);
-        teamsListPanel.setPreferredSize(new java.awt.Dimension(400, 50));
         teamsListPanel.setLayout(new javax.swing.BoxLayout(teamsListPanel, javax.swing.BoxLayout.Y_AXIS));
 
-        addTeamPanel.setMaximumSize(new java.awt.Dimension(2147483647, 50));
         addTeamPanel.setOpaque(false);
-        addTeamPanel.setPreferredSize(new java.awt.Dimension(400, 50));
         addTeamPanel.setLayout(new java.awt.GridBagLayout());
 
         addTeamButton.setIcon(Palette.getCurrentScheme().ICON_SMALL_PLUS.getIcon());
@@ -564,11 +553,7 @@ public class EsportsGUI extends javax.swing.JFrame {
 
         teamsScrollPane.setViewportView(teamsListPanel);
 
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
-        teamsPanel.add(teamsScrollPane, gridBagConstraints);
+        teamsPanel.add(teamsScrollPane);
 
         activePanel.add(teamsPanel, "teamsCard");
 
@@ -1266,12 +1251,12 @@ public class EsportsGUI extends javax.swing.JFrame {
 
     private void addTeamButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addTeamButtonMouseEntered
         // TODO add your handling code here:
-		addTeamButton.setIcon(Palette.getCurrentScheme().ICON_SMALL_PLUS_MOUSE_OVER.getIcon());
+		addEventButton.setIcon(Palette.getCurrentScheme().ICON_SMALL_PLUS_MOUSE_OVER.getIcon());
     }//GEN-LAST:event_addTeamButtonMouseEntered
 
     private void addTeamButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addTeamButtonMouseExited
         // TODO add your handling code here:
-		addTeamButton.setIcon(Palette.getCurrentScheme().ICON_SMALL_PLUS.getIcon());
+		addEventButton.setIcon(Palette.getCurrentScheme().ICON_SMALL_PLUS.getIcon());
     }//GEN-LAST:event_addTeamButtonMouseExited
 
     private void addTeamButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addTeamButtonActionPerformed
@@ -1279,8 +1264,8 @@ public class EsportsGUI extends javax.swing.JFrame {
 		String proposedName = JOptionPane.showInputDialog(this, "Please enter a name:").trim();
 		if (proposedName == null || proposedName.equals("")) return;
 		boolean nameTaken = false;
-		for (Team tm : Team.list) {
-			if (tm.name.equals(proposedName)) {
+		for (Team t : Team.list) {
+			if (t.name.equals(proposedName)) {
 				JOptionPane.showMessageDialog(this, "Team name \"" + proposedName + "\" is already taken");
 				nameTaken = true;
 			}
