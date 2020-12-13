@@ -69,6 +69,7 @@ public class ListComponent<T extends EsportsInterface> extends javax.swing.JPane
         setBackground(Palette.getCurrentScheme().COLOR_ACTIVE.getColor());
         setMaximumSize(new java.awt.Dimension(2147483647, 35));
         setMinimumSize(new java.awt.Dimension(0, 0));
+        setPreferredSize(new java.awt.Dimension(400, 35));
         addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 formMouseClicked(evt);

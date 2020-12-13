@@ -519,16 +519,14 @@ public class EsportsGUI extends javax.swing.JFrame {
         teamsScrollPane.setBorder(null);
         teamsScrollPane.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         teamsScrollPane.setOpaque(false);
-        teamsScrollPane.setViewportView(null);
+        teamsScrollPane.setViewportView(teamsListPanel);
 
         teamsListPanel.setMaximumSize(new java.awt.Dimension(2147483647, 50));
-        teamsListPanel.setMinimumSize(new java.awt.Dimension(10, 10));
         teamsListPanel.setOpaque(false);
         teamsListPanel.setPreferredSize(new java.awt.Dimension(400, 50));
         teamsListPanel.setLayout(new javax.swing.BoxLayout(teamsListPanel, javax.swing.BoxLayout.Y_AXIS));
 
         addTeamPanel.setMaximumSize(new java.awt.Dimension(2147483647, 50));
-        addTeamPanel.setMinimumSize(new java.awt.Dimension(10, 10));
         addTeamPanel.setOpaque(false);
         addTeamPanel.setPreferredSize(new java.awt.Dimension(400, 50));
         addTeamPanel.setLayout(new java.awt.GridBagLayout());
