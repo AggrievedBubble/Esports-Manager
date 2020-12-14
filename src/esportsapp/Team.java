@@ -61,8 +61,21 @@ public class Team implements EsportsInterface<Team> {
 	}
 	
 	@Override
-	public void setScore(int scr) {
-		this.score = scr;
+	public void setScore(Integer scr) {
+		if (scr == null) {
+			this.score = 0;
+			this.panel.getScoreLabel().setText("");
+		} else {
+			this.score = scr;
+			if (scr == 0) {
+				this.panel.getScoreLabel().setText("0");
+			} else {
+				this.panel.getScoreLabel().setText(String.valueOf(scr));
+			}
+		}
+		
+		
+		
 	}
 	
 	@Override
@@ -99,7 +112,18 @@ public class Team implements EsportsInterface<Team> {
 		name = name.trim();
 		Team tm = new Team(name);
 		
-		tm.panel = new ListComponent<>(Team.class, tm);
+		tm.panel = new ListComponent<>(tm, (lc) -> {
+			ManagementDialog<Team> md = new ManagementDialog<>(Team.class, tm);
+			md.setVisible(true);
+			md.nameField.setText(md.object.getName());
+		});
+		
+		if (tm.score == 0) {
+			tm.panel.getScoreLabel().setText("");
+		} else {
+			tm.panel.getScoreLabel().setText(String.valueOf(tm.score));
+		}
+		
 		JPanel tlp = EsportsGUI.getTeamsListPanel();
 		tlp.add(tm.panel, tlp.getComponentCount() - 1);
 		tlp.revalidate();
@@ -111,11 +135,21 @@ public class Team implements EsportsInterface<Team> {
 	
 	public void updateScore() {
 		int tot = 0;
-		tot = Event.list.stream()
-				.map(evt -> evt.scores.get(this))
-				.filter(scr -> (scr != null))
-				.reduce(tot, Integer::sum);
-		this.score = tot;
+		Boolean all_null = true;
+		for (Event e : Event.list) {
+			if (e.getScores().get(this) == null) {
+				tot += 0;
+			} else {
+				tot += Integer.parseInt(String.valueOf(e.getScores().get(this)));
+				all_null = false;
+			}
+		}
+		if (all_null) {
+			this.setScore(null);
+		} else {
+			this.setScore(tot);
+		}
+		
 	}
 	
 }

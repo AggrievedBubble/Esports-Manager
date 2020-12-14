@@ -13,10 +13,11 @@ import javax.swing.*;
  * @author j9neave
  * @param <T>
  */
-public class ListComponent<T extends EsportsInterface> extends javax.swing.JPanel {
+public class ListComponent<T extends EsportsInterface> extends javax.swing.JPanel implements Scrollable {
 	
 	Class<T> type;
 	T object;
+	java.util.function.Consumer onClick;
 	
 	public ListComponent<T> get() {
 		return this;
@@ -24,22 +25,31 @@ public class ListComponent<T extends EsportsInterface> extends javax.swing.JPane
 	
 	/**
 	 * Creates new form ListComponent
-	 * @param t
-	 * @param obj
+	 * @param obj object that the list component should mimic
+	 * @param onClick function to perform on click
 	 */
-	public ListComponent(Class<T> t, T obj) {
-		this.type = t;
+	public ListComponent(T obj, java.util.function.Consumer<ListComponent> onClick) {
+		this.type = type;
 		this.object = obj;
+		this.onClick = onClick;
 		
 		initComponents();
+		
+		iconLabel.setIcon(new ImageIcon(this.object.getIcon().getImage().getScaledInstance(32, 32, Image.SCALE_DEFAULT)));
+		nameLabel.setText(this.object.getName());
+		scoreLabel.setText(String.valueOf(this.object.getScore()));
+	}
+	
+	public JLabel getNameLabel() {
+		return nameLabel;
 	}
 	
 	public JLabel getIconLabel() {
 		return iconLabel;
 	}
 	
-	public JLabel getNameLabel() {
-		return nameLabel;
+	public JLabel getScoreLabel() {
+		return scoreLabel;
 	}
 
 	/**
@@ -54,11 +64,12 @@ public class ListComponent<T extends EsportsInterface> extends javax.swing.JPane
 
         iconLabel = new javax.swing.JLabel();
         nameLabel = new javax.swing.JLabel();
+        scoreLabel = new javax.swing.JLabel();
 
         setBackground(Palette.getCurrentScheme().COLOR_ACTIVE.getColor());
         setMaximumSize(new java.awt.Dimension(2147483647, 35));
-        setMinimumSize(new java.awt.Dimension(200, 35));
-        setPreferredSize(new java.awt.Dimension(400, 35));
+        setMinimumSize(new java.awt.Dimension(0, 0));
+        setPreferredSize(new java.awt.Dimension(0, 35));
         addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 formMouseClicked(evt);
@@ -71,47 +82,78 @@ public class ListComponent<T extends EsportsInterface> extends javax.swing.JPane
             }
         });
         setLayout(new java.awt.GridBagLayout());
-
-        iconLabel.setIcon(new ImageIcon(this.object.getIcon().getImage().getScaledInstance(32, 32, Image.SCALE_DEFAULT)));
         gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         add(iconLabel, gridBagConstraints);
 
         nameLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         nameLabel.setForeground(Palette.getCurrentScheme().COLOR_PRIMARY_TEXT.getColor());
-        nameLabel.setText(this.object.getName());
+        nameLabel.setText("NAME");
         nameLabel.setBorder(javax.swing.BorderFactory.createEmptyBorder(5, 5, 5, 5));
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 0;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.ipady = 3;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
         gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
         add(nameLabel, gridBagConstraints);
+
+        scoreLabel.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        scoreLabel.setForeground(Palette.getCurrentScheme().COLOR_SECONDARY_TEXT.getColor()
+        );
+        scoreLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        scoreLabel.setText("SCORE");
+        scoreLabel.setBorder(javax.swing.BorderFactory.createEmptyBorder(5, 5, 5, 5));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
+        add(scoreLabel, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
 
     private void formMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseEntered
         // TODO add your handling code here:
-		this.setBackground(Palette.getCurrentScheme().COLOR_MENU_MOUSE_OVER_BACK.getColor());
+		if (!this.hasFocus()) this.setBackground(Palette.getCurrentScheme().COLOR_MENU_MOUSE_OVER_BACK.getColor());
     }//GEN-LAST:event_formMouseEntered
 
     private void formMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseExited
         // TODO add your handling code here:
-		this.setBackground(Palette.getCurrentScheme().COLOR_ACTIVE.getColor());
+		if (!this.hasFocus()) this.setBackground(Palette.getCurrentScheme().COLOR_ACTIVE.getColor());
     }//GEN-LAST:event_formMouseExited
 
     private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
         // TODO add your handling code here:
-		ManagementDialog<T> md = new ManagementDialog<T>(this.type, this.object);
-		md.setVisible(true);
-		md.nameField.setText(md.object.getName());
+		this.onClick.accept(this);
     }//GEN-LAST:event_formMouseClicked
 
 	
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel iconLabel;
     private javax.swing.JLabel nameLabel;
+    private javax.swing.JLabel scoreLabel;
     // End of variables declaration//GEN-END:variables
+
+	@Override
+	public Dimension getPreferredScrollableViewportSize() {
+		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+	}
+
+	@Override
+	public int getScrollableUnitIncrement(Rectangle visibleRect, int orientation, int direction) {
+		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+	}
+
+	@Override
+	public int getScrollableBlockIncrement(Rectangle visibleRect, int orientation, int direction) {
+		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+	}
+
+	@Override
+	public boolean getScrollableTracksViewportWidth() {
+		return true;
+	}
+
+	@Override
+	public boolean getScrollableTracksViewportHeight() {
+		return false;
+	}
 }
