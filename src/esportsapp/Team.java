@@ -31,7 +31,7 @@ public class Team implements EsportsInterface<Team> {
 	@Override
 	public void setName(String name) {
 		this.name = name;
-		this.panel.getNameLabel().setText(name + this.score);
+		this.panel.getNameLabel().setText(name);
 	}
 	
 	@Override

@@ -47,6 +47,7 @@ public class ManagementDialog<T extends EsportsInterface> extends javax.swing.JD
 		card.show(genericPanel, this.type.getName());
 		
 		if (this.type.getName().equals("esportsapp.Event")) {
+			
 			//event prep
 			addPanelScrollPane.getViewport().setOpaque(false);
 			addPanelScrollPane.getVerticalScrollBar().setUnitIncrement(16);
@@ -110,8 +111,21 @@ public class ManagementDialog<T extends EsportsInterface> extends javax.swing.JD
 					
 					
 				});
+		} else if (this.type.getName().equals("esportsapp.Team")) {
+			
+			//team prep
+			jScrollPane2.getViewport().setOpaque(false);
+			jScrollPane2.getVerticalScrollBar().setUnitIncrement(16);
+			jScrollPane3.getViewport().setOpaque(false);
+			jScrollPane3.getVerticalScrollBar().setUnitIncrement(16);
+			
+			
+		} else if (this.type.getName().equals("esportsapp.Member")) {
+			
+			//member prep
+			
+			
 		}
-		
 	}
 	
 	public static boolean isInteger(String str) {
@@ -167,7 +181,12 @@ public class ManagementDialog<T extends EsportsInterface> extends javax.swing.JD
         participantsPanelScrollPane = new javax.swing.JScrollPane();
         participantsPanelList = new javax.swing.JPanel();
         teamGenericPanel = new javax.swing.JPanel();
-        jLabel3 = new javax.swing.JLabel();
+        membersListLabel = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
         memberGenericPanel = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         buttonPanel = new javax.swing.JPanel();
@@ -394,8 +413,62 @@ public class ManagementDialog<T extends EsportsInterface> extends javax.swing.JD
         teamGenericPanel.setOpaque(false);
         teamGenericPanel.setLayout(new java.awt.GridBagLayout());
 
-        jLabel3.setText("jLabel3");
-        teamGenericPanel.add(jLabel3, new java.awt.GridBagConstraints());
+        membersListLabel.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        membersListLabel.setForeground(Palette.getCurrentScheme().COLOR_PRIMARY_TEXT.getColor()
+        );
+        membersListLabel.setText("Members");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
+        teamGenericPanel.add(membersListLabel, gridBagConstraints);
+
+        jScrollPane2.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+
+        jPanel1.setPreferredSize(new java.awt.Dimension(0, 0));
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 189, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 260, Short.MAX_VALUE)
+        );
+
+        jScrollPane2.setViewportView(jPanel1);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(5, 0, 0, 0);
+        teamGenericPanel.add(jScrollPane2, gridBagConstraints);
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel1.setText("Member Customization");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
+        gridBagConstraints.insets = new java.awt.Insets(0, 5, 0, 0);
+        teamGenericPanel.add(jLabel1, gridBagConstraints);
+
+        jTextArea1.setColumns(20);
+        jTextArea1.setRows(5);
+        jTextArea1.setPreferredSize(new java.awt.Dimension(0, 0));
+        jScrollPane3.setViewportView(jTextArea1);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(5, 5, 0, 0);
+        teamGenericPanel.add(jScrollPane3, gridBagConstraints);
 
         genericPanel.add(teamGenericPanel, "esportsapp.Team");
 
@@ -652,12 +725,17 @@ public class ManagementDialog<T extends EsportsInterface> extends javax.swing.JD
     private javax.swing.JLayeredPane eventGenericLayeredPanel;
     private javax.swing.JPanel genericPanel;
     private javax.swing.JLabel iconLabel;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JPanel mainPanel;
     private javax.swing.JPanel managementPanel;
     private javax.swing.JPanel memberGenericPanel;
+    private javax.swing.JLabel membersListLabel;
     protected javax.swing.JTextField nameField;
     private javax.swing.JLabel participantsListLabel;
     private javax.swing.JPanel participantsPanel;

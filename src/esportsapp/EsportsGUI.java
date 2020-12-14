@@ -15,8 +15,11 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Comparator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
@@ -80,6 +83,21 @@ public class EsportsGUI extends javax.swing.JFrame {
         addTeamButton = new javax.swing.JButton();
         leaderboardPanel = new javax.swing.JPanel();
         leaderboardScrollPane = new javax.swing.JScrollPane();
+        leaderboardListPanel = new javax.swing.JPanel();
+        leaderboardInfoPanel = new javax.swing.JPanel();
+        leaderboardIconLabel = new javax.swing.JLabel();
+        leaderboardNameLabel = new javax.swing.JLabel();
+        leaderboardScoreLabel = new javax.swing.JLabel();
+        leaderboardDescriptionScrollPane = new javax.swing.JScrollPane();
+        leaderboardDescriptionArea = new javax.swing.JTextArea();
+        leaderboardMembersScrollPane = new javax.swing.JScrollPane();
+        leaderboardMembersListPanel = new javax.swing.JPanel();
+        leaderboardMemberInfoPanel = new javax.swing.JPanel();
+        leaderboardMemberIconLabel = new javax.swing.JLabel();
+        leaderboardMemberNameLabel = new javax.swing.JLabel();
+        leaderboardMemberScoreLabel = new javax.swing.JLabel();
+        leaderboardMemberDescriptionScrollPane = new javax.swing.JScrollPane();
+        leaderboardMemberDescriptionArea = new javax.swing.JTextArea();
         settingsScrollPane = new javax.swing.JScrollPane();
         settingsPanel = new javax.swing.JPanel();
         appearanceLabel = new javax.swing.JLabel();
@@ -455,7 +473,7 @@ public class EsportsGUI extends javax.swing.JFrame {
         activePanel.setLayout(new java.awt.CardLayout());
 
         eventsPanel.setOpaque(false);
-        eventsPanel.setLayout(new java.awt.GridLayout());
+        eventsPanel.setLayout(new java.awt.GridLayout(1, 0));
 
         eventsScrollPane.setBorder(null);
         eventsScrollPane.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
@@ -508,7 +526,7 @@ public class EsportsGUI extends javax.swing.JFrame {
         activePanel.add(eventsPanel, "eventsCard");
 
         teamsPanel.setOpaque(false);
-        teamsPanel.setLayout(new java.awt.GridLayout());
+        teamsPanel.setLayout(new java.awt.GridLayout(1, 0));
 
         teamsScrollPane.setBorder(null);
         teamsScrollPane.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
@@ -564,9 +582,147 @@ public class EsportsGUI extends javax.swing.JFrame {
         leaderboardScrollPane.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         leaderboardScrollPane.setOpaque(false);
         leaderboardScrollPane.setViewportView(null);
+
+        leaderboardListPanel.setOpaque(false);
+        leaderboardListPanel.setLayout(new javax.swing.BoxLayout(leaderboardListPanel, javax.swing.BoxLayout.Y_AXIS));
+        leaderboardScrollPane.setViewportView(leaderboardListPanel);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        leaderboardPanel.add(leaderboardScrollPane, gridBagConstraints);
+
+        leaderboardInfoPanel.setOpaque(false);
+        leaderboardInfoPanel.setLayout(new java.awt.GridBagLayout());
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        leaderboardInfoPanel.add(leaderboardIconLabel, gridBagConstraints);
+
+        leaderboardNameLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        leaderboardNameLabel.setForeground(Palette.getCurrentScheme().COLOR_PRIMARY_TEXT.getColor()
+        );
+        leaderboardNameLabel.setText("...");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.insets = new java.awt.Insets(0, 5, 5, 0);
+        leaderboardInfoPanel.add(leaderboardNameLabel, gridBagConstraints);
+
+        leaderboardScoreLabel.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        leaderboardScoreLabel.setForeground(Palette.getCurrentScheme().COLOR_SECONDARY_TEXT.getColor());
+        leaderboardScoreLabel.setText("0");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        leaderboardInfoPanel.add(leaderboardScoreLabel, gridBagConstraints);
+
+        leaderboardDescriptionArea.setEditable(false);
+        leaderboardDescriptionArea.setColumns(20);
+        leaderboardDescriptionArea.setLineWrap(true);
+        leaderboardDescriptionArea.setRows(5);
+        leaderboardDescriptionArea.setWrapStyleWord(true);
+        leaderboardDescriptionScrollPane.setViewportView(leaderboardDescriptionArea);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridwidth = 3;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 5, 0);
+        leaderboardInfoPanel.add(leaderboardDescriptionScrollPane, gridBagConstraints);
+
+        leaderboardMembersScrollPane.setOpaque(false);
+
+        leaderboardMembersListPanel.setOpaque(false);
+        leaderboardMembersListPanel.setPreferredSize(new java.awt.Dimension(0, 0));
+
+        javax.swing.GroupLayout leaderboardMembersListPanelLayout = new javax.swing.GroupLayout(leaderboardMembersListPanel);
+        leaderboardMembersListPanel.setLayout(leaderboardMembersListPanelLayout);
+        leaderboardMembersListPanelLayout.setHorizontalGroup(
+            leaderboardMembersListPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 200, Short.MAX_VALUE)
+        );
+        leaderboardMembersListPanelLayout.setVerticalGroup(
+            leaderboardMembersListPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 230, Short.MAX_VALUE)
+        );
+
+        leaderboardMembersScrollPane.setViewportView(leaderboardMembersListPanel);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 5);
+        leaderboardInfoPanel.add(leaderboardMembersScrollPane, gridBagConstraints);
+
+        leaderboardMemberInfoPanel.setOpaque(false);
+        leaderboardMemberInfoPanel.setLayout(new java.awt.GridBagLayout());
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        leaderboardMemberInfoPanel.add(leaderboardMemberIconLabel, gridBagConstraints);
+
+        leaderboardMemberNameLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        leaderboardMemberNameLabel.setForeground(Palette.getCurrentScheme().COLOR_PRIMARY_TEXT.getColor()
+        );
+        leaderboardMemberNameLabel.setText("...");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(0, 5, 0, 0);
+        leaderboardMemberInfoPanel.add(leaderboardMemberNameLabel, gridBagConstraints);
+
+        leaderboardMemberScoreLabel.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        leaderboardMemberScoreLabel.setForeground(Palette.getCurrentScheme().COLOR_SECONDARY_TEXT.getColor()
+        );
+        leaderboardMemberScoreLabel.setText("0");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        gridBagConstraints.weightx = 1.0;
+        leaderboardMemberInfoPanel.add(leaderboardMemberScoreLabel, gridBagConstraints);
+
+        leaderboardMemberDescriptionArea.setEditable(false);
+        leaderboardMemberDescriptionArea.setColumns(20);
+        leaderboardMemberDescriptionArea.setLineWrap(true);
+        leaderboardMemberDescriptionArea.setRows(5);
+        leaderboardMemberDescriptionArea.setWrapStyleWord(true);
+        leaderboardMemberDescriptionScrollPane.setViewportView(leaderboardMemberDescriptionArea);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridwidth = 3;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(5, 0, 0, 0);
+        leaderboardMemberInfoPanel.add(leaderboardMemberDescriptionScrollPane, gridBagConstraints);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weighty = 1.0;
+        leaderboardInfoPanel.add(leaderboardMemberInfoPanel, gridBagConstraints);
+
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        leaderboardPanel.add(leaderboardScrollPane, gridBagConstraints);
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(0, 5, 0, 0);
+        leaderboardPanel.add(leaderboardInfoPanel, gridBagConstraints);
 
         activePanel.add(leaderboardPanel, "leaderboardCard");
 
@@ -826,7 +982,7 @@ public class EsportsGUI extends javax.swing.JFrame {
         settingsPanel.add(naratorSeparator, gridBagConstraints);
 
         versionLabel.setForeground(Palette.getCurrentScheme().COLOR_SECONDARY_TEXT.getColor());
-        versionLabel.setText("Version: 0.5.0");
+        versionLabel.setText("Version: 0.11.0");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 32;
@@ -881,6 +1037,44 @@ public class EsportsGUI extends javax.swing.JFrame {
 
     private void leaderboardToggleButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_leaderboardToggleButtonActionPerformed
         // TODO add your handling code here:
+		
+		leaderboardListPanel.removeAll();
+		
+		java.util.List<Team> teams_sorted_by_score = Team.list.stream()
+				.sorted(Comparator.comparing(Team::getScore).reversed())
+				.collect(Collectors.toList());
+		
+		teams_sorted_by_score.stream()
+				.map((t) -> (t))
+				.forEach((t) -> {
+					ListComponent<Team> team_list_leaderboard_component = new ListComponent<>(t, (lc) -> {
+									leaderboardIconLabel.setIcon(new ImageIcon(lc.object.getIcon().getImage().getScaledInstance(32, 32, Image.SCALE_DEFAULT)));
+									leaderboardNameLabel.setText(lc.object.getName());
+									leaderboardScoreLabel.setText(String.valueOf(lc.object.getScore()));
+									leaderboardDescriptionArea.setText(lc.object.getDescription());
+									
+									java.util.List<Member> members_sorted_by_score = (java.util.List<Member>) new ArrayList<>(lc.object.getScores().keySet()).stream()
+											.sorted(Comparator.comparing(Member::getScore).reversed())
+											.collect(Collectors.toList());
+			
+									members_sorted_by_score.stream()
+											.map((m) -> (m))
+											.forEach((m) -> {
+												ListComponent<Member> member_list_leaderboard_component = new ListComponent<>(m, (lc2) -> {
+													leaderboardMemberIconLabel.setIcon(new ImageIcon(lc2.object.getIcon().getImage().getScaledInstance(32, 32, Image.SCALE_DEFAULT)));
+													leaderboardMemberNameLabel.setText(lc2.object.getName());
+													leaderboardMemberScoreLabel.setText(String.valueOf(lc2.object.getScore()));
+													leaderboardMemberDescriptionArea.setText(lc2.object.getDescription());
+												});
+											});								
+								});
+					leaderboardListPanel.add(team_list_leaderboard_component);
+				});
+		
+		
+		leaderboardListPanel.revalidate();
+		leaderboardListPanel.repaint();
+		
 		CardLayout card = (CardLayout)activePanel.getLayout();
 		card.show(activePanel, "leaderboardCard");
     }//GEN-LAST:event_leaderboardToggleButtonActionPerformed
@@ -1317,6 +1511,14 @@ public class EsportsGUI extends javax.swing.JFrame {
 				teamsScrollPane.getVerticalScrollBar().setUnitIncrement(16);
 				leaderboardScrollPane.getViewport().setOpaque(false);
 				leaderboardScrollPane.getVerticalScrollBar().setUnitIncrement(16);
+				leaderboardMembersScrollPane.getViewport().setOpaque(false);
+				leaderboardMembersScrollPane.getVerticalScrollBar().setUnitIncrement(16);
+				leaderboardDescriptionScrollPane.getViewport().setOpaque(false);
+				leaderboardDescriptionScrollPane.getVerticalScrollBar().setUnitIncrement(16);
+				leaderboardMembersScrollPane.getViewport().setOpaque(false);
+				leaderboardMembersScrollPane.getVerticalScrollBar().setUnitIncrement(16);
+				leaderboardMemberDescriptionScrollPane.getViewport().setOpaque(false);
+				leaderboardMemberDescriptionScrollPane.getVerticalScrollBar().setUnitIncrement(16);
 				settingsScrollPane.getViewport().setOpaque(false);
 				settingsScrollPane.getVerticalScrollBar().setUnitIncrement(16);
 				
@@ -1376,6 +1578,14 @@ public class EsportsGUI extends javax.swing.JFrame {
 					ev.panel.getScoreLabel().setForeground(Palette.getCurrentScheme().COLOR_SECONDARY_TEXT.getColor());
 				});
 		
+		//Everything inside of teamsPanel
+		addTeamButton.setIcon(Palette.getCurrentScheme().ICON_SMALL_PLUS.getIcon());
+		Team.list.stream()
+				.forEach(tm -> {
+					tm.panel.setBackground(Palette.getCurrentScheme().COLOR_ACTIVE.getColor());
+					tm.panel.getNameLabel().setForeground(Palette.getCurrentScheme().COLOR_PRIMARY_TEXT.getColor());
+					tm.panel.getScoreLabel().setForeground(Palette.getCurrentScheme().COLOR_SECONDARY_TEXT.getColor());
+				});
 		
 		//Everything inside of settingsPanel
 		appearanceLabel.setForeground(Palette.getCurrentScheme().COLOR_PRIMARY_TEXT.getColor());
@@ -1438,7 +1648,22 @@ public class EsportsGUI extends javax.swing.JFrame {
     private javax.swing.JPanel eventsPanel;
     private static javax.swing.JScrollPane eventsScrollPane;
     private static javax.swing.JToggleButton eventsToggleButton;
+    private javax.swing.JTextArea leaderboardDescriptionArea;
+    private static javax.swing.JScrollPane leaderboardDescriptionScrollPane;
+    private javax.swing.JLabel leaderboardIconLabel;
+    private javax.swing.JPanel leaderboardInfoPanel;
+    private javax.swing.JPanel leaderboardListPanel;
+    private static javax.swing.JTextArea leaderboardMemberDescriptionArea;
+    private static javax.swing.JScrollPane leaderboardMemberDescriptionScrollPane;
+    private static javax.swing.JLabel leaderboardMemberIconLabel;
+    private javax.swing.JPanel leaderboardMemberInfoPanel;
+    private static javax.swing.JLabel leaderboardMemberNameLabel;
+    private static javax.swing.JLabel leaderboardMemberScoreLabel;
+    private javax.swing.JPanel leaderboardMembersListPanel;
+    private static javax.swing.JScrollPane leaderboardMembersScrollPane;
+    private javax.swing.JLabel leaderboardNameLabel;
     private javax.swing.JPanel leaderboardPanel;
+    private javax.swing.JLabel leaderboardScoreLabel;
     private static javax.swing.JScrollPane leaderboardScrollPane;
     private static javax.swing.JToggleButton leaderboardToggleButton;
     private javax.swing.JCheckBox lightThemeCheck;
