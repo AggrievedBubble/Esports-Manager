@@ -7,6 +7,8 @@ package esportsapp;
 
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
@@ -22,6 +24,14 @@ public class ManagementDialog<T extends EsportsInterface> extends javax.swing.JD
 	
 	Class<T> type;
 	T object;
+	
+	JFileChooser chooser = new JFileChooser();
+	
+	private java.util.List<Member> awaiting_removal = new ArrayList<>();
+	private java.util.List<Member> temp_members = new ArrayList<>();
+	private ListComponent<Member> focussed_member_comp = null;
+	private Map<EsportsInterface, ImageIcon> images_to_update = new HashMap();
+	private Map<EsportsInterface, String> names_to_update = new HashMap();
 	
 	/**
 	 * Creates new form ManagementDialog
@@ -49,6 +59,7 @@ public class ManagementDialog<T extends EsportsInterface> extends javax.swing.JD
 		if (this.type.getName().equals("esportsapp.Event")) {
 			
 			//event prep
+			
 			addPanelScrollPane.getViewport().setOpaque(false);
 			addPanelScrollPane.getVerticalScrollBar().setUnitIncrement(16);
 			participantsPanelScrollPane.getViewport().setOpaque(false);
@@ -114,16 +125,42 @@ public class ManagementDialog<T extends EsportsInterface> extends javax.swing.JD
 		} else if (this.type.getName().equals("esportsapp.Team")) {
 			
 			//team prep
-			jScrollPane2.getViewport().setOpaque(false);
-			jScrollPane2.getVerticalScrollBar().setUnitIncrement(16);
-			jScrollPane3.getViewport().setOpaque(false);
-			jScrollPane3.getVerticalScrollBar().setUnitIncrement(16);
 			
+			membersListScrollPane.getViewport().setOpaque(false);
+			membersListScrollPane.getVerticalScrollBar().setUnitIncrement(16);
+			memberDescriptionScrollPane.getViewport().setOpaque(false);
+			memberDescriptionScrollPane.getVerticalScrollBar().setUnitIncrement(16);
 			
+			for (Member m : new ArrayList<Member>(this.object.getScores().keySet())) {
+				ListComponent<Member> member_lc = new ListComponent<>(m, (lc) -> {
+				
+				if (focussed_member_comp != null) {
+					focussed_member_comp.setBackground(Palette.getCurrentScheme().COLOR_ACTIVE.getColor());
+					focussed_member_comp.object.setDescription(memberDescriptionArea.getText());
+				}
+				
+				lc.requestFocus();
+				focussed_member_comp = lc;
+				focussed_member_comp.setBackground(Palette.getCurrentScheme().COLOR_MENU_SELECTED_BACK.getColor());
+				memberDescriptionArea.setText(lc.object.getDescription());
+				
+			});
+			
+			member_lc.getScoreLabel().setText("");
+			membersListPanel.add(member_lc);
+			membersListPanel.revalidate();
+			membersListPanel.repaint();
+			}
+					
 		} else if (this.type.getName().equals("esportsapp.Member")) {
 			
 			//member prep
 			
+			/*
+			I originally planned to have a separate management dialog
+			for members but then i decided to integrate member management
+			into the team management dialog
+			*/
 			
 		}
 	}
@@ -167,7 +204,7 @@ public class ManagementDialog<T extends EsportsInterface> extends javax.swing.JD
         dragBarPanel = new javax.swing.JPanel();
         managementPanel = new javax.swing.JPanel();
         nameField = new javax.swing.JTextField();
-        jScrollPane1 = new javax.swing.JScrollPane();
+        descriptionScrollPane = new javax.swing.JScrollPane();
         descriptionTextArea = new javax.swing.JTextArea();
         iconLabel = new javax.swing.JLabel();
         genericPanel = new javax.swing.JPanel();
@@ -182,11 +219,17 @@ public class ManagementDialog<T extends EsportsInterface> extends javax.swing.JD
         participantsPanelList = new javax.swing.JPanel();
         teamGenericPanel = new javax.swing.JPanel();
         membersListLabel = new javax.swing.JLabel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        addRemoveMembersButtonPanel = new javax.swing.JPanel();
+        removeMemberButton = new javax.swing.JButton();
+        addMemberButton = new javax.swing.JButton();
+        membersListScrollPane = new javax.swing.JScrollPane();
+        membersListPanel = new javax.swing.JPanel();
+        memberCustomizationPanel = new javax.swing.JPanel();
+        memberCustomizationLabel = new javax.swing.JLabel();
+        memberChangeIconButton = new javax.swing.JButton();
+        memberDescriptionScrollPane = new javax.swing.JScrollPane();
+        memberDescriptionArea = new javax.swing.JTextArea();
+        memberChangeNameButton = new javax.swing.JButton();
         memberGenericPanel = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         buttonPanel = new javax.swing.JPanel();
@@ -245,7 +288,7 @@ public class ManagementDialog<T extends EsportsInterface> extends javax.swing.JD
         dragBarPanel.setLayout(dragBarPanelLayout);
         dragBarPanelLayout.setHorizontalGroup(
             dragBarPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 518, Short.MAX_VALUE)
+            .addGap(0, 399, Short.MAX_VALUE)
         );
         dragBarPanelLayout.setVerticalGroup(
             dragBarPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -284,8 +327,8 @@ public class ManagementDialog<T extends EsportsInterface> extends javax.swing.JD
         gridBagConstraints.insets = new java.awt.Insets(5, 5, 5, 5);
         managementPanel.add(nameField, gridBagConstraints);
 
-        jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-        jScrollPane1.setPreferredSize(new java.awt.Dimension(183, 100));
+        descriptionScrollPane.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        descriptionScrollPane.setPreferredSize(new java.awt.Dimension(183, 100));
 
         descriptionTextArea.setColumns(10);
         descriptionTextArea.setLineWrap(true);
@@ -298,7 +341,7 @@ public class ManagementDialog<T extends EsportsInterface> extends javax.swing.JD
                 descriptionTextAreaKeyTyped(evt);
             }
         });
-        jScrollPane1.setViewportView(descriptionTextArea);
+        descriptionScrollPane.setViewportView(descriptionTextArea);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -308,7 +351,7 @@ public class ManagementDialog<T extends EsportsInterface> extends javax.swing.JD
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 0.1;
         gridBagConstraints.insets = new java.awt.Insets(0, 5, 5, 5);
-        managementPanel.add(jScrollPane1, gridBagConstraints);
+        managementPanel.add(descriptionScrollPane, gridBagConstraints);
 
         iconLabel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -421,54 +464,186 @@ public class ManagementDialog<T extends EsportsInterface> extends javax.swing.JD
         gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
         teamGenericPanel.add(membersListLabel, gridBagConstraints);
 
-        jScrollPane2.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        addRemoveMembersButtonPanel.setOpaque(false);
+        addRemoveMembersButtonPanel.setLayout(new java.awt.GridBagLayout());
 
-        jPanel1.setPreferredSize(new java.awt.Dimension(0, 0));
+        removeMemberButton.setBackground(Palette.getCurrentScheme().COLOR_MENU_BACK.getColor());
+        removeMemberButton.setForeground(Palette.getCurrentScheme().COLOR_PRIMARY_TEXT.getColor());
+        removeMemberButton.setText("‒");
+        removeMemberButton.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        removeMemberButton.setContentAreaFilled(false);
+        removeMemberButton.setFocusable(false);
+        removeMemberButton.setPreferredSize(new java.awt.Dimension(30, 25));
+        removeMemberButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                removeMemberButtonMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                removeMemberButtonMouseExited(evt);
+            }
+        });
+        removeMemberButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                removeMemberButtonActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 0;
+        addRemoveMembersButtonPanel.add(removeMemberButton, gridBagConstraints);
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 189, Short.MAX_VALUE)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 260, Short.MAX_VALUE)
-        );
+        addMemberButton.setBackground(Palette.getCurrentScheme().COLOR_MENU_BACK.getColor());
+        addMemberButton.setForeground(Palette.getCurrentScheme().COLOR_PRIMARY_TEXT.getColor());
+        addMemberButton.setText("+");
+        addMemberButton.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        addMemberButton.setContentAreaFilled(false);
+        addMemberButton.setFocusPainted(false);
+        addMemberButton.setPreferredSize(new java.awt.Dimension(30, 25));
+        addMemberButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                addMemberButtonMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                addMemberButtonMouseExited(evt);
+            }
+        });
+        addMemberButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addMemberButtonActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        gridBagConstraints.weightx = 1.0;
+        addRemoveMembersButtonPanel.add(addMemberButton, gridBagConstraints);
 
-        jScrollPane2.setViewportView(jPanel1);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        gridBagConstraints.weightx = 1.0;
+        teamGenericPanel.add(addRemoveMembersButtonPanel, gridBagConstraints);
+
+        membersListScrollPane.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        membersListScrollPane.setOpaque(false);
+
+        membersListPanel.setOpaque(false);
+        membersListPanel.setPreferredSize(new java.awt.Dimension(0, 0));
+        membersListPanel.setLayout(new javax.swing.BoxLayout(membersListPanel, javax.swing.BoxLayout.Y_AXIS));
+        membersListScrollPane.setViewportView(membersListPanel);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridwidth = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.weighty = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(5, 0, 0, 0);
-        teamGenericPanel.add(jScrollPane2, gridBagConstraints);
+        teamGenericPanel.add(membersListScrollPane, gridBagConstraints);
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel1.setText("Member Customization");
+        memberCustomizationPanel.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(Palette.getCurrentScheme().COLOR_SEPARATOR.getColor(), 2), javax.swing.BorderFactory.createEmptyBorder(5, 5, 5, 5)));
+        memberCustomizationPanel.setOpaque(false);
+        memberCustomizationPanel.setLayout(new java.awt.GridBagLayout());
+
+        memberCustomizationLabel.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        memberCustomizationLabel.setForeground(Palette.getCurrentScheme().COLOR_PRIMARY_TEXT.getColor()
+        );
+        memberCustomizationLabel.setText("Member Customization");
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
-        gridBagConstraints.insets = new java.awt.Insets(0, 5, 0, 0);
-        teamGenericPanel.add(jLabel1, gridBagConstraints);
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        memberCustomizationPanel.add(memberCustomizationLabel, gridBagConstraints);
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jTextArea1.setPreferredSize(new java.awt.Dimension(0, 0));
-        jScrollPane3.setViewportView(jTextArea1);
+        memberChangeIconButton.setBackground(Palette.getCurrentScheme().COLOR_MENU_BACK.getColor());
+        memberChangeIconButton.setForeground(Palette.getCurrentScheme().COLOR_PRIMARY_TEXT.getColor());
+        memberChangeIconButton.setText("Change Icon");
+        memberChangeIconButton.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        memberChangeIconButton.setContentAreaFilled(false);
+        memberChangeIconButton.setPreferredSize(new java.awt.Dimension(75, 25));
+        memberChangeIconButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                memberChangeIconButtonMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                memberChangeIconButtonMouseExited(evt);
+            }
+        });
+        memberChangeIconButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                memberChangeIconButtonActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.insets = new java.awt.Insets(5, 0, 0, 0);
+        memberCustomizationPanel.add(memberChangeIconButton, gridBagConstraints);
 
+        memberDescriptionArea.setColumns(20);
+        memberDescriptionArea.setLineWrap(true);
+        memberDescriptionArea.setRows(5);
+        memberDescriptionArea.setWrapStyleWord(true);
+        memberDescriptionArea.setPreferredSize(new java.awt.Dimension(0, 0));
+        memberDescriptionArea.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                memberDescriptionAreaKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                memberDescriptionAreaKeyTyped(evt);
+            }
+        });
+        memberDescriptionScrollPane.setViewportView(memberDescriptionArea);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(5, 0, 0, 0);
+        memberCustomizationPanel.add(memberDescriptionScrollPane, gridBagConstraints);
+
+        memberChangeNameButton.setBackground(Palette.getCurrentScheme().COLOR_MENU_BACK.getColor());
+        memberChangeNameButton.setForeground(Palette.getCurrentScheme().COLOR_PRIMARY_TEXT.getColor());
+        memberChangeNameButton.setText("Change Name");
+        memberChangeNameButton.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        memberChangeNameButton.setContentAreaFilled(false);
+        memberChangeNameButton.setPreferredSize(new java.awt.Dimension(80, 25));
+        memberChangeNameButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                memberChangeNameButtonMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                memberChangeNameButtonMouseExited(evt);
+            }
+        });
+        memberChangeNameButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                memberChangeNameButtonActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        gridBagConstraints.insets = new java.awt.Insets(5, 0, 0, 0);
+        memberCustomizationPanel.add(memberChangeNameButton, gridBagConstraints);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridheight = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.weighty = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(5, 5, 0, 0);
-        teamGenericPanel.add(jScrollPane3, gridBagConstraints);
+        gridBagConstraints.insets = new java.awt.Insets(0, 5, 0, 0);
+        teamGenericPanel.add(memberCustomizationPanel, gridBagConstraints);
 
         genericPanel.add(teamGenericPanel, "esportsapp.Team");
 
@@ -633,8 +808,6 @@ public class ManagementDialog<T extends EsportsInterface> extends javax.swing.JD
 		cancelButton.setBackground(Palette.getCurrentScheme().COLOR_MENU_BACK.getColor());
 		cancelButton.setForeground(Palette.getCurrentScheme().COLOR_MENU_FRONT.getColor());
     }//GEN-LAST:event_cancelButtonMouseExited
-
-	JFileChooser chooser = new JFileChooser();
 	
     private void iconLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_iconLabelMouseClicked
         // TODO add your handling code here:
@@ -644,6 +817,7 @@ public class ManagementDialog<T extends EsportsInterface> extends javax.swing.JD
 		if(returnVal == JFileChooser.APPROVE_OPTION) {
 			if (chooser.getSelectedFile().exists()) {
 				this.iconLabel.setIcon(new ImageIcon(new ImageIcon(chooser.getSelectedFile().getAbsolutePath()).getImage().getScaledInstance(32, 32, Image.SCALE_DEFAULT)));
+				images_to_update.put(this.object, new ImageIcon(chooser.getSelectedFile().getAbsolutePath()));
 				this.applyButton.setEnabled(true);
 			}
 	    }
@@ -660,12 +834,20 @@ public class ManagementDialog<T extends EsportsInterface> extends javax.swing.JD
 		
 		this.object.setDescription(this.descriptionTextArea.getText());
 		
-		if (!(this.chooser.getSelectedFile() == null) && (this.chooser.getSelectedFile().exists())) {
-			this.object.setIcon(new ImageIcon(chooser.getSelectedFile().getAbsolutePath()));
-		}
+		images_to_update.forEach((obj, img) -> {
+			obj.setIcon(img);
+		});
+		
+		names_to_update.forEach((obj, name) -> {
+			obj.setName(name);
+		});
 		
 		if (this.type.getName().equals("esportsapp.Event")) {
 		
+			/*
+			apply code for event dialogs
+			*/
+			
 			for (Component tc : addPanelList.getComponents()) {
 				ListComponent<Team> tlc = (ListComponent<Team>)tc;
 				this.object.getScores().remove(tlc.object.get());
@@ -673,14 +855,28 @@ public class ManagementDialog<T extends EsportsInterface> extends javax.swing.JD
 			}
 			
 			for (Component tc : participantsPanelList.getComponents()) {
-				ListComponent<Team> tlc = (ListComponent<Team>)tc;
+				ListComponent<Team> tlc = (ListComponent<Team>) tc;
 				if (!this.object.getScores().containsKey(tlc.object)) this.object.getScores().put(tlc.object, 0);
 				tlc.object.updateScore();
 			}
 			
+		} else if (this.type.getName().equals("esportsapp.Team")) {
+			
+			/*
+			apply code for team dialog (currently handles members too)
+			*/
+			
+			awaiting_removal.clear();
+			temp_members.clear();
+			
+		} else if (this.type.getName().equals("esportsapp.Member")) {
+			
+			/*
+			apply code for member dialog (redundant)
+			*/
 			
 		}
-		
+			
 		this.applyButton.setEnabled(false);
     }//GEN-LAST:event_applyButtonActionPerformed
 
@@ -696,6 +892,15 @@ public class ManagementDialog<T extends EsportsInterface> extends javax.swing.JD
 
     private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
         // TODO add your handling code here:
+		for (Member m : temp_members) {
+			Member.list.remove(m);
+		}
+		for (Member m : awaiting_removal) {
+			Member.list.add(m);
+			this.object.getScores().put(m, m.getScore());
+		}
+		temp_members.clear();
+		awaiting_removal.clear();
 		this.dispose();
     }//GEN-LAST:event_cancelButtonActionPerformed
 
@@ -711,36 +916,193 @@ public class ManagementDialog<T extends EsportsInterface> extends javax.swing.JD
 		}
     }//GEN-LAST:event_addPanelToggleItemStateChanged
 
+    private void memberChangeIconButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_memberChangeIconButtonActionPerformed
+        // TODO add your handling code here:
+		if (focussed_member_comp != null) {
+			FileNameExtensionFilter filter = new FileNameExtensionFilter("JPEG & PNG Images", "jpeg", "jpg", "png");
+			chooser.setFileFilter(filter);
+			int returnVal = chooser.showOpenDialog(EsportsGUI.getFrames()[0]);
+			if(returnVal == JFileChooser.APPROVE_OPTION) {
+				if (chooser.getSelectedFile().exists()) {
+					this.focussed_member_comp.getIconLabel().setIcon(new ImageIcon(new ImageIcon(chooser.getSelectedFile().getAbsolutePath()).getImage().getScaledInstance(32, 32, Image.SCALE_DEFAULT)));
+					images_to_update.put(focussed_member_comp.object, new ImageIcon(chooser.getSelectedFile().getAbsolutePath()));
+					this.applyButton.setEnabled(true);
+				}
+			}
+		}
+		
+    }//GEN-LAST:event_memberChangeIconButtonActionPerformed
+
+    private void memberChangeNameButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_memberChangeNameButtonActionPerformed
+        // TODO add your handling code here:
+		if (focussed_member_comp != null) {
+			String proposedName = JOptionPane.showInputDialog(this, "Please enter a name:").trim();
+			if (proposedName == null || proposedName.equals("")) return;
+			boolean nameTaken = false;
+			for (Member m : temp_members) {
+				if (m.getName().equals(proposedName.trim())) {
+					JOptionPane.showMessageDialog(this, "Member name \"" + proposedName + "\" is already used in this team");
+					nameTaken = true;
+				}
+			}
+			String name = proposedName.trim();
+			if (!nameTaken) {
+				names_to_update.put(focussed_member_comp.object, name);
+				focussed_member_comp.getNameLabel().setText(name);
+
+				applyButton.setEnabled(true);
+			}
+		}
+    }//GEN-LAST:event_memberChangeNameButtonActionPerformed
+
+    private void removeMemberButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_removeMemberButtonMouseEntered
+        // TODO add your handling code here:
+		removeMemberButton.setBackground(Palette.getCurrentScheme().COLOR_MENU_MOUSE_OVER_BACK.getColor());
+		removeMemberButton.setForeground(Palette.getCurrentScheme().COLOR_MENU_MOUSE_OVER_FRONT.getColor());
+    }//GEN-LAST:event_removeMemberButtonMouseEntered
+
+    private void removeMemberButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_removeMemberButtonMouseExited
+        // TODO add your handling code here:
+		removeMemberButton.setBackground(Palette.getCurrentScheme().COLOR_MENU_BACK.getColor());
+		removeMemberButton.setForeground(Palette.getCurrentScheme().COLOR_MENU_FRONT.getColor());
+    }//GEN-LAST:event_removeMemberButtonMouseExited
+
+    private void removeMemberButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeMemberButtonActionPerformed
+        // TODO add your handling code here:
+		if (focussed_member_comp != null) {
+			awaiting_removal.add(focussed_member_comp.object);
+			Member.list.remove(focussed_member_comp.object);
+			membersListPanel.remove(focussed_member_comp);
+			membersListPanel.revalidate();
+			membersListPanel.repaint();
+			temp_members.remove(focussed_member_comp.object);
+			this.object.getScores().remove(focussed_member_comp.object);
+			focussed_member_comp = null;
+			applyButton.setEnabled(true);
+			memberDescriptionArea.setText("");
+		}
+    }//GEN-LAST:event_removeMemberButtonActionPerformed
+
+    private void addMemberButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addMemberButtonMouseEntered
+        // TODO add your handling code here:
+		addMemberButton.setBackground(Palette.getCurrentScheme().COLOR_MENU_MOUSE_OVER_BACK.getColor());
+		addMemberButton.setForeground(Palette.getCurrentScheme().COLOR_MENU_MOUSE_OVER_FRONT.getColor());
+    }//GEN-LAST:event_addMemberButtonMouseEntered
+
+    private void addMemberButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addMemberButtonMouseExited
+        // TODO add your handling code here:
+		addMemberButton.setBackground(Palette.getCurrentScheme().COLOR_MENU_BACK.getColor());
+		addMemberButton.setForeground(Palette.getCurrentScheme().COLOR_MENU_FRONT.getColor());
+    }//GEN-LAST:event_addMemberButtonMouseExited
+
+    private void addMemberButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addMemberButtonActionPerformed
+        // TODO add your handling code here:
+		String proposedName = JOptionPane.showInputDialog(this, "Please enter a name:").trim();
+		if (proposedName == null || proposedName.equals("")) return;
+		boolean nameTaken = false;
+		for (Member m : new ArrayList<Member>(this.object.getScores().keySet())) {
+			if (m.getName().equals(proposedName)) {
+				JOptionPane.showMessageDialog(this, "Member name \"" + proposedName + "\" is already used in this Team");
+				nameTaken = true;
+			}
+		}
+		
+		if (!nameTaken) {
+			String name = proposedName.trim();
+			Member new_member = Member.add(name, (Team)this.object.get());
+			temp_members.add(new_member);
+			ListComponent<Member> member_lc = new ListComponent<>(new_member, (lc) -> {
+				
+				if (focussed_member_comp != null) {
+					focussed_member_comp.setBackground(Palette.getCurrentScheme().COLOR_ACTIVE.getColor());
+					focussed_member_comp.object.setDescription(memberDescriptionArea.getText());
+				}
+				
+				lc.requestFocus();
+				focussed_member_comp = lc;
+				focussed_member_comp.setBackground(Palette.getCurrentScheme().COLOR_MENU_SELECTED_BACK.getColor());
+				memberDescriptionArea.setText(lc.object.getDescription());
+				
+			});
+			
+			member_lc.getScoreLabel().setText("");
+			membersListPanel.add(member_lc);
+			membersListPanel.revalidate();
+			membersListPanel.repaint();
+			applyButton.setEnabled(true);
+		}
+    }//GEN-LAST:event_addMemberButtonActionPerformed
+
+    private void memberChangeIconButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_memberChangeIconButtonMouseEntered
+        // TODO add your handling code here:
+		memberChangeIconButton.setBackground(Palette.getCurrentScheme().COLOR_MENU_MOUSE_OVER_BACK.getColor());
+		memberChangeIconButton.setForeground(Palette.getCurrentScheme().COLOR_MENU_MOUSE_OVER_FRONT.getColor());
+    }//GEN-LAST:event_memberChangeIconButtonMouseEntered
+
+    private void memberChangeIconButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_memberChangeIconButtonMouseExited
+        // TODO add your handling code here:
+		memberChangeIconButton.setBackground(Palette.getCurrentScheme().COLOR_MENU_BACK.getColor());
+		memberChangeIconButton.setForeground(Palette.getCurrentScheme().COLOR_MENU_FRONT.getColor());
+    }//GEN-LAST:event_memberChangeIconButtonMouseExited
+
+    private void memberChangeNameButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_memberChangeNameButtonMouseEntered
+        // TODO add your handling code here:
+		memberChangeNameButton.setBackground(Palette.getCurrentScheme().COLOR_MENU_MOUSE_OVER_BACK.getColor());
+		memberChangeNameButton.setForeground(Palette.getCurrentScheme().COLOR_MENU_MOUSE_OVER_FRONT.getColor());
+    }//GEN-LAST:event_memberChangeNameButtonMouseEntered
+
+    private void memberChangeNameButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_memberChangeNameButtonMouseExited
+        // TODO add your handling code here:
+		memberChangeNameButton.setBackground(Palette.getCurrentScheme().COLOR_MENU_BACK.getColor());
+		memberChangeNameButton.setForeground(Palette.getCurrentScheme().COLOR_MENU_FRONT.getColor());
+    }//GEN-LAST:event_memberChangeNameButtonMouseExited
+
+    private void memberDescriptionAreaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_memberDescriptionAreaKeyTyped
+        // TODO add your handling code here:
+		applyButton.setEnabled(true);
+    }//GEN-LAST:event_memberDescriptionAreaKeyTyped
+
+    private void memberDescriptionAreaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_memberDescriptionAreaKeyReleased
+        // TODO add your handling code here:
+		if (focussed_member_comp != null) focussed_member_comp.object.setDescription(memberDescriptionArea.getText());
+    }//GEN-LAST:event_memberDescriptionAreaKeyReleased
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton addMemberButton;
     private javax.swing.JPanel addPanel;
     private javax.swing.JPanel addPanelList;
     private javax.swing.JScrollPane addPanelScrollPane;
     private javax.swing.JToggleButton addPanelToggle;
+    private javax.swing.JPanel addRemoveMembersButtonPanel;
     private javax.swing.JButton applyButton;
     private javax.swing.JPanel buttonPanel;
     private javax.swing.JButton cancelButton;
     private javax.swing.JButton closeButton;
+    private javax.swing.JScrollPane descriptionScrollPane;
     private javax.swing.JTextArea descriptionTextArea;
     private javax.swing.JPanel dragBarPanel;
     private javax.swing.JLayeredPane eventGenericLayeredPanel;
     private javax.swing.JPanel genericPanel;
     private javax.swing.JLabel iconLabel;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JPanel mainPanel;
     private javax.swing.JPanel managementPanel;
+    private javax.swing.JButton memberChangeIconButton;
+    private javax.swing.JButton memberChangeNameButton;
+    private javax.swing.JLabel memberCustomizationLabel;
+    private javax.swing.JPanel memberCustomizationPanel;
+    private javax.swing.JTextArea memberDescriptionArea;
+    private javax.swing.JScrollPane memberDescriptionScrollPane;
     private javax.swing.JPanel memberGenericPanel;
     private javax.swing.JLabel membersListLabel;
+    private javax.swing.JPanel membersListPanel;
+    private javax.swing.JScrollPane membersListScrollPane;
     protected javax.swing.JTextField nameField;
     private javax.swing.JLabel participantsListLabel;
     private javax.swing.JPanel participantsPanel;
     private javax.swing.JPanel participantsPanelList;
     private javax.swing.JScrollPane participantsPanelScrollPane;
+    private javax.swing.JButton removeMemberButton;
     private javax.swing.JPanel teamGenericPanel;
     // End of variables declaration//GEN-END:variables
 }

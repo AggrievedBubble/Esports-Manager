@@ -112,12 +112,12 @@ public class ListComponent<T extends EsportsInterface> extends javax.swing.JPane
 
     private void formMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseEntered
         // TODO add your handling code here:
-		this.setBackground(Palette.getCurrentScheme().COLOR_MENU_MOUSE_OVER_BACK.getColor());
+		if (!this.hasFocus()) this.setBackground(Palette.getCurrentScheme().COLOR_MENU_MOUSE_OVER_BACK.getColor());
     }//GEN-LAST:event_formMouseEntered
 
     private void formMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseExited
         // TODO add your handling code here:
-		this.setBackground(Palette.getCurrentScheme().COLOR_ACTIVE.getColor());
+		if (!this.hasFocus()) this.setBackground(Palette.getCurrentScheme().COLOR_ACTIVE.getColor());
     }//GEN-LAST:event_formMouseExited
 
     private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked

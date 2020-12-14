@@ -641,18 +641,7 @@ public class EsportsGUI extends javax.swing.JFrame {
 
         leaderboardMembersListPanel.setOpaque(false);
         leaderboardMembersListPanel.setPreferredSize(new java.awt.Dimension(0, 0));
-
-        javax.swing.GroupLayout leaderboardMembersListPanelLayout = new javax.swing.GroupLayout(leaderboardMembersListPanel);
-        leaderboardMembersListPanel.setLayout(leaderboardMembersListPanelLayout);
-        leaderboardMembersListPanelLayout.setHorizontalGroup(
-            leaderboardMembersListPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 200, Short.MAX_VALUE)
-        );
-        leaderboardMembersListPanelLayout.setVerticalGroup(
-            leaderboardMembersListPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 230, Short.MAX_VALUE)
-        );
-
+        leaderboardMembersListPanel.setLayout(new javax.swing.BoxLayout(leaderboardMembersListPanel, javax.swing.BoxLayout.Y_AXIS));
         leaderboardMembersScrollPane.setViewportView(leaderboardMembersListPanel);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -1048,6 +1037,7 @@ public class EsportsGUI extends javax.swing.JFrame {
 				.map((t) -> (t))
 				.forEach((t) -> {
 					ListComponent<Team> team_list_leaderboard_component = new ListComponent<>(t, (lc) -> {
+									leaderboardMembersListPanel.removeAll();
 									leaderboardIconLabel.setIcon(new ImageIcon(lc.object.getIcon().getImage().getScaledInstance(32, 32, Image.SCALE_DEFAULT)));
 									leaderboardNameLabel.setText(lc.object.getName());
 									leaderboardScoreLabel.setText(String.valueOf(lc.object.getScore()));
@@ -1066,7 +1056,15 @@ public class EsportsGUI extends javax.swing.JFrame {
 													leaderboardMemberScoreLabel.setText(String.valueOf(lc2.object.getScore()));
 													leaderboardMemberDescriptionArea.setText(lc2.object.getDescription());
 												});
-											});								
+												
+												leaderboardMembersListPanel.add(member_list_leaderboard_component);
+												leaderboardMembersListPanel.revalidate();
+												leaderboardMembersListPanel.repaint();
+												
+											});
+									
+									leaderboardMembersListPanel.revalidate();
+									leaderboardMembersListPanel.repaint();							
 								});
 					leaderboardListPanel.add(team_list_leaderboard_component);
 				});

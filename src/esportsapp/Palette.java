@@ -275,7 +275,7 @@ public final class Palette {
 		SMALL_PLUS_MOUSE_OVER_LIGHT(Palette.class.getResource("/esportsapp/images/smallplusmouseoverdark.png")),
 		DEFAULT_EVENT_ICON(Palette.class.getResource("/esportsapp/images/defaulteventicon.png")),
 		DEFAULT_TEAM_ICON(Palette.class.getResource("/esportsapp/images/defaultteamicon.png")),
-		DEFAULT_MEMBER_ICON(Palette.class.getResource("/esportsapp/images/defeaultmembericon.png")),
+		DEFAULT_MEMBER_ICON(Palette.class.getResource("/esportsapp/images/defaultmembericon.png")),
 	
 		CLOSE_MOUSE_OVER(Palette.class.getResource("/esportsapp/images/closemouseover.png"));
 		
